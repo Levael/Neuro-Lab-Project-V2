@@ -21,5 +21,14 @@ namespace V2_Levael
         {
 
         }
+
+        private void Browse_protocol_btn_Click(object sender, EventArgs e)
+        {
+            if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                // temp for test
+                Instructions_text.Text = FolderBrowserDialog.SelectedPath;
+            }
+        }
     }
 }

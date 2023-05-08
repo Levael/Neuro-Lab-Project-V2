@@ -69,6 +69,7 @@ namespace V2_Levael
             this.Info_label = new System.Windows.Forms.Label();
             this.Warnings_label = new System.Windows.Forms.Label();
             this.Graph_label = new System.Windows.Forms.Label();
+            this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.Header_Body_section)).BeginInit();
             this.Header_Body_section.Panel1.SuspendLayout();
             this.Header_Body_section.Panel2.SuspendLayout();
@@ -138,8 +139,8 @@ namespace V2_Levael
             this.Header_Body_section.Panel2.AccessibleName = "Body_section";
             this.Header_Body_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Header_Body_section.Panel2.Controls.Add(this.Body_section);
-            this.Header_Body_section.Size = new System.Drawing.Size(1498, 856);
-            this.Header_Body_section.SplitterDistance = 73;
+            this.Header_Body_section.Size = new System.Drawing.Size(1498, 833);
+            this.Header_Body_section.SplitterDistance = 71;
             this.Header_Body_section.TabIndex = 0;
             // 
             // Protocol_Modules_section
@@ -167,7 +168,7 @@ namespace V2_Levael
             this.Protocol_Modules_section.Panel2.Controls.Add(this.Graph_checkbox);
             this.Protocol_Modules_section.Panel2.Controls.Add(this.EEG_checkbox);
             this.Protocol_Modules_section.Panel2.Controls.Add(this.Oculus_checkbox);
-            this.Protocol_Modules_section.Size = new System.Drawing.Size(1498, 73);
+            this.Protocol_Modules_section.Size = new System.Drawing.Size(1498, 71);
             this.Protocol_Modules_section.SplitterDistance = 1393;
             this.Protocol_Modules_section.TabIndex = 0;
             // 
@@ -188,6 +189,7 @@ namespace V2_Levael
             this.Browse_protocol_btn.TabIndex = 2;
             this.Browse_protocol_btn.Text = "Browse";
             this.Browse_protocol_btn.UseVisualStyleBackColor = true;
+            this.Browse_protocol_btn.Click += new System.EventHandler(this.Browse_protocol_btn_Click);
             // 
             // Choose_Protocol_label
             // 
@@ -268,7 +270,7 @@ namespace V2_Levael
             // 
             this.Body_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Body_section.Panel2.Controls.Add(this.Right_panel_section);
-            this.Body_section.Size = new System.Drawing.Size(1498, 779);
+            this.Body_section.Size = new System.Drawing.Size(1498, 758);
             this.Body_section.SplitterDistance = 702;
             this.Body_section.TabIndex = 0;
             // 
@@ -292,8 +294,8 @@ namespace V2_Levael
             // 
             this.Left_panel_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Left_panel_section.Panel2.Controls.Add(this.Instructions_Controls_section);
-            this.Left_panel_section.Size = new System.Drawing.Size(702, 779);
-            this.Left_panel_section.SplitterDistance = 192;
+            this.Left_panel_section.Size = new System.Drawing.Size(702, 758);
+            this.Left_panel_section.SplitterDistance = 186;
             this.Left_panel_section.TabIndex = 0;
             // 
             // Parameters_label
@@ -308,7 +310,7 @@ namespace V2_Levael
             // Advanced_params_btn
             // 
             this.Advanced_params_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Advanced_params_btn.Location = new System.Drawing.Point(0, 169);
+            this.Advanced_params_btn.Location = new System.Drawing.Point(0, 163);
             this.Advanced_params_btn.Name = "Advanced_params_btn";
             this.Advanced_params_btn.Size = new System.Drawing.Size(702, 23);
             this.Advanced_params_btn.TabIndex = 0;
@@ -333,8 +335,8 @@ namespace V2_Levael
             // Instructions_Controls_section.Panel2
             // 
             this.Instructions_Controls_section.Panel2.Controls.Add(this.StatusMainBTNS_Controller_section);
-            this.Instructions_Controls_section.Size = new System.Drawing.Size(702, 583);
-            this.Instructions_Controls_section.SplitterDistance = 408;
+            this.Instructions_Controls_section.Size = new System.Drawing.Size(702, 568);
+            this.Instructions_Controls_section.SplitterDistance = 397;
             this.Instructions_Controls_section.TabIndex = 0;
             // 
             // Instructions_text
@@ -343,7 +345,7 @@ namespace V2_Levael
             this.Instructions_text.Location = new System.Drawing.Point(0, 0);
             this.Instructions_text.Multiline = true;
             this.Instructions_text.Name = "Instructions_text";
-            this.Instructions_text.Size = new System.Drawing.Size(702, 408);
+            this.Instructions_text.Size = new System.Drawing.Size(702, 397);
             this.Instructions_text.TabIndex = 0;
             this.Instructions_text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -367,7 +369,7 @@ namespace V2_Levael
             this.StatusMainBTNS_Controller_section.Panel2.BackColor = System.Drawing.Color.LightGray;
             this.StatusMainBTNS_Controller_section.Panel2.Controls.Add(this.Controller_wrapper);
             this.StatusMainBTNS_Controller_section.Panel2.Controls.Add(this.Controller_label);
-            this.StatusMainBTNS_Controller_section.Size = new System.Drawing.Size(702, 171);
+            this.StatusMainBTNS_Controller_section.Size = new System.Drawing.Size(702, 167);
             this.StatusMainBTNS_Controller_section.SplitterDistance = 297;
             this.StatusMainBTNS_Controller_section.TabIndex = 0;
             // 
@@ -395,8 +397,8 @@ namespace V2_Levael
             this.Status_MainBTNS_section.Panel2.Controls.Add(this.Make_trials_btn);
             this.Status_MainBTNS_section.Panel2.Controls.Add(this.Start_btn);
             this.Status_MainBTNS_section.Panel2.Controls.Add(this.Park_btn);
-            this.Status_MainBTNS_section.Size = new System.Drawing.Size(297, 171);
-            this.Status_MainBTNS_section.SplitterDistance = 36;
+            this.Status_MainBTNS_section.Size = new System.Drawing.Size(297, 167);
+            this.Status_MainBTNS_section.SplitterDistance = 35;
             this.Status_MainBTNS_section.TabIndex = 0;
             // 
             // Status_label
@@ -410,7 +412,7 @@ namespace V2_Levael
             // 
             // Stop_btn
             // 
-            this.Stop_btn.Location = new System.Drawing.Point(83, 103);
+            this.Stop_btn.Location = new System.Drawing.Point(84, 88);
             this.Stop_btn.Name = "Stop_btn";
             this.Stop_btn.Size = new System.Drawing.Size(75, 23);
             this.Stop_btn.TabIndex = 4;
@@ -419,7 +421,7 @@ namespace V2_Levael
             // 
             // Engage_btn
             // 
-            this.Engage_btn.Location = new System.Drawing.Point(2, 47);
+            this.Engage_btn.Location = new System.Drawing.Point(3, 32);
             this.Engage_btn.Name = "Engage_btn";
             this.Engage_btn.Size = new System.Drawing.Size(75, 23);
             this.Engage_btn.TabIndex = 0;
@@ -428,7 +430,7 @@ namespace V2_Levael
             // 
             // Make_trials_btn
             // 
-            this.Make_trials_btn.Location = new System.Drawing.Point(2, 76);
+            this.Make_trials_btn.Location = new System.Drawing.Point(3, 61);
             this.Make_trials_btn.Name = "Make_trials_btn";
             this.Make_trials_btn.Size = new System.Drawing.Size(75, 23);
             this.Make_trials_btn.TabIndex = 2;
@@ -437,7 +439,7 @@ namespace V2_Levael
             // 
             // Start_btn
             // 
-            this.Start_btn.Location = new System.Drawing.Point(2, 103);
+            this.Start_btn.Location = new System.Drawing.Point(3, 88);
             this.Start_btn.Name = "Start_btn";
             this.Start_btn.Size = new System.Drawing.Size(75, 23);
             this.Start_btn.TabIndex = 3;
@@ -446,7 +448,7 @@ namespace V2_Levael
             // 
             // Park_btn
             // 
-            this.Park_btn.Location = new System.Drawing.Point(83, 47);
+            this.Park_btn.Location = new System.Drawing.Point(84, 32);
             this.Park_btn.Name = "Park_btn";
             this.Park_btn.Size = new System.Drawing.Size(75, 23);
             this.Park_btn.TabIndex = 1;
@@ -463,9 +465,9 @@ namespace V2_Levael
             this.Controller_wrapper.Controls.Add(this.Controller_left_btn);
             this.Controller_wrapper.Controls.Add(this.Controller_down_btn);
             this.Controller_wrapper.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Controller_wrapper.Location = new System.Drawing.Point(0, 25);
+            this.Controller_wrapper.Location = new System.Drawing.Point(0, 31);
             this.Controller_wrapper.Name = "Controller_wrapper";
-            this.Controller_wrapper.Size = new System.Drawing.Size(401, 146);
+            this.Controller_wrapper.Size = new System.Drawing.Size(401, 136);
             this.Controller_wrapper.TabIndex = 7;
             // 
             // Controller_start_btn
@@ -513,7 +515,7 @@ namespace V2_Levael
             this.Controller_down_btn.AutoSize = true;
             this.Controller_down_btn.Location = new System.Drawing.Point(172, 100);
             this.Controller_down_btn.Name = "Controller_down_btn";
-            this.Controller_down_btn.Size = new System.Drawing.Size(75, 43);
+            this.Controller_down_btn.Size = new System.Drawing.Size(75, 33);
             this.Controller_down_btn.TabIndex = 4;
             this.Controller_down_btn.Text = "DOWN";
             this.Controller_down_btn.UseVisualStyleBackColor = true;
@@ -545,8 +547,8 @@ namespace V2_Levael
             // Right_panel_section.Panel2
             // 
             this.Right_panel_section.Panel2.Controls.Add(this.Unity_GraphInfoWarnings_section);
-            this.Right_panel_section.Size = new System.Drawing.Size(792, 779);
-            this.Right_panel_section.SplitterDistance = 237;
+            this.Right_panel_section.Size = new System.Drawing.Size(792, 758);
+            this.Right_panel_section.SplitterDistance = 230;
             this.Right_panel_section.TabIndex = 0;
             // 
             // EEG_label
@@ -577,8 +579,8 @@ namespace V2_Levael
             // 
             this.Unity_GraphInfoWarnings_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Unity_GraphInfoWarnings_section.Panel2.Controls.Add(this.Info_Graph_section);
-            this.Unity_GraphInfoWarnings_section.Size = new System.Drawing.Size(792, 538);
-            this.Unity_GraphInfoWarnings_section.SplitterDistance = 246;
+            this.Unity_GraphInfoWarnings_section.Size = new System.Drawing.Size(792, 524);
+            this.Unity_GraphInfoWarnings_section.SplitterDistance = 239;
             this.Unity_GraphInfoWarnings_section.TabIndex = 0;
             // 
             // Unity_label
@@ -608,7 +610,7 @@ namespace V2_Levael
             this.Info_Graph_section.Panel2.AccessibleName = "Graph_section";
             this.Info_Graph_section.Panel2.BackColor = System.Drawing.Color.LightGray;
             this.Info_Graph_section.Panel2.Controls.Add(this.Graph_label);
-            this.Info_Graph_section.Size = new System.Drawing.Size(792, 288);
+            this.Info_Graph_section.Size = new System.Drawing.Size(792, 281);
             this.Info_Graph_section.SplitterDistance = 407;
             this.Info_Graph_section.TabIndex = 0;
             // 
@@ -632,8 +634,8 @@ namespace V2_Levael
             this.Info_Warnings_section.Panel2.AccessibleName = "Warnings_section";
             this.Info_Warnings_section.Panel2.BackColor = System.Drawing.Color.LightGray;
             this.Info_Warnings_section.Panel2.Controls.Add(this.Warnings_label);
-            this.Info_Warnings_section.Size = new System.Drawing.Size(407, 288);
-            this.Info_Warnings_section.SplitterDistance = 177;
+            this.Info_Warnings_section.Size = new System.Drawing.Size(407, 281);
+            this.Info_Warnings_section.SplitterDistance = 172;
             this.Info_Warnings_section.TabIndex = 0;
             // 
             // Info_label
@@ -663,13 +665,17 @@ namespace V2_Levael
             this.Graph_label.TabIndex = 0;
             this.Graph_label.Text = "Graph";
             // 
+            // FolderBrowserDialog
+            // 
+            this.FolderBrowserDialog.SelectedPath = "C:\\Users\\user\\Documents\\GitHub\\V2_Levael\\Protocols";
+            // 
             // GUI
             // 
             this.AccessibleName = "";
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1498, 856);
+            this.ClientSize = new System.Drawing.Size(1498, 833);
             this.Controls.Add(this.Header_Body_section);
             this.Name = "GUI";
             this.Text = "Human Moog V2";
@@ -781,6 +787,7 @@ namespace V2_Levael
         private System.Windows.Forms.CheckBox Oculus_checkbox;
         private System.Windows.Forms.TextBox Instructions_text;
         private System.Windows.Forms.Panel Controller_wrapper;
+        private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog;
     }
 }
 
