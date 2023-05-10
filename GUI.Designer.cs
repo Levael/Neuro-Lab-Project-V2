@@ -1,5 +1,5 @@
 ﻿
-namespace V2_Levael
+namespace Main
 {
     partial class GUI
     {
@@ -30,35 +30,46 @@ namespace V2_Levael
         private void InitializeComponent()
         {
             this.Header_Body_section = new System.Windows.Forms.SplitContainer();
-            this.Protocol_Modules_section = new System.Windows.Forms.SplitContainer();
+            this.ProtocolNames_Status_section = new System.Windows.Forms.SplitContainer();
+            this.Protocol_Names_section = new System.Windows.Forms.SplitContainer();
+            this.Protocol_wrapper = new System.Windows.Forms.Panel();
+            this.Choose_Protocol = new System.Windows.Forms.ComboBox();
             this.Save_protocol_btn = new System.Windows.Forms.Button();
             this.Browse_protocol_btn = new System.Windows.Forms.Button();
             this.Choose_Protocol_label = new System.Windows.Forms.Label();
-            this.Choose_Protocol = new System.Windows.Forms.ComboBox();
-            this.Instructions_checkbox = new System.Windows.Forms.CheckBox();
-            this.Graph_checkbox = new System.Windows.Forms.CheckBox();
-            this.EEG_checkbox = new System.Windows.Forms.CheckBox();
-            this.Oculus_checkbox = new System.Windows.Forms.CheckBox();
+            this.Names_wrapper = new System.Windows.Forms.Panel();
+            this.GuineaPig_name_label = new System.Windows.Forms.Label();
+            this.Researcher_name_label = new System.Windows.Forms.Label();
+            this.GuineaPig_name_textbox = new System.Windows.Forms.TextBox();
+            this.Researcher_name_textbox = new System.Windows.Forms.TextBox();
+            this.Statuses_wrapper = new System.Windows.Forms.TableLayoutPanel();
+            this.Status_label = new System.Windows.Forms.Label();
             this.Body_section = new System.Windows.Forms.SplitContainer();
             this.Left_panel_section = new System.Windows.Forms.SplitContainer();
             this.Parameters_label = new System.Windows.Forms.Label();
             this.Advanced_params_btn = new System.Windows.Forms.Button();
             this.Instructions_Controls_section = new System.Windows.Forms.SplitContainer();
-            this.Instructions_text = new System.Windows.Forms.TextBox();
-            this.StatusMainBTNS_Controller_section = new System.Windows.Forms.SplitContainer();
-            this.Status_MainBTNS_section = new System.Windows.Forms.SplitContainer();
-            this.Status_label = new System.Windows.Forms.Label();
+            this.Instructions_textbox = new System.Windows.Forms.TextBox();
+            this.CheckboxesMainBTNS_Controller_section = new System.Windows.Forms.SplitContainer();
+            this.Checkboxes_MainBTNS_section = new System.Windows.Forms.SplitContainer();
+            this.Checkboxes_label = new System.Windows.Forms.Label();
+            this.Instructions_checkbox = new System.Windows.Forms.CheckBox();
+            this.EEG_checkbox = new System.Windows.Forms.CheckBox();
+            this.Graph_checkbox = new System.Windows.Forms.CheckBox();
+            this.Oculus_checkbox = new System.Windows.Forms.CheckBox();
+            this.Main_BTNS_label = new System.Windows.Forms.Label();
+            this.MainBTNS_wrapper = new System.Windows.Forms.TableLayoutPanel();
+            this.Park_btn = new System.Windows.Forms.Button();
             this.Stop_btn = new System.Windows.Forms.Button();
             this.Engage_btn = new System.Windows.Forms.Button();
             this.Make_trials_btn = new System.Windows.Forms.Button();
             this.Start_btn = new System.Windows.Forms.Button();
-            this.Park_btn = new System.Windows.Forms.Button();
-            this.Controller_wrapper = new System.Windows.Forms.Panel();
-            this.Controller_start_btn = new System.Windows.Forms.Button();
+            this.Controller_btns_wrapper = new System.Windows.Forms.TableLayoutPanel();
             this.Controller_right_btn = new System.Windows.Forms.Button();
-            this.Controller_up_btn = new System.Windows.Forms.Button();
-            this.Controller_left_btn = new System.Windows.Forms.Button();
+            this.Controller_start_btn = new System.Windows.Forms.Button();
             this.Controller_down_btn = new System.Windows.Forms.Button();
+            this.Controller_left_btn = new System.Windows.Forms.Button();
+            this.Controller_up_btn = new System.Windows.Forms.Button();
             this.Controller_label = new System.Windows.Forms.Label();
             this.Right_panel_section = new System.Windows.Forms.SplitContainer();
             this.EEG_label = new System.Windows.Forms.Label();
@@ -67,17 +78,27 @@ namespace V2_Levael
             this.Info_Graph_section = new System.Windows.Forms.SplitContainer();
             this.Info_Warnings_section = new System.Windows.Forms.SplitContainer();
             this.Info_label = new System.Windows.Forms.Label();
+            this.Info_textbox = new System.Windows.Forms.TextBox();
             this.Warnings_label = new System.Windows.Forms.Label();
+            this.Warning_textbox = new System.Windows.Forms.TextBox();
             this.Graph_label = new System.Windows.Forms.Label();
             this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.Checkboxes_wrapper = new System.Windows.Forms.TableLayoutPanel();
+            this.Status_checkbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.Header_Body_section)).BeginInit();
             this.Header_Body_section.Panel1.SuspendLayout();
             this.Header_Body_section.Panel2.SuspendLayout();
             this.Header_Body_section.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Protocol_Modules_section)).BeginInit();
-            this.Protocol_Modules_section.Panel1.SuspendLayout();
-            this.Protocol_Modules_section.Panel2.SuspendLayout();
-            this.Protocol_Modules_section.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProtocolNames_Status_section)).BeginInit();
+            this.ProtocolNames_Status_section.Panel1.SuspendLayout();
+            this.ProtocolNames_Status_section.Panel2.SuspendLayout();
+            this.ProtocolNames_Status_section.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Protocol_Names_section)).BeginInit();
+            this.Protocol_Names_section.Panel1.SuspendLayout();
+            this.Protocol_Names_section.Panel2.SuspendLayout();
+            this.Protocol_Names_section.SuspendLayout();
+            this.Protocol_wrapper.SuspendLayout();
+            this.Names_wrapper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Body_section)).BeginInit();
             this.Body_section.Panel1.SuspendLayout();
             this.Body_section.Panel2.SuspendLayout();
@@ -90,15 +111,16 @@ namespace V2_Levael
             this.Instructions_Controls_section.Panel1.SuspendLayout();
             this.Instructions_Controls_section.Panel2.SuspendLayout();
             this.Instructions_Controls_section.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StatusMainBTNS_Controller_section)).BeginInit();
-            this.StatusMainBTNS_Controller_section.Panel1.SuspendLayout();
-            this.StatusMainBTNS_Controller_section.Panel2.SuspendLayout();
-            this.StatusMainBTNS_Controller_section.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Status_MainBTNS_section)).BeginInit();
-            this.Status_MainBTNS_section.Panel1.SuspendLayout();
-            this.Status_MainBTNS_section.Panel2.SuspendLayout();
-            this.Status_MainBTNS_section.SuspendLayout();
-            this.Controller_wrapper.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckboxesMainBTNS_Controller_section)).BeginInit();
+            this.CheckboxesMainBTNS_Controller_section.Panel1.SuspendLayout();
+            this.CheckboxesMainBTNS_Controller_section.Panel2.SuspendLayout();
+            this.CheckboxesMainBTNS_Controller_section.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Checkboxes_MainBTNS_section)).BeginInit();
+            this.Checkboxes_MainBTNS_section.Panel1.SuspendLayout();
+            this.Checkboxes_MainBTNS_section.Panel2.SuspendLayout();
+            this.Checkboxes_MainBTNS_section.SuspendLayout();
+            this.MainBTNS_wrapper.SuspendLayout();
+            this.Controller_btns_wrapper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Right_panel_section)).BeginInit();
             this.Right_panel_section.Panel1.SuspendLayout();
             this.Right_panel_section.Panel2.SuspendLayout();
@@ -115,6 +137,7 @@ namespace V2_Levael
             this.Info_Warnings_section.Panel1.SuspendLayout();
             this.Info_Warnings_section.Panel2.SuspendLayout();
             this.Info_Warnings_section.SuspendLayout();
+            this.Checkboxes_wrapper.SuspendLayout();
             this.SuspendLayout();
             // 
             // Header_Body_section
@@ -131,7 +154,7 @@ namespace V2_Levael
             // 
             this.Header_Body_section.Panel1.AccessibleName = "Header_section";
             this.Header_Body_section.Panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.Header_Body_section.Panel1.Controls.Add(this.Protocol_Modules_section);
+            this.Header_Body_section.Panel1.Controls.Add(this.ProtocolNames_Status_section);
             this.Header_Body_section.Panel1.Tag = "";
             // 
             // Header_Body_section.Panel2
@@ -140,41 +163,80 @@ namespace V2_Levael
             this.Header_Body_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Header_Body_section.Panel2.Controls.Add(this.Body_section);
             this.Header_Body_section.Size = new System.Drawing.Size(1498, 833);
-            this.Header_Body_section.SplitterDistance = 71;
+            this.Header_Body_section.SplitterDistance = 60;
             this.Header_Body_section.TabIndex = 0;
             // 
-            // Protocol_Modules_section
+            // ProtocolNames_Status_section
             // 
-            this.Protocol_Modules_section.BackColor = System.Drawing.SystemColors.Window;
-            this.Protocol_Modules_section.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.Protocol_Modules_section.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Protocol_Modules_section.Location = new System.Drawing.Point(0, 0);
-            this.Protocol_Modules_section.Name = "Protocol_Modules_section";
+            this.ProtocolNames_Status_section.BackColor = System.Drawing.SystemColors.Window;
+            this.ProtocolNames_Status_section.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.ProtocolNames_Status_section.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProtocolNames_Status_section.Location = new System.Drawing.Point(0, 0);
+            this.ProtocolNames_Status_section.Name = "ProtocolNames_Status_section";
             // 
-            // Protocol_Modules_section.Panel1
+            // ProtocolNames_Status_section.Panel1
             // 
-            this.Protocol_Modules_section.Panel1.AccessibleName = "Protocol_input_section";
-            this.Protocol_Modules_section.Panel1.BackColor = System.Drawing.Color.LightGray;
-            this.Protocol_Modules_section.Panel1.Controls.Add(this.Save_protocol_btn);
-            this.Protocol_Modules_section.Panel1.Controls.Add(this.Browse_protocol_btn);
-            this.Protocol_Modules_section.Panel1.Controls.Add(this.Choose_Protocol_label);
-            this.Protocol_Modules_section.Panel1.Controls.Add(this.Choose_Protocol);
+            this.ProtocolNames_Status_section.Panel1.AccessibleName = "Protocol_input_section";
+            this.ProtocolNames_Status_section.Panel1.BackColor = System.Drawing.Color.LightGray;
+            this.ProtocolNames_Status_section.Panel1.Controls.Add(this.Protocol_Names_section);
             // 
-            // Protocol_Modules_section.Panel2
+            // ProtocolNames_Status_section.Panel2
             // 
-            this.Protocol_Modules_section.Panel2.AccessibleName = "Modules_switch_section";
-            this.Protocol_Modules_section.Panel2.BackColor = System.Drawing.Color.LightGray;
-            this.Protocol_Modules_section.Panel2.Controls.Add(this.Instructions_checkbox);
-            this.Protocol_Modules_section.Panel2.Controls.Add(this.Graph_checkbox);
-            this.Protocol_Modules_section.Panel2.Controls.Add(this.EEG_checkbox);
-            this.Protocol_Modules_section.Panel2.Controls.Add(this.Oculus_checkbox);
-            this.Protocol_Modules_section.Size = new System.Drawing.Size(1498, 71);
-            this.Protocol_Modules_section.SplitterDistance = 1393;
-            this.Protocol_Modules_section.TabIndex = 0;
+            this.ProtocolNames_Status_section.Panel2.AccessibleName = "Status_section";
+            this.ProtocolNames_Status_section.Panel2.BackColor = System.Drawing.Color.LightGray;
+            this.ProtocolNames_Status_section.Panel2.Controls.Add(this.Statuses_wrapper);
+            this.ProtocolNames_Status_section.Panel2.Controls.Add(this.Status_label);
+            this.ProtocolNames_Status_section.Size = new System.Drawing.Size(1498, 60);
+            this.ProtocolNames_Status_section.SplitterDistance = 1266;
+            this.ProtocolNames_Status_section.TabIndex = 0;
+            // 
+            // Protocol_Names_section
+            // 
+            this.Protocol_Names_section.BackColor = System.Drawing.Color.LightGray;
+            this.Protocol_Names_section.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.Protocol_Names_section.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Protocol_Names_section.Location = new System.Drawing.Point(0, 0);
+            this.Protocol_Names_section.Name = "Protocol_Names_section";
+            // 
+            // Protocol_Names_section.Panel1
+            // 
+            this.Protocol_Names_section.Panel1.AccessibleName = "Protocol_input_section";
+            this.Protocol_Names_section.Panel1.Controls.Add(this.Protocol_wrapper);
+            // 
+            // Protocol_Names_section.Panel2
+            // 
+            this.Protocol_Names_section.Panel2.AccessibleName = "Names_input_section";
+            this.Protocol_Names_section.Panel2.BackColor = System.Drawing.Color.LightGray;
+            this.Protocol_Names_section.Panel2.Controls.Add(this.Names_wrapper);
+            this.Protocol_Names_section.Size = new System.Drawing.Size(1266, 60);
+            this.Protocol_Names_section.SplitterDistance = 654;
+            this.Protocol_Names_section.TabIndex = 0;
+            // 
+            // Protocol_wrapper
+            // 
+            this.Protocol_wrapper.AutoSize = true;
+            this.Protocol_wrapper.Controls.Add(this.Choose_Protocol);
+            this.Protocol_wrapper.Controls.Add(this.Save_protocol_btn);
+            this.Protocol_wrapper.Controls.Add(this.Browse_protocol_btn);
+            this.Protocol_wrapper.Controls.Add(this.Choose_Protocol_label);
+            this.Protocol_wrapper.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Protocol_wrapper.Location = new System.Drawing.Point(0, 0);
+            this.Protocol_wrapper.Name = "Protocol_wrapper";
+            this.Protocol_wrapper.Padding = new System.Windows.Forms.Padding(0, 5, 5, 5);
+            this.Protocol_wrapper.Size = new System.Drawing.Size(387, 60);
+            this.Protocol_wrapper.TabIndex = 4;
+            // 
+            // Choose_Protocol
+            // 
+            this.Choose_Protocol.FormattingEnabled = true;
+            this.Choose_Protocol.Location = new System.Drawing.Point(3, 27);
+            this.Choose_Protocol.Name = "Choose_Protocol";
+            this.Choose_Protocol.Size = new System.Drawing.Size(207, 23);
+            this.Choose_Protocol.TabIndex = 0;
             // 
             // Save_protocol_btn
             // 
-            this.Save_protocol_btn.Location = new System.Drawing.Point(313, 36);
+            this.Save_protocol_btn.Location = new System.Drawing.Point(304, 27);
             this.Save_protocol_btn.Name = "Save_protocol_btn";
             this.Save_protocol_btn.Size = new System.Drawing.Size(75, 23);
             this.Save_protocol_btn.TabIndex = 3;
@@ -183,7 +245,7 @@ namespace V2_Levael
             // 
             // Browse_protocol_btn
             // 
-            this.Browse_protocol_btn.Location = new System.Drawing.Point(232, 35);
+            this.Browse_protocol_btn.Location = new System.Drawing.Point(223, 26);
             this.Browse_protocol_btn.Name = "Browse_protocol_btn";
             this.Browse_protocol_btn.Size = new System.Drawing.Size(75, 23);
             this.Browse_protocol_btn.TabIndex = 2;
@@ -194,64 +256,80 @@ namespace V2_Levael
             // Choose_Protocol_label
             // 
             this.Choose_Protocol_label.AutoSize = true;
-            this.Choose_Protocol_label.Location = new System.Drawing.Point(12, 18);
+            this.Choose_Protocol_label.Location = new System.Drawing.Point(3, 4);
             this.Choose_Protocol_label.Name = "Choose_Protocol_label";
             this.Choose_Protocol_label.Size = new System.Drawing.Size(98, 15);
             this.Choose_Protocol_label.TabIndex = 1;
             this.Choose_Protocol_label.Text = "Choose protocol:";
             // 
-            // Choose_Protocol
+            // Names_wrapper
             // 
-            this.Choose_Protocol.FormattingEnabled = true;
-            this.Choose_Protocol.Location = new System.Drawing.Point(12, 36);
-            this.Choose_Protocol.Name = "Choose_Protocol";
-            this.Choose_Protocol.Size = new System.Drawing.Size(207, 23);
-            this.Choose_Protocol.TabIndex = 0;
+            this.Names_wrapper.AutoSize = true;
+            this.Names_wrapper.Controls.Add(this.GuineaPig_name_label);
+            this.Names_wrapper.Controls.Add(this.Researcher_name_label);
+            this.Names_wrapper.Controls.Add(this.GuineaPig_name_textbox);
+            this.Names_wrapper.Controls.Add(this.Researcher_name_textbox);
+            this.Names_wrapper.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Names_wrapper.Location = new System.Drawing.Point(0, 0);
+            this.Names_wrapper.Name = "Names_wrapper";
+            this.Names_wrapper.Size = new System.Drawing.Size(267, 60);
+            this.Names_wrapper.TabIndex = 0;
             // 
-            // Instructions_checkbox
+            // GuineaPig_name_label
             // 
-            this.Instructions_checkbox.AutoSize = true;
-            this.Instructions_checkbox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Instructions_checkbox.Location = new System.Drawing.Point(0, 57);
-            this.Instructions_checkbox.Name = "Instructions_checkbox";
-            this.Instructions_checkbox.Size = new System.Drawing.Size(101, 19);
-            this.Instructions_checkbox.TabIndex = 3;
-            this.Instructions_checkbox.Text = "Instructions";
-            this.Instructions_checkbox.UseVisualStyleBackColor = true;
+            this.GuineaPig_name_label.AutoSize = true;
+            this.GuineaPig_name_label.Location = new System.Drawing.Point(3, 36);
+            this.GuineaPig_name_label.Name = "GuineaPig_name_label";
+            this.GuineaPig_name_label.Size = new System.Drawing.Size(100, 15);
+            this.GuineaPig_name_label.TabIndex = 3;
+            this.GuineaPig_name_label.Text = "Guinea pig name:";
             // 
-            // Graph_checkbox
+            // Researcher_name_label
             // 
-            this.Graph_checkbox.AutoSize = true;
-            this.Graph_checkbox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Graph_checkbox.Location = new System.Drawing.Point(0, 38);
-            this.Graph_checkbox.Name = "Graph_checkbox";
-            this.Graph_checkbox.Size = new System.Drawing.Size(101, 19);
-            this.Graph_checkbox.TabIndex = 2;
-            this.Graph_checkbox.Text = "Graph";
-            this.Graph_checkbox.UseVisualStyleBackColor = true;
+            this.Researcher_name_label.AutoSize = true;
+            this.Researcher_name_label.Location = new System.Drawing.Point(3, 8);
+            this.Researcher_name_label.Name = "Researcher_name_label";
+            this.Researcher_name_label.Size = new System.Drawing.Size(100, 15);
+            this.Researcher_name_label.TabIndex = 2;
+            this.Researcher_name_label.Text = "Researcher name:";
             // 
-            // EEG_checkbox
+            // GuineaPig_name_textbox
             // 
-            this.EEG_checkbox.AutoSize = true;
-            this.EEG_checkbox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EEG_checkbox.Location = new System.Drawing.Point(0, 19);
-            this.EEG_checkbox.Name = "EEG_checkbox";
-            this.EEG_checkbox.Size = new System.Drawing.Size(101, 19);
-            this.EEG_checkbox.TabIndex = 1;
-            this.EEG_checkbox.Text = "EEG";
-            this.EEG_checkbox.UseVisualStyleBackColor = true;
+            this.GuineaPig_name_textbox.Location = new System.Drawing.Point(107, 33);
+            this.GuineaPig_name_textbox.Name = "GuineaPig_name_textbox";
+            this.GuineaPig_name_textbox.Size = new System.Drawing.Size(157, 23);
+            this.GuineaPig_name_textbox.TabIndex = 1;
             // 
-            // Oculus_checkbox
+            // Researcher_name_textbox
             // 
-            this.Oculus_checkbox.AccessibleName = "";
-            this.Oculus_checkbox.AutoSize = true;
-            this.Oculus_checkbox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Oculus_checkbox.Location = new System.Drawing.Point(0, 0);
-            this.Oculus_checkbox.Name = "Oculus_checkbox";
-            this.Oculus_checkbox.Size = new System.Drawing.Size(101, 19);
-            this.Oculus_checkbox.TabIndex = 0;
-            this.Oculus_checkbox.Text = "Oculus";
-            this.Oculus_checkbox.UseVisualStyleBackColor = true;
+            this.Researcher_name_textbox.Location = new System.Drawing.Point(107, 4);
+            this.Researcher_name_textbox.Name = "Researcher_name_textbox";
+            this.Researcher_name_textbox.Size = new System.Drawing.Size(157, 23);
+            this.Researcher_name_textbox.TabIndex = 0;
+            // 
+            // Statuses_wrapper
+            // 
+            this.Statuses_wrapper.ColumnCount = 4;
+            this.Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.Statuses_wrapper.Location = new System.Drawing.Point(47, 19);
+            this.Statuses_wrapper.Name = "Statuses_wrapper";
+            this.Statuses_wrapper.RowCount = 1;
+            this.Statuses_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Statuses_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.Statuses_wrapper.Size = new System.Drawing.Size(169, 29);
+            this.Statuses_wrapper.TabIndex = 6;
+            // 
+            // Status_label
+            // 
+            this.Status_label.AutoSize = true;
+            this.Status_label.Location = new System.Drawing.Point(2, 0);
+            this.Status_label.Name = "Status_label";
+            this.Status_label.Size = new System.Drawing.Size(39, 15);
+            this.Status_label.TabIndex = 0;
+            this.Status_label.Text = "Status";
             // 
             // Body_section
             // 
@@ -270,7 +348,7 @@ namespace V2_Levael
             // 
             this.Body_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Body_section.Panel2.Controls.Add(this.Right_panel_section);
-            this.Body_section.Size = new System.Drawing.Size(1498, 758);
+            this.Body_section.Size = new System.Drawing.Size(1498, 769);
             this.Body_section.SplitterDistance = 702;
             this.Body_section.TabIndex = 0;
             // 
@@ -294,8 +372,8 @@ namespace V2_Levael
             // 
             this.Left_panel_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Left_panel_section.Panel2.Controls.Add(this.Instructions_Controls_section);
-            this.Left_panel_section.Size = new System.Drawing.Size(702, 758);
-            this.Left_panel_section.SplitterDistance = 186;
+            this.Left_panel_section.Size = new System.Drawing.Size(702, 769);
+            this.Left_panel_section.SplitterDistance = 188;
             this.Left_panel_section.TabIndex = 0;
             // 
             // Parameters_label
@@ -310,7 +388,7 @@ namespace V2_Levael
             // Advanced_params_btn
             // 
             this.Advanced_params_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Advanced_params_btn.Location = new System.Drawing.Point(0, 163);
+            this.Advanced_params_btn.Location = new System.Drawing.Point(0, 165);
             this.Advanced_params_btn.Name = "Advanced_params_btn";
             this.Advanced_params_btn.Size = new System.Drawing.Size(702, 23);
             this.Advanced_params_btn.TabIndex = 0;
@@ -330,200 +408,291 @@ namespace V2_Levael
             // 
             this.Instructions_Controls_section.Panel1.AccessibleName = "Instructions_section";
             this.Instructions_Controls_section.Panel1.BackColor = System.Drawing.Color.LightGray;
-            this.Instructions_Controls_section.Panel1.Controls.Add(this.Instructions_text);
+            this.Instructions_Controls_section.Panel1.Controls.Add(this.Instructions_textbox);
             // 
             // Instructions_Controls_section.Panel2
             // 
-            this.Instructions_Controls_section.Panel2.Controls.Add(this.StatusMainBTNS_Controller_section);
-            this.Instructions_Controls_section.Size = new System.Drawing.Size(702, 568);
-            this.Instructions_Controls_section.SplitterDistance = 397;
+            this.Instructions_Controls_section.Panel2.Controls.Add(this.CheckboxesMainBTNS_Controller_section);
+            this.Instructions_Controls_section.Size = new System.Drawing.Size(702, 577);
+            this.Instructions_Controls_section.SplitterDistance = 403;
             this.Instructions_Controls_section.TabIndex = 0;
             // 
-            // Instructions_text
+            // Instructions_textbox
             // 
-            this.Instructions_text.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Instructions_text.Location = new System.Drawing.Point(0, 0);
-            this.Instructions_text.Multiline = true;
-            this.Instructions_text.Name = "Instructions_text";
-            this.Instructions_text.Size = new System.Drawing.Size(702, 397);
-            this.Instructions_text.TabIndex = 0;
-            this.Instructions_text.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Instructions_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Instructions_textbox.Location = new System.Drawing.Point(0, 0);
+            this.Instructions_textbox.Multiline = true;
+            this.Instructions_textbox.Name = "Instructions_textbox";
+            this.Instructions_textbox.ReadOnly = true;
+            this.Instructions_textbox.Size = new System.Drawing.Size(702, 403);
+            this.Instructions_textbox.TabIndex = 0;
+            this.Instructions_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // StatusMainBTNS_Controller_section
+            // CheckboxesMainBTNS_Controller_section
             // 
-            this.StatusMainBTNS_Controller_section.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusMainBTNS_Controller_section.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.StatusMainBTNS_Controller_section.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StatusMainBTNS_Controller_section.Location = new System.Drawing.Point(0, 0);
-            this.StatusMainBTNS_Controller_section.Name = "StatusMainBTNS_Controller_section";
+            this.CheckboxesMainBTNS_Controller_section.BackColor = System.Drawing.SystemColors.Window;
+            this.CheckboxesMainBTNS_Controller_section.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.CheckboxesMainBTNS_Controller_section.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CheckboxesMainBTNS_Controller_section.Location = new System.Drawing.Point(0, 0);
+            this.CheckboxesMainBTNS_Controller_section.Name = "CheckboxesMainBTNS_Controller_section";
             // 
-            // StatusMainBTNS_Controller_section.Panel1
+            // CheckboxesMainBTNS_Controller_section.Panel1
             // 
-            this.StatusMainBTNS_Controller_section.Panel1.AccessibleName = "Status_MainBtns_section";
-            this.StatusMainBTNS_Controller_section.Panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusMainBTNS_Controller_section.Panel1.Controls.Add(this.Status_MainBTNS_section);
+            this.CheckboxesMainBTNS_Controller_section.Panel1.AccessibleName = "Status_MainBtns_section";
+            this.CheckboxesMainBTNS_Controller_section.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.CheckboxesMainBTNS_Controller_section.Panel1.Controls.Add(this.Checkboxes_MainBTNS_section);
             // 
-            // StatusMainBTNS_Controller_section.Panel2
+            // CheckboxesMainBTNS_Controller_section.Panel2
             // 
-            this.StatusMainBTNS_Controller_section.Panel2.AccessibleName = "Controller_section";
-            this.StatusMainBTNS_Controller_section.Panel2.BackColor = System.Drawing.Color.LightGray;
-            this.StatusMainBTNS_Controller_section.Panel2.Controls.Add(this.Controller_wrapper);
-            this.StatusMainBTNS_Controller_section.Panel2.Controls.Add(this.Controller_label);
-            this.StatusMainBTNS_Controller_section.Size = new System.Drawing.Size(702, 167);
-            this.StatusMainBTNS_Controller_section.SplitterDistance = 297;
-            this.StatusMainBTNS_Controller_section.TabIndex = 0;
+            this.CheckboxesMainBTNS_Controller_section.Panel2.AccessibleName = "Controller_section";
+            this.CheckboxesMainBTNS_Controller_section.Panel2.BackColor = System.Drawing.Color.LightGray;
+            this.CheckboxesMainBTNS_Controller_section.Panel2.Controls.Add(this.Controller_btns_wrapper);
+            this.CheckboxesMainBTNS_Controller_section.Panel2.Controls.Add(this.Controller_label);
+            this.CheckboxesMainBTNS_Controller_section.Panel2.Padding = new System.Windows.Forms.Padding(10, 30, 10, 10);
+            this.CheckboxesMainBTNS_Controller_section.Size = new System.Drawing.Size(702, 170);
+            this.CheckboxesMainBTNS_Controller_section.SplitterDistance = 376;
+            this.CheckboxesMainBTNS_Controller_section.TabIndex = 0;
             // 
-            // Status_MainBTNS_section
+            // Checkboxes_MainBTNS_section
             // 
-            this.Status_MainBTNS_section.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Status_MainBTNS_section.Cursor = System.Windows.Forms.Cursors.HSplit;
-            this.Status_MainBTNS_section.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Status_MainBTNS_section.Location = new System.Drawing.Point(0, 0);
-            this.Status_MainBTNS_section.Name = "Status_MainBTNS_section";
-            this.Status_MainBTNS_section.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.Checkboxes_MainBTNS_section.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Checkboxes_MainBTNS_section.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.Checkboxes_MainBTNS_section.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Checkboxes_MainBTNS_section.Location = new System.Drawing.Point(0, 0);
+            this.Checkboxes_MainBTNS_section.Name = "Checkboxes_MainBTNS_section";
             // 
-            // Status_MainBTNS_section.Panel1
+            // Checkboxes_MainBTNS_section.Panel1
             // 
-            this.Status_MainBTNS_section.Panel1.AccessibleName = "Status_section";
-            this.Status_MainBTNS_section.Panel1.BackColor = System.Drawing.Color.LightGray;
-            this.Status_MainBTNS_section.Panel1.Controls.Add(this.Status_label);
+            this.Checkboxes_MainBTNS_section.Panel1.AccessibleName = "Checkboxes_section";
+            this.Checkboxes_MainBTNS_section.Panel1.BackColor = System.Drawing.Color.LightGray;
+            this.Checkboxes_MainBTNS_section.Panel1.Controls.Add(this.Checkboxes_wrapper);
+            this.Checkboxes_MainBTNS_section.Panel1.Controls.Add(this.Checkboxes_label);
+            this.Checkboxes_MainBTNS_section.Panel1.Padding = new System.Windows.Forms.Padding(10, 30, 10, 10);
             // 
-            // Status_MainBTNS_section.Panel2
+            // Checkboxes_MainBTNS_section.Panel2
             // 
-            this.Status_MainBTNS_section.Panel2.AccessibleName = "Main_btns_section";
-            this.Status_MainBTNS_section.Panel2.BackColor = System.Drawing.Color.LightGray;
-            this.Status_MainBTNS_section.Panel2.Controls.Add(this.Stop_btn);
-            this.Status_MainBTNS_section.Panel2.Controls.Add(this.Engage_btn);
-            this.Status_MainBTNS_section.Panel2.Controls.Add(this.Make_trials_btn);
-            this.Status_MainBTNS_section.Panel2.Controls.Add(this.Start_btn);
-            this.Status_MainBTNS_section.Panel2.Controls.Add(this.Park_btn);
-            this.Status_MainBTNS_section.Size = new System.Drawing.Size(297, 167);
-            this.Status_MainBTNS_section.SplitterDistance = 35;
-            this.Status_MainBTNS_section.TabIndex = 0;
+            this.Checkboxes_MainBTNS_section.Panel2.AccessibleName = "Main_btns_section";
+            this.Checkboxes_MainBTNS_section.Panel2.BackColor = System.Drawing.Color.LightGray;
+            this.Checkboxes_MainBTNS_section.Panel2.Controls.Add(this.Main_BTNS_label);
+            this.Checkboxes_MainBTNS_section.Panel2.Controls.Add(this.MainBTNS_wrapper);
+            this.Checkboxes_MainBTNS_section.Panel2.Padding = new System.Windows.Forms.Padding(10, 30, 10, 10);
+            this.Checkboxes_MainBTNS_section.Size = new System.Drawing.Size(376, 170);
+            this.Checkboxes_MainBTNS_section.SplitterDistance = 134;
+            this.Checkboxes_MainBTNS_section.TabIndex = 0;
             // 
-            // Status_label
+            // Checkboxes_label
             // 
-            this.Status_label.AutoSize = true;
-            this.Status_label.Location = new System.Drawing.Point(0, 0);
-            this.Status_label.Name = "Status_label";
-            this.Status_label.Size = new System.Drawing.Size(39, 15);
-            this.Status_label.TabIndex = 0;
-            this.Status_label.Text = "Status";
+            this.Checkboxes_label.AutoSize = true;
+            this.Checkboxes_label.Location = new System.Drawing.Point(0, 0);
+            this.Checkboxes_label.Name = "Checkboxes_label";
+            this.Checkboxes_label.Size = new System.Drawing.Size(82, 15);
+            this.Checkboxes_label.TabIndex = 3;
+            this.Checkboxes_label.Text = "Visual outputs";
+            // 
+            // Instructions_checkbox
+            // 
+            this.Instructions_checkbox.AutoSize = true;
+            this.Instructions_checkbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Instructions_checkbox.Location = new System.Drawing.Point(3, 81);
+            this.Instructions_checkbox.Name = "Instructions_checkbox";
+            this.Instructions_checkbox.Size = new System.Drawing.Size(102, 20);
+            this.Instructions_checkbox.TabIndex = 3;
+            this.Instructions_checkbox.Text = "Instructions";
+            this.Instructions_checkbox.UseVisualStyleBackColor = true;
+            // 
+            // EEG_checkbox
+            // 
+            this.EEG_checkbox.AutoSize = true;
+            this.EEG_checkbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EEG_checkbox.Location = new System.Drawing.Point(3, 55);
+            this.EEG_checkbox.Name = "EEG_checkbox";
+            this.EEG_checkbox.Size = new System.Drawing.Size(102, 20);
+            this.EEG_checkbox.TabIndex = 1;
+            this.EEG_checkbox.Text = "EEG";
+            this.EEG_checkbox.UseVisualStyleBackColor = true;
+            // 
+            // Graph_checkbox
+            // 
+            this.Graph_checkbox.AutoSize = true;
+            this.Graph_checkbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Graph_checkbox.Location = new System.Drawing.Point(3, 29);
+            this.Graph_checkbox.Name = "Graph_checkbox";
+            this.Graph_checkbox.Size = new System.Drawing.Size(102, 20);
+            this.Graph_checkbox.TabIndex = 2;
+            this.Graph_checkbox.Text = "Graph";
+            this.Graph_checkbox.UseVisualStyleBackColor = true;
+            // 
+            // Oculus_checkbox
+            // 
+            this.Oculus_checkbox.AccessibleName = "";
+            this.Oculus_checkbox.AutoSize = true;
+            this.Oculus_checkbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Oculus_checkbox.Location = new System.Drawing.Point(3, 3);
+            this.Oculus_checkbox.Name = "Oculus_checkbox";
+            this.Oculus_checkbox.Size = new System.Drawing.Size(102, 20);
+            this.Oculus_checkbox.TabIndex = 0;
+            this.Oculus_checkbox.Text = "Oculus";
+            this.Oculus_checkbox.UseVisualStyleBackColor = true;
+            // 
+            // Main_BTNS_label
+            // 
+            this.Main_BTNS_label.AutoSize = true;
+            this.Main_BTNS_label.Location = new System.Drawing.Point(1, 0);
+            this.Main_BTNS_label.Name = "Main_BTNS_label";
+            this.Main_BTNS_label.Size = new System.Drawing.Size(80, 15);
+            this.Main_BTNS_label.TabIndex = 2;
+            this.Main_BTNS_label.Text = "Main controls";
+            // 
+            // MainBTNS_wrapper
+            // 
+            this.MainBTNS_wrapper.ColumnCount = 2;
+            this.MainBTNS_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.MainBTNS_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.MainBTNS_wrapper.Controls.Add(this.Park_btn, 1, 0);
+            this.MainBTNS_wrapper.Controls.Add(this.Stop_btn, 1, 2);
+            this.MainBTNS_wrapper.Controls.Add(this.Engage_btn, 0, 0);
+            this.MainBTNS_wrapper.Controls.Add(this.Make_trials_btn, 0, 1);
+            this.MainBTNS_wrapper.Controls.Add(this.Start_btn, 0, 2);
+            this.MainBTNS_wrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainBTNS_wrapper.Location = new System.Drawing.Point(10, 30);
+            this.MainBTNS_wrapper.Name = "MainBTNS_wrapper";
+            this.MainBTNS_wrapper.RowCount = 3;
+            this.MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.MainBTNS_wrapper.Size = new System.Drawing.Size(218, 130);
+            this.MainBTNS_wrapper.TabIndex = 1;
+            // 
+            // Park_btn
+            // 
+            this.Park_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Park_btn.Location = new System.Drawing.Point(112, 3);
+            this.Park_btn.Name = "Park_btn";
+            this.Park_btn.Size = new System.Drawing.Size(103, 33);
+            this.Park_btn.TabIndex = 1;
+            this.Park_btn.Text = "Park";
+            this.Park_btn.UseVisualStyleBackColor = true;
             // 
             // Stop_btn
             // 
-            this.Stop_btn.Location = new System.Drawing.Point(84, 88);
+            this.Stop_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Stop_btn.Location = new System.Drawing.Point(112, 81);
             this.Stop_btn.Name = "Stop_btn";
-            this.Stop_btn.Size = new System.Drawing.Size(75, 23);
+            this.Stop_btn.Size = new System.Drawing.Size(103, 46);
             this.Stop_btn.TabIndex = 4;
             this.Stop_btn.Text = "Stop";
             this.Stop_btn.UseVisualStyleBackColor = true;
             // 
             // Engage_btn
             // 
-            this.Engage_btn.Location = new System.Drawing.Point(3, 32);
+            this.Engage_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Engage_btn.Location = new System.Drawing.Point(3, 3);
             this.Engage_btn.Name = "Engage_btn";
-            this.Engage_btn.Size = new System.Drawing.Size(75, 23);
+            this.Engage_btn.Size = new System.Drawing.Size(103, 33);
             this.Engage_btn.TabIndex = 0;
             this.Engage_btn.Text = "Engage";
             this.Engage_btn.UseVisualStyleBackColor = true;
             // 
             // Make_trials_btn
             // 
-            this.Make_trials_btn.Location = new System.Drawing.Point(3, 61);
+            this.Make_trials_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Make_trials_btn.Location = new System.Drawing.Point(3, 42);
             this.Make_trials_btn.Name = "Make_trials_btn";
-            this.Make_trials_btn.Size = new System.Drawing.Size(75, 23);
+            this.Make_trials_btn.Size = new System.Drawing.Size(103, 33);
             this.Make_trials_btn.TabIndex = 2;
             this.Make_trials_btn.Text = "Make trials";
             this.Make_trials_btn.UseVisualStyleBackColor = true;
             // 
             // Start_btn
             // 
-            this.Start_btn.Location = new System.Drawing.Point(3, 88);
+            this.Start_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Start_btn.Location = new System.Drawing.Point(3, 81);
             this.Start_btn.Name = "Start_btn";
-            this.Start_btn.Size = new System.Drawing.Size(75, 23);
+            this.Start_btn.Size = new System.Drawing.Size(103, 46);
             this.Start_btn.TabIndex = 3;
             this.Start_btn.Text = "Start";
             this.Start_btn.UseVisualStyleBackColor = true;
             // 
-            // Park_btn
+            // Controller_btns_wrapper
             // 
-            this.Park_btn.Location = new System.Drawing.Point(84, 32);
-            this.Park_btn.Name = "Park_btn";
-            this.Park_btn.Size = new System.Drawing.Size(75, 23);
-            this.Park_btn.TabIndex = 1;
-            this.Park_btn.Text = "Park";
-            this.Park_btn.UseVisualStyleBackColor = true;
-            // 
-            // Controller_wrapper
-            // 
-            this.Controller_wrapper.AllowDrop = true;
-            this.Controller_wrapper.AutoSize = true;
-            this.Controller_wrapper.Controls.Add(this.Controller_start_btn);
-            this.Controller_wrapper.Controls.Add(this.Controller_right_btn);
-            this.Controller_wrapper.Controls.Add(this.Controller_up_btn);
-            this.Controller_wrapper.Controls.Add(this.Controller_left_btn);
-            this.Controller_wrapper.Controls.Add(this.Controller_down_btn);
-            this.Controller_wrapper.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Controller_wrapper.Location = new System.Drawing.Point(0, 31);
-            this.Controller_wrapper.Name = "Controller_wrapper";
-            this.Controller_wrapper.Size = new System.Drawing.Size(401, 136);
-            this.Controller_wrapper.TabIndex = 7;
-            // 
-            // Controller_start_btn
-            // 
-            this.Controller_start_btn.AutoSize = true;
-            this.Controller_start_btn.Location = new System.Drawing.Point(172, 58);
-            this.Controller_start_btn.Name = "Controller_start_btn";
-            this.Controller_start_btn.Size = new System.Drawing.Size(75, 38);
-            this.Controller_start_btn.TabIndex = 0;
-            this.Controller_start_btn.Text = "START";
-            this.Controller_start_btn.UseVisualStyleBackColor = true;
+            this.Controller_btns_wrapper.ColumnCount = 3;
+            this.Controller_btns_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.Controller_btns_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.Controller_btns_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.Controller_btns_wrapper.Controls.Add(this.Controller_right_btn, 2, 1);
+            this.Controller_btns_wrapper.Controls.Add(this.Controller_start_btn, 1, 1);
+            this.Controller_btns_wrapper.Controls.Add(this.Controller_down_btn, 1, 2);
+            this.Controller_btns_wrapper.Controls.Add(this.Controller_left_btn, 0, 1);
+            this.Controller_btns_wrapper.Controls.Add(this.Controller_up_btn, 1, 0);
+            this.Controller_btns_wrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controller_btns_wrapper.Location = new System.Drawing.Point(10, 30);
+            this.Controller_btns_wrapper.Name = "Controller_btns_wrapper";
+            this.Controller_btns_wrapper.RowCount = 3;
+            this.Controller_btns_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.Controller_btns_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.Controller_btns_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.Controller_btns_wrapper.Size = new System.Drawing.Size(302, 130);
+            this.Controller_btns_wrapper.TabIndex = 6;
             // 
             // Controller_right_btn
             // 
             this.Controller_right_btn.AutoSize = true;
-            this.Controller_right_btn.Location = new System.Drawing.Point(253, 58);
+            this.Controller_right_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controller_right_btn.Location = new System.Drawing.Point(213, 42);
             this.Controller_right_btn.Name = "Controller_right_btn";
-            this.Controller_right_btn.Size = new System.Drawing.Size(75, 40);
+            this.Controller_right_btn.Size = new System.Drawing.Size(86, 46);
             this.Controller_right_btn.TabIndex = 1;
             this.Controller_right_btn.Text = "RIGHT";
             this.Controller_right_btn.UseVisualStyleBackColor = true;
             // 
-            // Controller_up_btn
+            // Controller_start_btn
             // 
-            this.Controller_up_btn.AutoSize = true;
-            this.Controller_up_btn.Location = new System.Drawing.Point(172, 13);
-            this.Controller_up_btn.Name = "Controller_up_btn";
-            this.Controller_up_btn.Size = new System.Drawing.Size(75, 38);
-            this.Controller_up_btn.TabIndex = 5;
-            this.Controller_up_btn.Text = "UP";
-            this.Controller_up_btn.UseVisualStyleBackColor = true;
-            // 
-            // Controller_left_btn
-            // 
-            this.Controller_left_btn.AutoSize = true;
-            this.Controller_left_btn.Location = new System.Drawing.Point(91, 59);
-            this.Controller_left_btn.Name = "Controller_left_btn";
-            this.Controller_left_btn.Size = new System.Drawing.Size(75, 37);
-            this.Controller_left_btn.TabIndex = 2;
-            this.Controller_left_btn.Text = "LEFT";
-            this.Controller_left_btn.UseVisualStyleBackColor = true;
+            this.Controller_start_btn.AutoSize = true;
+            this.Controller_start_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controller_start_btn.Location = new System.Drawing.Point(93, 42);
+            this.Controller_start_btn.Name = "Controller_start_btn";
+            this.Controller_start_btn.Size = new System.Drawing.Size(114, 46);
+            this.Controller_start_btn.TabIndex = 0;
+            this.Controller_start_btn.Text = "START";
+            this.Controller_start_btn.UseVisualStyleBackColor = true;
             // 
             // Controller_down_btn
             // 
             this.Controller_down_btn.AutoSize = true;
-            this.Controller_down_btn.Location = new System.Drawing.Point(172, 100);
+            this.Controller_down_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controller_down_btn.Location = new System.Drawing.Point(93, 94);
             this.Controller_down_btn.Name = "Controller_down_btn";
-            this.Controller_down_btn.Size = new System.Drawing.Size(75, 33);
+            this.Controller_down_btn.Size = new System.Drawing.Size(114, 33);
             this.Controller_down_btn.TabIndex = 4;
             this.Controller_down_btn.Text = "DOWN";
             this.Controller_down_btn.UseVisualStyleBackColor = true;
             // 
+            // Controller_left_btn
+            // 
+            this.Controller_left_btn.AutoSize = true;
+            this.Controller_left_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controller_left_btn.Location = new System.Drawing.Point(3, 42);
+            this.Controller_left_btn.Name = "Controller_left_btn";
+            this.Controller_left_btn.Size = new System.Drawing.Size(84, 46);
+            this.Controller_left_btn.TabIndex = 2;
+            this.Controller_left_btn.Text = "LEFT";
+            this.Controller_left_btn.UseVisualStyleBackColor = true;
+            // 
+            // Controller_up_btn
+            // 
+            this.Controller_up_btn.AutoSize = true;
+            this.Controller_up_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controller_up_btn.Location = new System.Drawing.Point(93, 3);
+            this.Controller_up_btn.Name = "Controller_up_btn";
+            this.Controller_up_btn.Size = new System.Drawing.Size(114, 33);
+            this.Controller_up_btn.TabIndex = 5;
+            this.Controller_up_btn.Text = "UP";
+            this.Controller_up_btn.UseVisualStyleBackColor = true;
+            // 
             // Controller_label
             // 
             this.Controller_label.AutoSize = true;
-            this.Controller_label.Location = new System.Drawing.Point(3, 0);
+            this.Controller_label.Location = new System.Drawing.Point(2, 0);
             this.Controller_label.Name = "Controller_label";
             this.Controller_label.Size = new System.Drawing.Size(60, 15);
             this.Controller_label.TabIndex = 6;
@@ -547,8 +716,8 @@ namespace V2_Levael
             // Right_panel_section.Panel2
             // 
             this.Right_panel_section.Panel2.Controls.Add(this.Unity_GraphInfoWarnings_section);
-            this.Right_panel_section.Size = new System.Drawing.Size(792, 758);
-            this.Right_panel_section.SplitterDistance = 230;
+            this.Right_panel_section.Size = new System.Drawing.Size(792, 769);
+            this.Right_panel_section.SplitterDistance = 233;
             this.Right_panel_section.TabIndex = 0;
             // 
             // EEG_label
@@ -579,8 +748,8 @@ namespace V2_Levael
             // 
             this.Unity_GraphInfoWarnings_section.Panel2.BackColor = System.Drawing.SystemColors.Window;
             this.Unity_GraphInfoWarnings_section.Panel2.Controls.Add(this.Info_Graph_section);
-            this.Unity_GraphInfoWarnings_section.Size = new System.Drawing.Size(792, 524);
-            this.Unity_GraphInfoWarnings_section.SplitterDistance = 239;
+            this.Unity_GraphInfoWarnings_section.Size = new System.Drawing.Size(792, 532);
+            this.Unity_GraphInfoWarnings_section.SplitterDistance = 240;
             this.Unity_GraphInfoWarnings_section.TabIndex = 0;
             // 
             // Unity_label
@@ -610,7 +779,7 @@ namespace V2_Levael
             this.Info_Graph_section.Panel2.AccessibleName = "Graph_section";
             this.Info_Graph_section.Panel2.BackColor = System.Drawing.Color.LightGray;
             this.Info_Graph_section.Panel2.Controls.Add(this.Graph_label);
-            this.Info_Graph_section.Size = new System.Drawing.Size(792, 281);
+            this.Info_Graph_section.Size = new System.Drawing.Size(792, 288);
             this.Info_Graph_section.SplitterDistance = 407;
             this.Info_Graph_section.TabIndex = 0;
             // 
@@ -620,6 +789,7 @@ namespace V2_Levael
             this.Info_Warnings_section.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.Info_Warnings_section.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Info_Warnings_section.Location = new System.Drawing.Point(0, 0);
+            this.Info_Warnings_section.Margin = new System.Windows.Forms.Padding(0);
             this.Info_Warnings_section.Name = "Info_Warnings_section";
             this.Info_Warnings_section.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -628,33 +798,58 @@ namespace V2_Levael
             this.Info_Warnings_section.Panel1.AccessibleName = "Info_section";
             this.Info_Warnings_section.Panel1.BackColor = System.Drawing.Color.LightGray;
             this.Info_Warnings_section.Panel1.Controls.Add(this.Info_label);
+            this.Info_Warnings_section.Panel1.Controls.Add(this.Info_textbox);
+            this.Info_Warnings_section.Panel1.Padding = new System.Windows.Forms.Padding(3, 15, 3, 5);
             // 
             // Info_Warnings_section.Panel2
             // 
             this.Info_Warnings_section.Panel2.AccessibleName = "Warnings_section";
             this.Info_Warnings_section.Panel2.BackColor = System.Drawing.Color.LightGray;
             this.Info_Warnings_section.Panel2.Controls.Add(this.Warnings_label);
-            this.Info_Warnings_section.Size = new System.Drawing.Size(407, 281);
-            this.Info_Warnings_section.SplitterDistance = 172;
+            this.Info_Warnings_section.Panel2.Controls.Add(this.Warning_textbox);
+            this.Info_Warnings_section.Panel2.Padding = new System.Windows.Forms.Padding(3, 15, 3, 5);
+            this.Info_Warnings_section.Size = new System.Drawing.Size(407, 288);
+            this.Info_Warnings_section.SplitterDistance = 170;
             this.Info_Warnings_section.TabIndex = 0;
             // 
             // Info_label
             // 
             this.Info_label.AutoSize = true;
-            this.Info_label.Location = new System.Drawing.Point(0, 0);
+            this.Info_label.Location = new System.Drawing.Point(3, 0);
             this.Info_label.Name = "Info_label";
             this.Info_label.Size = new System.Drawing.Size(28, 15);
             this.Info_label.TabIndex = 0;
             this.Info_label.Text = "Info";
             // 
+            // Info_textbox
+            // 
+            this.Info_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Info_textbox.Location = new System.Drawing.Point(3, 15);
+            this.Info_textbox.Margin = new System.Windows.Forms.Padding(10);
+            this.Info_textbox.Multiline = true;
+            this.Info_textbox.Name = "Info_textbox";
+            this.Info_textbox.ReadOnly = true;
+            this.Info_textbox.Size = new System.Drawing.Size(401, 150);
+            this.Info_textbox.TabIndex = 1;
+            // 
             // Warnings_label
             // 
             this.Warnings_label.AutoSize = true;
-            this.Warnings_label.Location = new System.Drawing.Point(0, 0);
+            this.Warnings_label.Location = new System.Drawing.Point(2, 0);
             this.Warnings_label.Name = "Warnings_label";
             this.Warnings_label.Size = new System.Drawing.Size(57, 15);
             this.Warnings_label.TabIndex = 0;
             this.Warnings_label.Text = "Warnings";
+            // 
+            // Warning_textbox
+            // 
+            this.Warning_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Warning_textbox.Location = new System.Drawing.Point(3, 15);
+            this.Warning_textbox.Multiline = true;
+            this.Warning_textbox.Name = "Warning_textbox";
+            this.Warning_textbox.ReadOnly = true;
+            this.Warning_textbox.Size = new System.Drawing.Size(401, 94);
+            this.Warning_textbox.TabIndex = 1;
             // 
             // Graph_label
             // 
@@ -667,7 +862,40 @@ namespace V2_Levael
             // 
             // FolderBrowserDialog
             // 
-            this.FolderBrowserDialog.SelectedPath = "C:\\Users\\user\\Documents\\GitHub\\V2_Levael\\Protocols";
+            this.FolderBrowserDialog.SelectedPath = "C:\\Users\\user\\Documents\\GitHub\\Main\\Protocols";
+            // 
+            // Checkboxes_wrapper
+            // 
+            this.Checkboxes_wrapper.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Checkboxes_wrapper.AutoSize = true;
+            this.Checkboxes_wrapper.ColumnCount = 1;
+            this.Checkboxes_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Checkboxes_wrapper.Controls.Add(this.Status_checkbox, 0, 4);
+            this.Checkboxes_wrapper.Controls.Add(this.Oculus_checkbox, 0, 0);
+            this.Checkboxes_wrapper.Controls.Add(this.Instructions_checkbox, 0, 3);
+            this.Checkboxes_wrapper.Controls.Add(this.Graph_checkbox, 0, 1);
+            this.Checkboxes_wrapper.Controls.Add(this.EEG_checkbox, 0, 2);
+            this.Checkboxes_wrapper.Location = new System.Drawing.Point(13, 30);
+            this.Checkboxes_wrapper.Name = "Checkboxes_wrapper";
+            this.Checkboxes_wrapper.RowCount = 5;
+            this.Checkboxes_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Checkboxes_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Checkboxes_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Checkboxes_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Checkboxes_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Checkboxes_wrapper.Size = new System.Drawing.Size(108, 130);
+            this.Checkboxes_wrapper.TabIndex = 4;
+            // 
+            // Status_checkbox
+            // 
+            this.Status_checkbox.AutoSize = true;
+            this.Status_checkbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Status_checkbox.Location = new System.Drawing.Point(3, 107);
+            this.Status_checkbox.Name = "Status_checkbox";
+            this.Status_checkbox.Size = new System.Drawing.Size(102, 20);
+            this.Status_checkbox.TabIndex = 5;
+            this.Status_checkbox.Text = "Status";
+            this.Status_checkbox.UseVisualStyleBackColor = true;
             // 
             // GUI
             // 
@@ -685,12 +913,21 @@ namespace V2_Levael
             this.Header_Body_section.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Header_Body_section)).EndInit();
             this.Header_Body_section.ResumeLayout(false);
-            this.Protocol_Modules_section.Panel1.ResumeLayout(false);
-            this.Protocol_Modules_section.Panel1.PerformLayout();
-            this.Protocol_Modules_section.Panel2.ResumeLayout(false);
-            this.Protocol_Modules_section.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Protocol_Modules_section)).EndInit();
-            this.Protocol_Modules_section.ResumeLayout(false);
+            this.ProtocolNames_Status_section.Panel1.ResumeLayout(false);
+            this.ProtocolNames_Status_section.Panel2.ResumeLayout(false);
+            this.ProtocolNames_Status_section.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProtocolNames_Status_section)).EndInit();
+            this.ProtocolNames_Status_section.ResumeLayout(false);
+            this.Protocol_Names_section.Panel1.ResumeLayout(false);
+            this.Protocol_Names_section.Panel1.PerformLayout();
+            this.Protocol_Names_section.Panel2.ResumeLayout(false);
+            this.Protocol_Names_section.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Protocol_Names_section)).EndInit();
+            this.Protocol_Names_section.ResumeLayout(false);
+            this.Protocol_wrapper.ResumeLayout(false);
+            this.Protocol_wrapper.PerformLayout();
+            this.Names_wrapper.ResumeLayout(false);
+            this.Names_wrapper.PerformLayout();
             this.Body_section.Panel1.ResumeLayout(false);
             this.Body_section.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Body_section)).EndInit();
@@ -705,18 +942,20 @@ namespace V2_Levael
             this.Instructions_Controls_section.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Instructions_Controls_section)).EndInit();
             this.Instructions_Controls_section.ResumeLayout(false);
-            this.StatusMainBTNS_Controller_section.Panel1.ResumeLayout(false);
-            this.StatusMainBTNS_Controller_section.Panel2.ResumeLayout(false);
-            this.StatusMainBTNS_Controller_section.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StatusMainBTNS_Controller_section)).EndInit();
-            this.StatusMainBTNS_Controller_section.ResumeLayout(false);
-            this.Status_MainBTNS_section.Panel1.ResumeLayout(false);
-            this.Status_MainBTNS_section.Panel1.PerformLayout();
-            this.Status_MainBTNS_section.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Status_MainBTNS_section)).EndInit();
-            this.Status_MainBTNS_section.ResumeLayout(false);
-            this.Controller_wrapper.ResumeLayout(false);
-            this.Controller_wrapper.PerformLayout();
+            this.CheckboxesMainBTNS_Controller_section.Panel1.ResumeLayout(false);
+            this.CheckboxesMainBTNS_Controller_section.Panel2.ResumeLayout(false);
+            this.CheckboxesMainBTNS_Controller_section.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckboxesMainBTNS_Controller_section)).EndInit();
+            this.CheckboxesMainBTNS_Controller_section.ResumeLayout(false);
+            this.Checkboxes_MainBTNS_section.Panel1.ResumeLayout(false);
+            this.Checkboxes_MainBTNS_section.Panel1.PerformLayout();
+            this.Checkboxes_MainBTNS_section.Panel2.ResumeLayout(false);
+            this.Checkboxes_MainBTNS_section.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Checkboxes_MainBTNS_section)).EndInit();
+            this.Checkboxes_MainBTNS_section.ResumeLayout(false);
+            this.MainBTNS_wrapper.ResumeLayout(false);
+            this.Controller_btns_wrapper.ResumeLayout(false);
+            this.Controller_btns_wrapper.PerformLayout();
             this.Right_panel_section.Panel1.ResumeLayout(false);
             this.Right_panel_section.Panel1.PerformLayout();
             this.Right_panel_section.Panel2.ResumeLayout(false);
@@ -738,6 +977,8 @@ namespace V2_Levael
             this.Info_Warnings_section.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Info_Warnings_section)).EndInit();
             this.Info_Warnings_section.ResumeLayout(false);
+            this.Checkboxes_wrapper.ResumeLayout(false);
+            this.Checkboxes_wrapper.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -745,16 +986,16 @@ namespace V2_Levael
         #endregion
 
         private System.Windows.Forms.SplitContainer Header_Body_section;
-        private System.Windows.Forms.SplitContainer Protocol_Modules_section;
+        private System.Windows.Forms.SplitContainer ProtocolNames_Status_section;
         private System.Windows.Forms.SplitContainer Body_section;
         private System.Windows.Forms.SplitContainer Left_panel_section;
         private System.Windows.Forms.SplitContainer Instructions_Controls_section;
-        private System.Windows.Forms.SplitContainer StatusMainBTNS_Controller_section;
+        private System.Windows.Forms.SplitContainer CheckboxesMainBTNS_Controller_section;
         private System.Windows.Forms.SplitContainer Right_panel_section;
         private System.Windows.Forms.SplitContainer Unity_GraphInfoWarnings_section;
         private System.Windows.Forms.SplitContainer Info_Graph_section;
         private System.Windows.Forms.SplitContainer Info_Warnings_section;
-        private System.Windows.Forms.SplitContainer Status_MainBTNS_section;
+        private System.Windows.Forms.SplitContainer Checkboxes_MainBTNS_section;
 
         private System.Windows.Forms.ComboBox Choose_Protocol;
 
@@ -784,10 +1025,25 @@ namespace V2_Levael
         private System.Windows.Forms.CheckBox Instructions_checkbox;
         private System.Windows.Forms.CheckBox Graph_checkbox;
         private System.Windows.Forms.CheckBox EEG_checkbox;
-        private System.Windows.Forms.CheckBox Oculus_checkbox;
-        private System.Windows.Forms.TextBox Instructions_text;
-        private System.Windows.Forms.Panel Controller_wrapper;
+        private System.Windows.Forms.TextBox Instructions_textbox;
         private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog;
+        private System.Windows.Forms.TextBox Info_textbox;
+        private System.Windows.Forms.TextBox Warning_textbox;
+        private System.Windows.Forms.SplitContainer Protocol_Names_section;
+        private System.Windows.Forms.Panel Protocol_wrapper;
+        private System.Windows.Forms.Panel Names_wrapper;
+        private System.Windows.Forms.Label GuineaPig_name_label;
+        private System.Windows.Forms.Label Researcher_name_label;
+        private System.Windows.Forms.TextBox GuineaPig_name_textbox;
+        private System.Windows.Forms.TextBox Researcher_name_textbox;
+        private System.Windows.Forms.TableLayoutPanel Statuses_wrapper;
+        private System.Windows.Forms.TableLayoutPanel Controller_btns_wrapper;
+        private System.Windows.Forms.CheckBox Oculus_checkbox;
+        private System.Windows.Forms.Label Checkboxes_label;
+        private System.Windows.Forms.Label Main_BTNS_label;
+        private System.Windows.Forms.TableLayoutPanel MainBTNS_wrapper;
+        private System.Windows.Forms.TableLayoutPanel Checkboxes_wrapper;
+        private System.Windows.Forms.CheckBox Status_checkbox;
     }
 }
 
