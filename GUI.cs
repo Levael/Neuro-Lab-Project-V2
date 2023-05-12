@@ -98,8 +98,8 @@ namespace Main
 
         public GUI()
         {
-            InitializeComponent();                          // built in function
-
+            InitializeComponent();                      // built in function
+            
             //_guiHandler = new GuiHandler();
 
 
@@ -186,17 +186,12 @@ namespace Main
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            // use overrided method OnLoad instead
+            VariablesInstructions_section.Panel1Collapsed = true;   // hide parameters_section until choose of excel_protocol_file
+            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;     // resize of bottom section height. change later to function
         }
 
-        private void Browse_protocol_btn_Click(object sender, EventArgs e)
-        {
-            if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                // temp for test
-                Instructions_textbox.Text = FolderBrowserDialog.SelectedPath;
-            }
-        }
+        #region DICTIONARISATION
 
         /// <summary>
         /// Initializes the checkboxes dictionary with names as key with the control as value.
@@ -222,5 +217,25 @@ namespace Main
             _textboxesDictionary.Add("WARNINGS", Oculus_checkbox);
             _textboxesDictionary.Add("INFORMATION", Graph_checkbox);
         }
+
+        #endregion DICTIONARISATION
+
+        #region EVENT LISTENERS
+
+        private void Browse_protocol_btn_Click(object sender, EventArgs e)
+        {
+            if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                // temp for test
+                Instructions_textbox.Text = FolderBrowserDialog.SelectedPath;
+            }
+        }
+
+        private void Advanced_params_btn_Click(object sender, EventArgs e)
+        {
+            VariablesInstructions_section.Panel2Collapsed = true;   // hide instructions section
+        }
+
+        #endregion EVENT LISTENERS
     }
 }

@@ -11,14 +11,14 @@ namespace Main
         /// <summary>
         /// ...
         /// </summary>
-        public Dictionary<string, GuiComponent> Initialize ()
+        /*public Dictionary<string, GuiComponent> Initialize ()
         {
-            /*var test = new Dictionary<string, GuiComponent>();
+            *//*var test = new Dictionary<string, GuiComponent>();
 
             test.Add("name1", new GuiComponent());
             test.Add("name2", new GuiComponent());
 
-            return test;*/
-        }
+            return test;*//*
+        }*/
     }
 }
