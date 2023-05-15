@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main
+namespace MoogOcus
 {
-    class GuiComponent
+    public static class InfoPrinter
     {
-        //public string test = "str";
+        public static void PrintWarning()
+        {
+
+        }
     }
 }

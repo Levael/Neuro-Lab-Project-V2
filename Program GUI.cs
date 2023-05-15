@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Main
+namespace MoogOcus
 {
     public partial class GUI : Form
     {
@@ -17,17 +18,17 @@ namespace Main
         /// <summary>
         /// The selected protocols path to view protocols.
         /// </summary>
-        //private string _protocolsDirPath;
+        private string _protocolsDirPath;
+
+        /// <summary>
+        /// The curent selected protocol path.
+        /// </summary>
+        private string _protocolFilePath;
 
         /// <summary>
         /// The variables read from the xlsx protocol file.
         /// </summary>
-        //private Variables _allVariables;
-
-        /// <summary>
-        /// The excel loader for reading data configuration.
-        /// </summary>
-        //private ExcelProtocolConfigFileLoader _excelLoader;
+        public Dictionary<string, Parameter> parameters;
 
         /// <summary>
         /// The dictionary of the dynamic allocated textboxes that are allocated each time the user choose different protocol.
@@ -39,23 +40,29 @@ namespace Main
         /// <summary>
         /// Dictionary that describes all ButtonBase (checkboxes and radiobuttons) names in the gui as keys with their control as value.
         /// </summary>
-        private Dictionary<string, ButtonBase> _checkboxesDictionary;
+        public Dictionary<string, ButtonBase> checkboxesDictionary;
 
         /// <summary>
         /// Dictionary that describes all Text boxes' names in the gui as keys with their control as value.
         /// </summary>
-        private Dictionary<string, Control> _textboxesDictionary;
+        public Dictionary<string, Control> textboxesDictionary;
+
+        /// <summary>
+        /// Dictionary that describes all buttons names in the gui as keys with their control as value.
+        /// </summary>
+        public Dictionary<string, Control> buttonsDictionary;
+
 
         //private Dictionary<string, GuiComponent> _guiComponents;
 
         //private GuiHandler _guiHandler;
 
-        /*/// <summary>
+        /// <summary>
         /// A list that holds all the titles for the variables attribute to show in the title of the table.
         /// </summary>
         private List<Label> _titlesLabelsList;
 
-        /// <summary>
+        /*/// <summary>
         /// Holds the AcrossVectorValuesGenerator generator.
         /// </summary>
         private VaryingValuesGeneratorBase _acrossVectorValuesGenerator;
@@ -68,17 +75,9 @@ namespace Main
         /// <summary>
         /// ControlLoop interface for doing the commands inserted in the gui.
         /// </summary>
-        private ControlLoop _cntrlLoop;
+        private ControlLoop _cntrlLoop;*/
 
-        /// <summary>
-        /// The selected protocol file full name.
-        /// </summary>
-        private string _selectedProtocolFullName;
 
-        /// <summary>
-        /// The selected protocol name with no .xlsx extension and ('-') additional name.
-        /// </summary>
-        private string _selectedProtocolName;
 
         /// <summary>
         /// Locker for starting and stopping button to be enabled not both.
@@ -90,16 +89,69 @@ namespace Main
         /// </summary>
         private object _lockerPauseResumeButton;
 
-        /// <summary>
-        /// Indicates if the robot was engaged or disengage.
-        /// </summary>
-        private bool _isEngaged;*/
         #endregion INITIALISATIONS
 
-        public GUI()
+        public GUI(ref ExcelHandler excelHandler)
         {
-            InitializeComponent();                      // built in function
-            
+            InitializeComponent();  // built in function
+
+            InitializeCheckBoxesDictionary();
+            InitializeTextBoxesDictionary();
+            InitializeButtonsDictionary();
+
+            parameters = new();
+
+            _protocolFilePath = @"C:\Users\user\Documents\GitHub\V2_Levael\Protocols\HeadingDiscrimination_test.xlsx";
+            excelHandler.ReadProtocolFile(_protocolFilePath, ref parameters);
+
+            // test
+
+            // Add columns + their names
+            /*foreach (var prop in typeof(Parameter).GetProperties())
+            {
+                if (prop.Name == "description") { continue; };
+
+                Parameters_table.Columns.Add(prop.Name, prop.Name);
+            }
+
+            // Add rows
+            foreach (var parameter in parameters)
+            {
+                Parameters_table.Rows.Add();
+            }
+
+            // Fill table
+            for (int r = 0; r < Parameters_table.RowCount; r++)
+            {
+                for (int c = 0; c < Parameters_table.ColumnCount; c++)
+                {
+                    Parameters_table.Rows[r].Cells[c].Value = $"{r},{c}";
+                }
+            }*/
+
+            // Fill table
+            /*foreach (var parameter in parameters)
+            {
+                foreach (var prop in typeof(Parameter).GetProperties())
+                {
+                    textboxesDictionary["INFO"].Text += $"{prop.Name}, {prop.GetValue(parameter.Value)}";
+                    textboxesDictionary["INFO"].Text += "\r\n";
+                }
+                //Parameters_table.Columns.Add((parameter.Key).ToString(), (parameter.Key).ToString());
+            }*/
+            /*
+            var test_list = parameters.ToList();
+            var test_list2 = test_list[0].ToList();
+
+            Parameters_table.Rows.Add();*/
+
+
+
+            /*textboxesDictionary["INFO"].Text = Tools.Stringify(parameters);
+            excelHandler.ReadProtocolFile(_protocolFilePath, ref parameters);
+            textboxesDictionary["INFO"].Text = Tools.Stringify(parameters);*/
+
+
             //_guiHandler = new GuiHandler();
 
 
@@ -177,18 +229,13 @@ namespace Main
             {
                 Directory.CreateDirectory(Application.StartupPath + @"\results\");
             }*/
-
-
-            //adding background image to the window.
-            //this.BackgroundImage = Image.FromFile(Application.StartupPath + @"\unityWallpaper.jpg");
-            //this._varyingControlGroupBox.BackgroundImage = Image.FromFile(Application.StartupPath + @"\unityWallpaper.jpg");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
         {
-            // use overrided method OnLoad instead
-            VariablesInstructions_section.Panel1Collapsed = true;   // hide parameters_section until choose of excel_protocol_file
-            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;     // resize of bottom section height. change later to function
+            
+            //VariablesInstructions_section.Panel1Collapsed = true;   // hide parameters_section until choose of excel_protocol_file
+            //Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;     // resize of bottom section height. change later to function
         }
 
         #region DICTIONARISATION
@@ -198,12 +245,32 @@ namespace Main
         /// </summary>
         private void InitializeCheckBoxesDictionary()
         {
-            _checkboxesDictionary = new Dictionary<string, ButtonBase>();
+            checkboxesDictionary = new();
+            checkboxesDictionary.Add("EEG", EEG_checkbox);
+            checkboxesDictionary.Add("OCULUS", Oculus_checkbox);
+            checkboxesDictionary.Add("GRAPH", Graph_checkbox);
+            checkboxesDictionary.Add("INSTRUCTIONS", Instructions_checkbox);
+        }
 
-            _checkboxesDictionary.Add("EEG", EEG_checkbox);
-            _checkboxesDictionary.Add("OCULUS", Oculus_checkbox);
-            _checkboxesDictionary.Add("GRAPH", Graph_checkbox);
-            _checkboxesDictionary.Add("INSTRUCTIONS", Instructions_checkbox);
+        /// <summary>
+        /// Initializes the buttons dictionary with names as key with the control as value.
+        /// </summary>
+        private void InitializeButtonsDictionary()
+        {
+            buttonsDictionary = new();
+
+            buttonsDictionary.Add("BROWSE_PROTOCOL_FOLDER", Browse_protocol_btn);
+            buttonsDictionary.Add("SAVE_PROTOCOL", Save_protocol_btn);
+            buttonsDictionary.Add("ENGAGE", Engage_btn);
+            buttonsDictionary.Add("PARK", Park_btn);
+            buttonsDictionary.Add("MAKE_TRIALS", Make_trials_btn);
+            buttonsDictionary.Add("START_EXPERIMENT", Start_btn);
+            buttonsDictionary.Add("STOP_EXPERIMENT", Stop_btn);
+            buttonsDictionary.Add("START_TRIAL_CONTROLLER", Controller_start_btn);
+            buttonsDictionary.Add("UP_CONTROLLER", Controller_up_btn);
+            buttonsDictionary.Add("DOWN_CONTROLLER", Controller_down_btn);
+            buttonsDictionary.Add("LEFT_CONTROLLER", Controller_left_btn);
+            buttonsDictionary.Add("RIGHT_CONTROLLER", Controller_right_btn);
         }
 
         /// <summary>
@@ -211,11 +278,11 @@ namespace Main
         /// </summary>
         private void InitializeTextBoxesDictionary()
         {
-            _textboxesDictionary = new Dictionary<string, Control>();
+            textboxesDictionary = new();
 
-            _textboxesDictionary.Add("INFO", EEG_checkbox);
-            _textboxesDictionary.Add("WARNINGS", Oculus_checkbox);
-            _textboxesDictionary.Add("INFORMATION", Graph_checkbox);
+            textboxesDictionary.Add("INFO", Info_textbox);
+            textboxesDictionary.Add("WARNINGS", Warning_textbox);
+            textboxesDictionary.Add("INFORMATION", Instructions_textbox);
         }
 
         #endregion DICTIONARISATION
@@ -228,6 +295,7 @@ namespace Main
             {
                 // temp for test
                 Instructions_textbox.Text = FolderBrowserDialog.SelectedPath;
+                //Instructions_textbox.Text = VariablesInstructions_section.GetType().ToString();
             }
         }
 

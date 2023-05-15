@@ -1,7 +1,9 @@
-﻿namespace Main
+﻿namespace MoogOcus
 {
     public static class Globals {
-        public static SystemState _systemState;
+        public static SystemState systemState;
+
+        public static bool isEngaged = false;
     }
 
     public enum SystemState

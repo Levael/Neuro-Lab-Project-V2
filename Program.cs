@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Main
+namespace MoogOcus
 {
     static class Program
     {
@@ -14,10 +14,12 @@ namespace Main
         [STAThread]
         static void Main()
         {
+            ExcelHandler excelHandler = new();
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());
+            Application.Run(new GUI(ref excelHandler));
         }
     }
 }

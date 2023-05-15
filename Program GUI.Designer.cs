@@ -1,5 +1,5 @@
 ﻿
-namespace Main
+namespace MoogOcus
 {
     partial class GUI
     {
@@ -52,6 +52,7 @@ namespace Main
             this.Body_section = new System.Windows.Forms.SplitContainer();
             this.Left_panel_section = new System.Windows.Forms.SplitContainer();
             this.VariablesInstructions_section = new System.Windows.Forms.SplitContainer();
+            this.Parameters_table = new System.Windows.Forms.DataGridView();
             this.Parameters_label = new System.Windows.Forms.Label();
             this.Advanced_params_btn = new System.Windows.Forms.Button();
             this.Instructions_textbox = new System.Windows.Forms.RichTextBox();
@@ -116,6 +117,7 @@ namespace Main
             this.VariablesInstructions_section.Panel1.SuspendLayout();
             this.VariablesInstructions_section.Panel2.SuspendLayout();
             this.VariablesInstructions_section.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Parameters_table)).BeginInit();
             this.AllControlls_wrapper.SuspendLayout();
             this.Checkboxes_wrapper.SuspendLayout();
             this.Controller_btns_wrapper.SuspendLayout();
@@ -464,8 +466,10 @@ namespace Main
             // 
             this.VariablesInstructions_section.Panel1.AccessibleName = "Variables_section";
             this.VariablesInstructions_section.Panel1.BackColor = System.Drawing.Color.LightGray;
+            this.VariablesInstructions_section.Panel1.Controls.Add(this.Parameters_table);
             this.VariablesInstructions_section.Panel1.Controls.Add(this.Parameters_label);
             this.VariablesInstructions_section.Panel1.Controls.Add(this.Advanced_params_btn);
+            this.VariablesInstructions_section.Panel1.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
             // 
             // VariablesInstructions_section.Panel2
             // 
@@ -475,6 +479,19 @@ namespace Main
             this.VariablesInstructions_section.Size = new System.Drawing.Size(692, 589);
             this.VariablesInstructions_section.SplitterDistance = 240;
             this.VariablesInstructions_section.TabIndex = 0;
+            // 
+            // Parameters_table
+            // 
+            this.Parameters_table.AllowUserToAddRows = false;
+            this.Parameters_table.AllowUserToDeleteRows = false;
+            this.Parameters_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Parameters_table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Parameters_table.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.Parameters_table.Location = new System.Drawing.Point(0, 20);
+            this.Parameters_table.Name = "Parameters_table";
+            this.Parameters_table.RowTemplate.Height = 25;
+            this.Parameters_table.Size = new System.Drawing.Size(692, 197);
+            this.Parameters_table.TabIndex = 1;
             // 
             // Parameters_label
             // 
@@ -499,8 +516,11 @@ namespace Main
             // Instructions_textbox
             // 
             this.Instructions_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Instructions_textbox.Enabled = false;
             this.Instructions_textbox.Location = new System.Drawing.Point(0, 0);
+            this.Instructions_textbox.Margin = new System.Windows.Forms.Padding(5);
             this.Instructions_textbox.Name = "Instructions_textbox";
+            this.Instructions_textbox.ReadOnly = true;
             this.Instructions_textbox.Size = new System.Drawing.Size(692, 345);
             this.Instructions_textbox.TabIndex = 1;
             this.Instructions_textbox.Text = "";
@@ -974,7 +994,7 @@ namespace Main
             this.Controls.Add(this.Header_Body_section);
             this.Name = "GUI";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Text = "Human Moog V2";
+            this.Text = "MOOGOCUS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Header_Body_section.Panel1.ResumeLayout(false);
@@ -1012,6 +1032,7 @@ namespace Main
             this.VariablesInstructions_section.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VariablesInstructions_section)).EndInit();
             this.VariablesInstructions_section.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Parameters_table)).EndInit();
             this.AllControlls_wrapper.ResumeLayout(false);
             this.AllControlls_wrapper.PerformLayout();
             this.Checkboxes_wrapper.ResumeLayout(false);
@@ -1109,6 +1130,7 @@ namespace Main
         private System.Windows.Forms.Label Trials_status_label;
         private System.Windows.Forms.RichTextBox Instructions_textbox;
         private System.Windows.Forms.TableLayoutPanel AllControlls_wrapper;
+        private System.Windows.Forms.DataGridView Parameters_table;
     }
 }
 
