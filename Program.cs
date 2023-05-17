@@ -14,12 +14,12 @@ namespace MoogOcus
         [STAThread]
         static void Main()
         {
-            ExcelHandler excelHandler = new();
+            
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI(ref excelHandler));
+            Application.Run(new GUI());
         }
     }
 }

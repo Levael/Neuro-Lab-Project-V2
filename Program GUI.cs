@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Font = System.Drawing.Font;
 
 namespace MoogOcus
 {
@@ -15,10 +19,21 @@ namespace MoogOcus
     {
 
         #region INITIALISATIONS
+
+        /// <summary>
+        /// todo
+        /// </summary>
+        private ExcelHandler _excelHandler;
+
         /// <summary>
         /// The selected protocols path to view protocols.
         /// </summary>
         private string _protocolsDirPath;
+
+        /// <summary>
+        /// The default protocols path
+        /// </summary>
+        private string _defaultProtocolsDirPath;
 
         /// <summary>
         /// The curent selected protocol path.
@@ -26,16 +41,9 @@ namespace MoogOcus
         private string _protocolFilePath;
 
         /// <summary>
-        /// The variables read from the xlsx protocol file.
+        /// All parameters
         /// </summary>
-        public Dictionary<string, Parameter> parameters;
-
-        /// <summary>
-        /// The dictionary of the dynamic allocated textboxes that are allocated each time the user choose different protocol.
-        /// It saves the dynamic TextBox reference.
-        /// The string represent the name of the varName concatinating with the attributename for each textbox.
-        /// </summary>
-        //private Dictionary<string, Control> _dynamicAllocatedTextBoxes;
+        public InputData inputData;
 
         /// <summary>
         /// Dictionary that describes all ButtonBase (checkboxes and radiobuttons) names in the gui as keys with their control as value.
@@ -52,125 +60,44 @@ namespace MoogOcus
         /// </summary>
         public Dictionary<string, Control> buttonsDictionary;
 
-
-        //private Dictionary<string, GuiComponent> _guiComponents;
-
-        //private GuiHandler _guiHandler;
-
         /// <summary>
-        /// A list that holds all the titles for the variables attribute to show in the title of the table.
+        /// todo
         /// </summary>
-        private List<Label> _titlesLabelsList;
+        public ParametersTableHandler parametersTableHandler;
 
-        /*/// <summary>
-        /// Holds the AcrossVectorValuesGenerator generator.
-        /// </summary>
-        private VaryingValuesGeneratorBase _acrossVectorValuesGenerator;
+        /*protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }*/
 
-        /// <summary>
-        /// Holds the StaticValuesGenerator generator.
-        /// </summary>
-        private StaticValuesGenerator _staticValuesGenerator;
-
-        /// <summary>
-        /// ControlLoop interface for doing the commands inserted in the gui.
-        /// </summary>
-        private ControlLoop _cntrlLoop;*/
-
-
-
-        /// <summary>
-        /// Locker for starting and stopping button to be enabled not both.
-        /// </summary>
-        private object _lockerStopStartButton;
-
-        /// <summary>
-        /// Locker for the pause and resume button to be enabled not both.
-        /// </summary>
-        private object _lockerPauseResumeButton;
 
         #endregion INITIALISATIONS
 
-        public GUI(ref ExcelHandler excelHandler)
+        public GUI()
         {
-            InitializeComponent();  // built in function
+            //DoubleBuffered = true;
 
-            InitializeCheckBoxesDictionary();
-            InitializeTextBoxesDictionary();
-            InitializeButtonsDictionary();
-
-            parameters = new();
-
-            _protocolFilePath = @"C:\Users\user\Documents\GitHub\V2_Levael\Protocols\HeadingDiscrimination_test.xlsx";
-            excelHandler.ReadProtocolFile(_protocolFilePath, ref parameters);
-
-            // test
-
-            // Add columns + their names
-            /*foreach (var prop in typeof(Parameter).GetProperties())
-            {
-                if (prop.Name == "description") { continue; };
-
-                Parameters_table.Columns.Add(prop.Name, prop.Name);
-            }
-
-            // Add rows
-            foreach (var parameter in parameters)
-            {
-                Parameters_table.Rows.Add();
-            }
-
-            // Fill table
-            for (int r = 0; r < Parameters_table.RowCount; r++)
-            {
-                for (int c = 0; c < Parameters_table.ColumnCount; c++)
-                {
-                    Parameters_table.Rows[r].Cells[c].Value = $"{r},{c}";
-                }
-            }*/
-
-            // Fill table
-            /*foreach (var parameter in parameters)
-            {
-                foreach (var prop in typeof(Parameter).GetProperties())
-                {
-                    textboxesDictionary["INFO"].Text += $"{prop.Name}, {prop.GetValue(parameter.Value)}";
-                    textboxesDictionary["INFO"].Text += "\r\n";
-                }
-                //Parameters_table.Columns.Add((parameter.Key).ToString(), (parameter.Key).ToString());
-            }*/
-            /*
-            var test_list = parameters.ToList();
-            var test_list2 = test_list[0].ToList();
-
-            Parameters_table.Rows.Add();*/
+            _defaultProtocolsDirPath = @"C:\Users\user\Documents\GitHub\V2_Levael\Protocols\";
+            _excelHandler = new();
 
 
+            InitializeComponent();          // built in WinForms function
 
-            /*textboxesDictionary["INFO"].Text = Tools.Stringify(parameters);
-            excelHandler.ReadProtocolFile(_protocolFilePath, ref parameters);
-            textboxesDictionary["INFO"].Text = Tools.Stringify(parameters);*/
+            DictionarilizeCheckBoxes();     // fill checkboxesDictionary (put controls to dictionary)
+            DictionarilizeTextBoxes();      // fill textboxesDictionary
+            DictionarilizeButtons();        // fill buttonsDictionary
+            InitialiseCombobox();           // fill combobox with excel files from default protocol folder
 
 
-            //_guiHandler = new GuiHandler();
-
-
-            //_guiComponents = _guiHandler.Initialize();      // GUI netto
-            //Instructions_textbox.Text = _guiComponents["name1"].test;
+            InfoPrinter.PrintInfo(textboxesDictionary, "Initialized some components (stam, for test)");
 
 
             /*
-
-            _excelLoader = excelLoader;
-            _allVariables = new Variables();
-            _allVariables._variablesDictionary = new Dictionary<string, Variable>();
-            _dynamicAllocatedTextBoxes = new Dictionary<string, Control>();
-            _acrossVectorValuesGenerator = DecideVaryinVectorsGeneratorByProtocolName();
-            _staticValuesGenerator = new StaticValuesGenerator();
-            InitializeTitleLabels();
-            ShowVaryingControlsOptions(false);
-
-            InitializeCheckBoxesDictionary();
 
             Globals._systemState = SystemState.INITIALIZED;
 
@@ -231,77 +158,166 @@ namespace MoogOcus
             }*/
         }
 
+        /// <summary>
+        /// Gui changes after full page loading
+        /// </summary>
         private void Form1_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
         {
-            
-            //VariablesInstructions_section.Panel1Collapsed = true;   // hide parameters_section until choose of excel_protocol_file
-            //Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;     // resize of bottom section height. change later to function
+            // at start hide parameters_section until user selects excel_protocol_file and shown only instruction section
+            VariablesInstructions_section.Panel1Collapsed = true;
+            VariablesInstructions_section.Panel2Collapsed = false;
+            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;     // resize of bottom section height. change later to function
+
         }
+
+        #region DIFFERENT FUNCTIONS
+        private void InitializeInputParameters()
+        {
+            inputData = new();      // all input parameters in inputData.parameters
+
+            _excelHandler.ReadProtocolFile(_protocolFilePath, inputData.parameters);     // fill 'parameters' with data
+        }
+
+        private void InitializeGuiParametersTable()
+        {
+            parametersTableHandler = new();
+            parametersTableHandler.Init(ref Parameters_table, inputData.parameters, _protocolFilePath);     // fill gui table with data from 'parameters'
+        }
+
+        private void InitialiseCombobox()
+        {
+            _protocolsDirPath = _defaultProtocolsDirPath;
+            AddFilesToCombobox(_protocolsDirPath);
+
+            //Choose_Protocol_combobox.Focused = true;
+        }
+
+        private void AddFilesToCombobox(string dirPath)
+        {
+            Choose_Protocol_combobox.Items.Clear();
+
+
+            string[] allFilesInFolder = Directory.GetFiles(dirPath);
+
+            foreach (string file in allFilesInFolder)
+            {
+                if (Path.GetExtension(file).Equals(".xlsx"))
+                {
+                    Choose_Protocol_combobox.Items.Add(Path.GetFileName(file));
+                }
+            }
+
+
+            if (Choose_Protocol_combobox.Items.Count == 0)
+            {
+                InfoPrinter.PrintWarning(textboxesDictionary, "No excel files");
+                return;
+            }
+        }
+
+        #endregion DIFFERENT FUNCTIONS
 
         #region DICTIONARISATION
 
         /// <summary>
         /// Initializes the checkboxes dictionary with names as key with the control as value.
         /// </summary>
-        private void InitializeCheckBoxesDictionary()
+        private void DictionarilizeCheckBoxes()
         {
-            checkboxesDictionary = new();
-            checkboxesDictionary.Add("EEG", EEG_checkbox);
-            checkboxesDictionary.Add("OCULUS", Oculus_checkbox);
-            checkboxesDictionary.Add("GRAPH", Graph_checkbox);
-            checkboxesDictionary.Add("INSTRUCTIONS", Instructions_checkbox);
+            checkboxesDictionary = new()
+            {
+                { "EEG", EEG_checkbox },
+                { "OCULUS", Oculus_checkbox },
+                { "GRAPH", Graph_checkbox },
+                { "INSTRUCTIONS", Instructions_checkbox }
+            };
         }
 
         /// <summary>
         /// Initializes the buttons dictionary with names as key with the control as value.
         /// </summary>
-        private void InitializeButtonsDictionary()
+        private void DictionarilizeButtons()
         {
-            buttonsDictionary = new();
-
-            buttonsDictionary.Add("BROWSE_PROTOCOL_FOLDER", Browse_protocol_btn);
-            buttonsDictionary.Add("SAVE_PROTOCOL", Save_protocol_btn);
-            buttonsDictionary.Add("ENGAGE", Engage_btn);
-            buttonsDictionary.Add("PARK", Park_btn);
-            buttonsDictionary.Add("MAKE_TRIALS", Make_trials_btn);
-            buttonsDictionary.Add("START_EXPERIMENT", Start_btn);
-            buttonsDictionary.Add("STOP_EXPERIMENT", Stop_btn);
-            buttonsDictionary.Add("START_TRIAL_CONTROLLER", Controller_start_btn);
-            buttonsDictionary.Add("UP_CONTROLLER", Controller_up_btn);
-            buttonsDictionary.Add("DOWN_CONTROLLER", Controller_down_btn);
-            buttonsDictionary.Add("LEFT_CONTROLLER", Controller_left_btn);
-            buttonsDictionary.Add("RIGHT_CONTROLLER", Controller_right_btn);
+            buttonsDictionary = new()
+            {
+                { "BROWSE_PROTOCOL_FOLDER", Browse_protocol_btn },
+                { "SAVE_PROTOCOL", Save_protocol_btn },
+                { "ENGAGE", Engage_btn },
+                { "PARK", Park_btn },
+                { "MAKE_TRIALS", Make_trials_btn },
+                { "START_EXPERIMENT", Start_btn },
+                { "STOP_EXPERIMENT", Stop_btn },
+                { "START_TRIAL_CONTROLLER", Controller_start_btn },
+                { "UP_CONTROLLER", Controller_up_btn },
+                { "DOWN_CONTROLLER", Controller_down_btn },
+                { "LEFT_CONTROLLER", Controller_left_btn },
+                { "RIGHT_CONTROLLER", Controller_right_btn }
+            };
         }
 
         /// <summary>
         /// Initializes the checkboxes dictionary with names as key with the control as value.
         /// </summary>
-        private void InitializeTextBoxesDictionary()
+        private void DictionarilizeTextBoxes()
         {
-            textboxesDictionary = new();
-
-            textboxesDictionary.Add("INFO", Info_textbox);
-            textboxesDictionary.Add("WARNINGS", Warning_textbox);
-            textboxesDictionary.Add("INFORMATION", Instructions_textbox);
+            textboxesDictionary = new()
+            {
+                { "INFO", Info_textbox },
+                { "WARNINGS", Warning_textbox },
+                { "INFORMATION", Instructions_textbox }
+            };
         }
+
+        /*/// <summary>
+        /// Initializes the sections dictionary with names as key with the section as value.
+        /// </summary>
+        private void InitializeSectionsDictionary()
+        {
+            sectionsDictionary = new()
+            {
+                { "Info_Graph_section", Info_Graph_section },
+                { "WARNINGS", Warning_textbox },
+                { "INFORMATION", Instructions_textbox }
+            };
+        }*/
 
         #endregion DICTIONARISATION
 
         #region EVENT LISTENERS
 
+        /// <summary>
+        /// Choose folder with protocols (update dirPath from default to new)
+        /// </summary>
         private void Browse_protocol_btn_Click(object sender, EventArgs e)
         {
             if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                // temp for test
-                Instructions_textbox.Text = FolderBrowserDialog.SelectedPath;
-                //Instructions_textbox.Text = VariablesInstructions_section.GetType().ToString();
+                _protocolsDirPath = FolderBrowserDialog.SelectedPath;
+                AddFilesToCombobox(_protocolsDirPath);
+
+                Choose_Protocol_combobox.DroppedDown = true;    // auto opening
             }
         }
 
-        private void Advanced_params_btn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Show anf fill data table with parameters
+        /// </summary>
+        private void Choose_Protocol_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Choose_Protocol_combobox.Items.Count == 0)
+            {
+                InfoPrinter.PrintWarning(textboxesDictionary, "No excel files");
+                return;
+            }
+
+            _protocolFilePath = @$"{_protocolsDirPath}\{Choose_Protocol_combobox.SelectedItem}";
+
+            InitializeInputParameters();     // fill inputData.parameters
+            InitializeGuiParametersTable();  // fill gui table with inputData.parameters values
+
+            // hide instruction_section and show in full height parameters_table_section
             VariablesInstructions_section.Panel2Collapsed = true;   // hide instructions section
+            VariablesInstructions_section.Panel1Collapsed = false;
         }
 
         #endregion EVENT LISTENERS

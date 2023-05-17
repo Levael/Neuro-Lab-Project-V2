@@ -37,7 +37,7 @@ namespace MoogOcus
         /// </summary>
         /// <param name="protocolFilePath">The protocol file path to be read.</param>
         /// <param name="variables">The object where all the variables with their attributes will be saved.</param>
-        public void ReadProtocolFile(string protocolFilePath, ref Dictionary<string, Parameter> parameters)
+        public void ReadProtocolFile(string protocolFilePath, Dictionary<string, Parameter> parameters)
         {
             Excel.Workbook xlWorkbook = _xlApp.Workbooks.Open(protocolFilePath);
 

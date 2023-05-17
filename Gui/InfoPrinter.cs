@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MoogOcus
 {
     public static class InfoPrinter
     {
-        public static void PrintWarning()
+
+        /*private static void PrintText (string text)
         {
 
+        }*/
+        public static void PrintWarning (Dictionary<string, Control> dict, string text)
+        {
+            dict["WARNINGS"].Text += text;
+            dict["INFO"].Text += "\r\n";
+        }
+
+        public static void PrintInfo(Dictionary<string, Control> dict, string text)
+        {
+            dict["INFO"].Text += text;
+            dict["INFO"].Text += "\r\n";
         }
     }
 }
