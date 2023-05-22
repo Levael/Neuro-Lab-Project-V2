@@ -10,8 +10,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Font = System.Drawing.Font;
+/*using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Font = System.Drawing.Font;*/
 
 namespace MoogOcus
 {
@@ -119,9 +119,6 @@ namespace MoogOcus
                 MessageBox.Show("Cannot connect to the robot - check if robot is conncted in listen mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            //reset the selected direction to be empty.
-            //_selectedHandRewardDirections = 0;
-
             //allocate the start/stop button locker.
             _lockerStopStartButton = new object();
             //disable initially the start and stop button until makeTrials button is pressed.
@@ -161,7 +158,7 @@ namespace MoogOcus
         /// <summary>
         /// Gui changes after full page loading
         /// </summary>
-        private void Form1_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
+        private void Form_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
         {
             // at start hide parameters_section until user selects excel_protocol_file and shown only instruction section
             VariablesInstructions_section.Panel1Collapsed = true;
@@ -170,12 +167,27 @@ namespace MoogOcus
 
         }
 
+        /// <summary>
+        /// Important stuff to do when exiting
+        /// </summary>
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Exit?", "test window", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                _excelHandler.CloseExcelHandler();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
         #region DIFFERENT FUNCTIONS
         private void InitializeInputParameters()
         {
             inputData = new();      // all input parameters in inputData.parameters
 
-            _excelHandler.ReadProtocolFile(_protocolFilePath, inputData.parameters);     // fill 'parameters' with data
+            _excelHandler.ReadFromExcel(_protocolFilePath, ref inputData.parameters);     // fill 'parameters' with data
         }
 
         private void InitializeGuiParametersTable()
@@ -321,5 +333,7 @@ namespace MoogOcus
         }
 
         #endregion EVENT LISTENERS
+
+
     }
 }

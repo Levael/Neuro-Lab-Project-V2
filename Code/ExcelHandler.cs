@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;       //microsoft Excel 15 object in references -> COM tab
 
@@ -17,7 +20,7 @@ namespace MoogOcus
         private Excel.Application _xlApp;
 
         /// <summary>
-        /// Start the excel app to run.
+        /// Starts the excel app
         /// </summary>
         public ExcelHandler()
         {
@@ -25,69 +28,105 @@ namespace MoogOcus
         }
 
         /// <summary>
-        /// Closes the excel application and destroy it's running app.
+        /// Closes the excel application and destroy it's running app. Must have to call Garbage Collector
         /// </summary>
         public void CloseExcelHandler()
         {
+            //close the file (part 2)
+
             _xlApp.Quit();
+            Marshal.FinalReleaseComObject(_xlApp);
+            _xlApp = null;
+
+            // THE MAIN PART IS CALL GARBAGE COLLECTOR, F*CK U MICROSOFT
+            GC.Collect();
+        }
+
+        private void CloseExcelSubprogramms (ref Excel.Range excelRange, ref Excel._Worksheet xlWorksheet, ref Excel.Workbook xlWorkbook, ref Excel.Workbooks xlWorkbooks)
+        {
+            xlWorkbook.Close();
+            xlWorkbooks.Close();
+
+            Marshal.FinalReleaseComObject(excelRange);
+            Marshal.FinalReleaseComObject(xlWorksheet);
+            Marshal.FinalReleaseComObject(xlWorkbook);
+            Marshal.FinalReleaseComObject(xlWorkbooks);
+
+            excelRange = null;
+            xlWorksheet = null;
+            xlWorkbook = null;
+            xlWorkbooks = null;
+        }
+
+        public delegate Dictionary<string, Dictionary<string, string>> CustomCallback(Excel.Range excelRange);
+
+        /// <summary>
+        /// Opens file -> Invoke callback function -> Close file
+        /// </summary>
+        /// <param name="protocolFilePath"> protocol file path (string)</param>
+        public Dictionary<string, Dictionary<string, string>> OpenDoClose(string protocolFilePath, Dictionary<string, Dictionary<string, string>> parameters, CustomCallback DoFunction)
+        {
+            Excel.Workbooks xlWorkbooks;
+            Excel.Workbook xlWorkbook;
+            Excel._Worksheet xlWorksheet;
+            Excel.Range excelRange;
+
+
+            var emptyDict = new Dictionary<string, Dictionary<string, string>>();
+
+            //open file
+            try
+            {
+                xlWorkbooks = _xlApp.Workbooks;
+                xlWorkbook = xlWorkbooks.Open(protocolFilePath);
+                xlWorksheet = xlWorkbook.Sheets["parameters"];
+                excelRange = xlWorksheet.UsedRange;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in Excel Loader: {protocolFilePath} -- {ex}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return emptyDict;
+            }
+
+            parameters = DoFunction(excelRange);
+
+            //close file (part 1)
+            CloseExcelSubprogramms(ref excelRange, ref xlWorksheet, ref xlWorkbook, ref xlWorkbooks);
+
+
+            return parameters;
         }
 
         /// <summary>
         /// Reads excel protocol file an updates "parameters dictionary".
         /// </summary>
         /// <param name="protocolFilePath">The protocol file path to be read.</param>
-        /// <param name="variables">The object where all the variables with their attributes will be saved.</param>
-        public void ReadProtocolFile(string protocolFilePath, Dictionary<string, Parameter> parameters)
+        /// <param name="parameters">The dictionary with all data: from excel to dictionary</param>
+        public void ReadFromExcel(string protocolFilePath, ref Dictionary<string, Dictionary<string, string>> parameters)
         {
-            Excel.Workbook xlWorkbook = _xlApp.Workbooks.Open(protocolFilePath);
-
-            Excel._Worksheet xlWorksheet;
-            try
+            // all this 'poebota' because of "Cannot use ref or out parameter in lambda expressions" error
+            parameters = OpenDoClose(protocolFilePath, parameters, delegate (Excel.Range excelRange)
             {
-                xlWorksheet = xlWorkbook.Sheets["parameters"];
-            }
-            catch (Exception ex)
+                // parse table to 2D array of object type
+                // TODO: change later to strings (to avoid boxing&inboxing)
+                object[,] valuesArray = (object[,])excelRange.get_Value(Excel.XlRangeValueDataType.xlRangeValueDefault);
+
+                // converts 2d_obj_arr to 2D_str_dict. parameters is 'ref' type, so it's instead of 'return'
+                return Tools.Convert2DObjectsTo2DStringDictionary(valuesArray);
+            });
+        }
+
+        /// <summary>
+        /// Writes to excel file an updated (or new) "parameters dictionary".
+        /// </summary>
+        /// <param name="protocolFilePath">The protocol file path</param>
+        /// <param name="parameters">The dictionary with all data: from dictionary to excel</param>
+        public void WriteToExcel(string protocolFilePath, Dictionary<string, Dictionary<string, string>> parameters)
+        {
+            OpenDoClose(protocolFilePath, parameters, delegate (Excel.Range excelRange)
             {
-                MessageBox.Show("The sheets does not contain variables sheet or contain more than that specific sheets", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            Excel.Range xlRange = xlWorksheet.UsedRange;
-
-            object[,] valueArray = (object[,])xlRange.get_Value(Excel.XlRangeValueDataType.xlRangeValueDefault);
-
-            string[,] _twoDimensionalTable = Convert2DObjectsTo2DStrings(valueArray);
-
-            //run along all the data lines.
-            // k starts from 1 because first line is the attributes names
-            for (int k = 0; k < _twoDimensionalTable.GetLength(0); k++)
-            {
-                var param = new Parameter();
-
-                param.name          = _twoDimensionalTable[k, 0];
-                param.nice_name     = _twoDimensionalTable[k, 1];
-                param.type          = (ParameterType)Convert.ToInt32(_twoDimensionalTable[k, 2]);
-                param.editable      = Convert.ToBoolean(Convert.ToInt32(_twoDimensionalTable[k, 3]));
-                param.description   = _twoDimensionalTable[k, 4];
-                param.value         = Convert.ToDouble(_twoDimensionalTable[k, 5]);
-                param.low_bound     = Convert.ToDouble(_twoDimensionalTable[k, 6]);
-                param.high_bound    = Convert.ToDouble(_twoDimensionalTable[k, 7]);
-                param.increment     = Convert.ToDouble(_twoDimensionalTable[k, 8]);
-
-                try
-                {
-                    //adding the variable (line in the excel data file) into the dictionary of variables 
-                    //with the variable name as the key.
-                    parameters.Add(param.name, param);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("The sheet contain a parameter named " + param.name + " showing twice.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-
-            //clost the file.
-            xlWorkbook.Close();
+                return parameters;
+            });
         }
 
         /// <summary>
@@ -229,41 +268,7 @@ namespace MoogOcus
             catch { }
         }*/
 
-        /// <summary>
-        /// Converts a 2D array of object type to 2D array of string type.
-        /// </summary>
-        /// <param name="array">The 2D object array.</param>
-        /// <returns>The 2d string array.</returns>
-        private string[,] Convert2DObjectsTo2DStrings(object[,] array)
-        {
-            // first value is rows, second -- columns
-            // -1 because first row is atributes
-            string[,] returnArray = new string[array.GetLength(0)-1, array.GetLength(1)];
 
-            for (int i = 2; i <= array.GetLength(0); i++)
-            {
-                for (int j = 1; j <= array.GetLength(1); j++)
-                {
-                    returnArray[i-2, j-1] = (array[i, j] == null) ? null : array[i, j].ToString();
-                }
-            }
-
-            return returnArray;
-        }
-
-        /// <summary>
-        /// Dissasembly data attribute to its components (if it's a vector attribute for both the _MoogParameter and _landscapeParameters) for a Param class.
-        /// </summary>
-        /// <param name="attributeValue">The attribute value of the excel cell to be dissasembly.</param>
-        /// <returns>The param disassemblied object acordding to the value.</returns>
-        /*private Param DisassamblyDataAttributeValue(string attributeValue)
-        {
-            Param par = new Param();
-
-            //split each vector of data for each robot to a list of components.
-            par.MoogParameter = attributeValue;
-
-            return par;
-        }*/
+        
     }
 }

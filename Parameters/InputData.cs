@@ -8,22 +8,39 @@ namespace MoogOcus
 {
     public class InputData
     {
-        public Dictionary<string, Parameter> parameters = new();
+        public Dictionary<string, Dictionary<string, string>> parameters = new();
+
+        public double? GetValueOf(string parameterName)
+        {
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("value") ? double.Parse(parameters[parameterName]["value"]) : null);
+        }
+
+        public ParameterType? GetTypeOf(string parameterName)
+        {
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("type") ? (ParameterType)Int32.Parse(parameters[parameterName]["type"]) : null);
+        }
+
+        public double? GetLowBoundOf(string parameterName)
+        {
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("low_bound") ? double.Parse(parameters[parameterName]["low_bound"]) : null);
+        }
+
+        public double? GetHighBoundOf(string parameterName)
+        {
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("high_bound") ? double.Parse(parameters[parameterName]["high_bound"]) : null);
+        }
+
+        public double? GetStepPlusOf(string parameterName)
+        {
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("step_plus") ? double.Parse(parameters[parameterName]["step_plus"]) : null);
+        }
+
+        public double? GetStepMultOf(string parameterName)
+        {
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("step_mult") ? double.Parse(parameters[parameterName]["step_mult"]) : null);
+        }
     }
 
-    public class Parameter
-    {
-        public string? name { get; set; }
-        public string? nice_name { get; set; }
-        public ParameterType? type { get; set; }
-        public bool? editable { get; set; }
-        public string? description { get; set; }
-        public double? value { get; set; }
-        public double? low_bound { get; set; }
-        public double? high_bound { get; set; }
-        public double? increment { get; set; }
-
-    }
 
     public enum ParameterType
     {
