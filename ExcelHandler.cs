@@ -129,13 +129,13 @@ namespace MoogOcus
             });
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Writes a protocol file to the protocols folder.
         /// </summary>
         /// <param name="protocolFilePath">The protocol folder path with protocol name.</param>
         /// <param name="variables">The variables to write to the protocol.</param>
         /// <param name="checkboxesDictionary">A dictionary consists all gui checkboxes and their states.</param>
-        /*public void WriteProtocolFile(string protocolFilePath, Variables variables, Dictionary<string, ButtonBase> checkboxesDictionary)
+        *//*public void WriteProtocolFile(string protocolFilePath, Variables variables, Dictionary<string, ButtonBase> checkboxesDictionary)*//*
         {
             Excel.Workbook newProtocolFile = _xlApp.Workbooks.Add();
 
