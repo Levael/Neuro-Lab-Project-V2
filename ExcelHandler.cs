@@ -267,9 +267,7 @@ namespace MoogOcus
             }
             catch { }
         }*/
-
-            Param par = new Param();
-            Param par = new Param();
+         
 
 
     }
