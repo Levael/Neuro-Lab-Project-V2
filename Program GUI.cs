@@ -10,8 +10,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Font = System.Drawing.Font;
+/*using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Font = System.Drawing.Font;*/
 
 namespace MoogOcus
 {
@@ -118,9 +118,6 @@ namespace MoogOcus
 
                 MessageBox.Show("Cannot connect to the robot - check if robot is conncted in listen mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            //reset the selected direction to be empty.
-            //_selectedHandRewardDirections = 0;
 
             //allocate the start/stop button locker.
             _lockerStopStartButton = new object();

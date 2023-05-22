@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;       //microsoft Excel 15 object in references -> COM tab
 
@@ -60,19 +61,40 @@ namespace MoogOcus
 
             //run along all the data lines.
             // k starts from 1 because first line is the attributes names
-            for (int k = 0; k < _twoDimensionalTable.GetLength(0); k++)
+            for (int k = 1; k < _twoDimensionalTable.GetLength(0); k++)
             {
                 var param = new Parameter();
 
-                param.name          = _twoDimensionalTable[k, 0];
-                param.nice_name     = _twoDimensionalTable[k, 1];
-                param.type          = (ParameterType)Convert.ToInt32(_twoDimensionalTable[k, 2]);
-                param.editable      = Convert.ToBoolean(Convert.ToInt32(_twoDimensionalTable[k, 3]));
-                param.description   = _twoDimensionalTable[k, 4];
-                param.value         = Convert.ToDouble(_twoDimensionalTable[k, 5]);
-                param.low_bound     = Convert.ToDouble(_twoDimensionalTable[k, 6]);
-                param.high_bound    = Convert.ToDouble(_twoDimensionalTable[k, 7]);
-                param.increment     = Convert.ToDouble(_twoDimensionalTable[k, 8]);
+                /*for (int p = 0; p < _twoDimensionalTable.GetLength(1); p++)
+                {
+                    string param_prop_name = _twoDimensionalTable[0, p];
+                    if (Convert.ToBoolean(param.GetType().GetProperty(param_prop_name)))
+                    {
+                        param.GetType().GetProperty(param_prop_name).SetValue(param, _twoDimensionalTable[k, p]);
+                    }
+                }*/
+
+                // todo with this something...
+
+                param.name = _twoDimensionalTable[k, 0];
+                param.nice_name = _twoDimensionalTable[k, 1];
+                param.SetParameterType(_twoDimensionalTable[k, 2]);
+                param.SetParameterEditable(_twoDimensionalTable[k, 3]);
+                param.description = _twoDimensionalTable[k, 4];
+                param.SetParameterValue(_twoDimensionalTable[k, 5]);
+                param.SetParameterLowBound(_twoDimensionalTable[k, 6]);
+                param.SetParameterHighBound(_twoDimensionalTable[k, 7]);
+                param.SetParameterIncrement(_twoDimensionalTable[k, 8]);
+
+                /*param.name = _twoDimensionalTable[k, 0];
+                param.nice_name = _twoDimensionalTable[k, 1];
+                param.type = (ParameterType)Convert.ToInt32(_twoDimensionalTable[k, 2]);
+                param.editable = Convert.ToBoolean(Convert.ToInt32(_twoDimensionalTable[k, 3]));
+                param.description = _twoDimensionalTable[k, 4];
+                param.value = Convert.ToDouble(_twoDimensionalTable[k, 5]);
+                param.low_bound = Convert.ToDouble(_twoDimensionalTable[k, 6]);
+                param.high_bound = Convert.ToDouble(_twoDimensionalTable[k, 7]);
+                param.increment = Convert.ToDouble(_twoDimensionalTable[k, 8]);*/
 
                 try
                 {
@@ -237,14 +259,13 @@ namespace MoogOcus
         private string[,] Convert2DObjectsTo2DStrings(object[,] array)
         {
             // first value is rows, second -- columns
-            // -1 because first row is atributes
-            string[,] returnArray = new string[array.GetLength(0)-1, array.GetLength(1)];
+            string[,] returnArray = new string[array.GetLength(0), array.GetLength(1)];
 
-            for (int i = 2; i <= array.GetLength(0); i++)
+            for (int i = 1; i <= array.GetLength(0); i++)
             {
                 for (int j = 1; j <= array.GetLength(1); j++)
                 {
-                    returnArray[i-2, j-1] = (array[i, j] == null) ? null : array[i, j].ToString();
+                    returnArray[i-1, j-1] = (array[i, j] == null) ? null : array[i, j].ToString();
                 }
             }
 

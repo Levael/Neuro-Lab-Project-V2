@@ -526,7 +526,6 @@ namespace MoogOcus
             // 
             // AllControlls_wrapper
             // 
-            AllControlls_wrapper.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             AllControlls_wrapper.AutoSize = true;
             AllControlls_wrapper.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             AllControlls_wrapper.ColumnCount = 3;
@@ -539,12 +538,13 @@ namespace MoogOcus
             AllControlls_wrapper.Controls.Add(Checkboxes_wrapper, 0, 1);
             AllControlls_wrapper.Controls.Add(Controller_btns_wrapper, 2, 1);
             AllControlls_wrapper.Controls.Add(MainBTNS_wrapper, 1, 1);
-            AllControlls_wrapper.Location = new System.Drawing.Point(0, 0);
+            AllControlls_wrapper.Dock = System.Windows.Forms.DockStyle.Bottom;
+            AllControlls_wrapper.Location = new System.Drawing.Point(0, -3);
             AllControlls_wrapper.Name = "AllControlls_wrapper";
             AllControlls_wrapper.RowCount = 2;
             AllControlls_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle());
             AllControlls_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            AllControlls_wrapper.Size = new System.Drawing.Size(691, 148);
+            AllControlls_wrapper.Size = new System.Drawing.Size(725, 148);
             AllControlls_wrapper.TabIndex = 0;
             // 
             // Controller_label
@@ -552,9 +552,9 @@ namespace MoogOcus
             Controller_label.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Controller_label.AutoSize = true;
             Controller_label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            Controller_label.Location = new System.Drawing.Point(425, 0);
+            Controller_label.Location = new System.Drawing.Point(445, 0);
             Controller_label.Name = "Controller_label";
-            Controller_label.Size = new System.Drawing.Size(263, 17);
+            Controller_label.Size = new System.Drawing.Size(277, 17);
             Controller_label.TabIndex = 6;
             Controller_label.Text = "Controller";
             Controller_label.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -564,9 +564,9 @@ namespace MoogOcus
             Main_BTNS_label.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Main_BTNS_label.AutoSize = true;
             Main_BTNS_label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            Main_BTNS_label.Location = new System.Drawing.Point(110, 0);
+            Main_BTNS_label.Location = new System.Drawing.Point(115, 0);
             Main_BTNS_label.Name = "Main_BTNS_label";
-            Main_BTNS_label.Size = new System.Drawing.Size(309, 17);
+            Main_BTNS_label.Size = new System.Drawing.Size(324, 17);
             Main_BTNS_label.TabIndex = 2;
             Main_BTNS_label.Text = "Main controls";
             Main_BTNS_label.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -673,23 +673,23 @@ namespace MoogOcus
             Controller_btns_wrapper.Controls.Add(Controller_down_btn, 1, 2);
             Controller_btns_wrapper.Controls.Add(Controller_left_btn, 0, 1);
             Controller_btns_wrapper.Controls.Add(Controller_up_btn, 1, 0);
-            Controller_btns_wrapper.Location = new System.Drawing.Point(425, 20);
+            Controller_btns_wrapper.Location = new System.Drawing.Point(445, 20);
             Controller_btns_wrapper.Name = "Controller_btns_wrapper";
             Controller_btns_wrapper.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             Controller_btns_wrapper.RowCount = 3;
             Controller_btns_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             Controller_btns_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             Controller_btns_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            Controller_btns_wrapper.Size = new System.Drawing.Size(263, 125);
+            Controller_btns_wrapper.Size = new System.Drawing.Size(277, 125);
             Controller_btns_wrapper.TabIndex = 6;
             // 
             // Controller_right_btn
             // 
             Controller_right_btn.AutoSize = true;
             Controller_right_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Controller_right_btn.Location = new System.Drawing.Point(182, 40);
+            Controller_right_btn.Location = new System.Drawing.Point(192, 40);
             Controller_right_btn.Name = "Controller_right_btn";
-            Controller_right_btn.Size = new System.Drawing.Size(68, 44);
+            Controller_right_btn.Size = new System.Drawing.Size(72, 44);
             Controller_right_btn.TabIndex = 1;
             Controller_right_btn.Text = "RIGHT";
             Controller_right_btn.UseVisualStyleBackColor = true;
@@ -698,9 +698,9 @@ namespace MoogOcus
             // 
             Controller_start_btn.AutoSize = true;
             Controller_start_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Controller_start_btn.Location = new System.Drawing.Point(85, 40);
+            Controller_start_btn.Location = new System.Drawing.Point(90, 40);
             Controller_start_btn.Name = "Controller_start_btn";
-            Controller_start_btn.Size = new System.Drawing.Size(91, 44);
+            Controller_start_btn.Size = new System.Drawing.Size(96, 44);
             Controller_start_btn.TabIndex = 0;
             Controller_start_btn.Text = "START";
             Controller_start_btn.UseVisualStyleBackColor = true;
@@ -709,9 +709,9 @@ namespace MoogOcus
             // 
             Controller_down_btn.AutoSize = true;
             Controller_down_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Controller_down_btn.Location = new System.Drawing.Point(85, 90);
+            Controller_down_btn.Location = new System.Drawing.Point(90, 90);
             Controller_down_btn.Name = "Controller_down_btn";
-            Controller_down_btn.Size = new System.Drawing.Size(91, 32);
+            Controller_down_btn.Size = new System.Drawing.Size(96, 32);
             Controller_down_btn.TabIndex = 4;
             Controller_down_btn.Text = "DOWN";
             Controller_down_btn.UseVisualStyleBackColor = true;
@@ -722,7 +722,7 @@ namespace MoogOcus
             Controller_left_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             Controller_left_btn.Location = new System.Drawing.Point(13, 40);
             Controller_left_btn.Name = "Controller_left_btn";
-            Controller_left_btn.Size = new System.Drawing.Size(66, 44);
+            Controller_left_btn.Size = new System.Drawing.Size(71, 44);
             Controller_left_btn.TabIndex = 2;
             Controller_left_btn.Text = "LEFT";
             Controller_left_btn.UseVisualStyleBackColor = true;
@@ -731,9 +731,9 @@ namespace MoogOcus
             // 
             Controller_up_btn.AutoSize = true;
             Controller_up_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Controller_up_btn.Location = new System.Drawing.Point(85, 3);
+            Controller_up_btn.Location = new System.Drawing.Point(90, 3);
             Controller_up_btn.Name = "Controller_up_btn";
-            Controller_up_btn.Size = new System.Drawing.Size(91, 31);
+            Controller_up_btn.Size = new System.Drawing.Size(96, 31);
             Controller_up_btn.TabIndex = 5;
             Controller_up_btn.Text = "UP";
             Controller_up_btn.UseVisualStyleBackColor = true;
@@ -749,22 +749,22 @@ namespace MoogOcus
             MainBTNS_wrapper.Controls.Add(Engage_btn, 0, 0);
             MainBTNS_wrapper.Controls.Add(Make_trials_btn, 0, 1);
             MainBTNS_wrapper.Controls.Add(Start_btn, 0, 2);
-            MainBTNS_wrapper.Location = new System.Drawing.Point(110, 20);
+            MainBTNS_wrapper.Location = new System.Drawing.Point(115, 20);
             MainBTNS_wrapper.Name = "MainBTNS_wrapper";
             MainBTNS_wrapper.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             MainBTNS_wrapper.RowCount = 3;
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            MainBTNS_wrapper.Size = new System.Drawing.Size(309, 125);
+            MainBTNS_wrapper.Size = new System.Drawing.Size(324, 125);
             MainBTNS_wrapper.TabIndex = 1;
             // 
             // Park_btn
             // 
             Park_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Park_btn.Location = new System.Drawing.Point(157, 3);
+            Park_btn.Location = new System.Drawing.Point(165, 3);
             Park_btn.Name = "Park_btn";
-            Park_btn.Size = new System.Drawing.Size(139, 31);
+            Park_btn.Size = new System.Drawing.Size(146, 31);
             Park_btn.TabIndex = 1;
             Park_btn.Text = "Park";
             Park_btn.UseVisualStyleBackColor = true;
@@ -772,9 +772,9 @@ namespace MoogOcus
             // Stop_btn
             // 
             Stop_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Stop_btn.Location = new System.Drawing.Point(157, 77);
+            Stop_btn.Location = new System.Drawing.Point(165, 77);
             Stop_btn.Name = "Stop_btn";
-            Stop_btn.Size = new System.Drawing.Size(139, 45);
+            Stop_btn.Size = new System.Drawing.Size(146, 45);
             Stop_btn.TabIndex = 4;
             Stop_btn.Text = "Stop";
             Stop_btn.UseVisualStyleBackColor = true;
@@ -784,7 +784,7 @@ namespace MoogOcus
             Engage_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             Engage_btn.Location = new System.Drawing.Point(13, 3);
             Engage_btn.Name = "Engage_btn";
-            Engage_btn.Size = new System.Drawing.Size(138, 31);
+            Engage_btn.Size = new System.Drawing.Size(146, 31);
             Engage_btn.TabIndex = 0;
             Engage_btn.Text = "Engage";
             Engage_btn.UseVisualStyleBackColor = true;
@@ -794,7 +794,7 @@ namespace MoogOcus
             Make_trials_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             Make_trials_btn.Location = new System.Drawing.Point(13, 40);
             Make_trials_btn.Name = "Make_trials_btn";
-            Make_trials_btn.Size = new System.Drawing.Size(138, 31);
+            Make_trials_btn.Size = new System.Drawing.Size(146, 31);
             Make_trials_btn.TabIndex = 2;
             Make_trials_btn.Text = "Make trials";
             Make_trials_btn.UseVisualStyleBackColor = true;
@@ -804,7 +804,7 @@ namespace MoogOcus
             Start_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             Start_btn.Location = new System.Drawing.Point(13, 77);
             Start_btn.Name = "Start_btn";
-            Start_btn.Size = new System.Drawing.Size(138, 45);
+            Start_btn.Size = new System.Drawing.Size(146, 45);
             Start_btn.TabIndex = 3;
             Start_btn.Text = "Start";
             Start_btn.UseVisualStyleBackColor = true;
