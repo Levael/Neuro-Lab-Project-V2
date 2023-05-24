@@ -3,8 +3,10 @@
     public static class Globals {
         public static SystemState systemState;
 
+        public static bool isConnected = false;
         public static bool isEngaged = false;
     }
+
 
     public enum SystemState
     {

@@ -247,6 +247,7 @@ namespace MOCU
             // 
             // Save_protocol_btn
             // 
+            Save_protocol_btn.Enabled = false;
             Save_protocol_btn.Location = new System.Drawing.Point(337, 3);
             Save_protocol_btn.Name = "Save_protocol_btn";
             Save_protocol_btn.Size = new System.Drawing.Size(75, 24);
@@ -405,7 +406,7 @@ namespace MOCU
             // Oculus_status_indicator
             // 
             Oculus_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
-            Oculus_status_indicator.BackColor = System.Drawing.Color.Gold;
+            Oculus_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Oculus_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Oculus_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Oculus_status_indicator.Enabled = false;
@@ -471,7 +472,7 @@ namespace MOCU
             // Cedrus_status_indicator
             // 
             Cedrus_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
-            Cedrus_status_indicator.BackColor = System.Drawing.Color.LimeGreen;
+            Cedrus_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Cedrus_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Cedrus_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Cedrus_status_indicator.Enabled = false;
@@ -509,7 +510,7 @@ namespace MOCU
             // Moog_status_indicator
             // 
             Moog_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
-            Moog_status_indicator.BackColor = System.Drawing.Color.Tomato;
+            Moog_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Moog_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Moog_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Moog_status_indicator.Enabled = false;
@@ -739,6 +740,7 @@ namespace MOCU
             Checkboxes_wrapper.Controls.Add(Instructions_checkbox, 0, 3);
             Checkboxes_wrapper.Controls.Add(Controller_checkbox, 0, 1);
             Checkboxes_wrapper.Controls.Add(EEG_checkbox, 0, 2);
+            Checkboxes_wrapper.Enabled = false;
             Checkboxes_wrapper.Location = new System.Drawing.Point(3, 20);
             Checkboxes_wrapper.Name = "Checkboxes_wrapper";
             Checkboxes_wrapper.RowCount = 5;
@@ -935,6 +937,7 @@ namespace MOCU
             Engage_btn.TabStop = false;
             Engage_btn.Text = "Engage";
             Engage_btn.UseVisualStyleBackColor = true;
+            Engage_btn.Click += Engage_btn_Click;
             // 
             // Make_trials_btn
             // 

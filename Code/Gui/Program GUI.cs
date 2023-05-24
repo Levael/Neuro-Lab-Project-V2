@@ -18,12 +18,17 @@ namespace MOCU
     public partial class GUI : Form
     {
 
-        #region INITIALISATIONS
+        #region INITIALIZATIONS
 
         /// <summary>
         /// todo
         /// </summary>
         private ExcelHandler _excelHandler;
+
+        /// <summary>
+        /// todo
+        /// </summary>
+        private ControlLoop _controlLoop;
 
         /// <summary>
         /// The selected protocols path to view protocols.
@@ -63,12 +68,12 @@ namespace MOCU
         /// <summary>
         /// Dictionary that describes all statuses textboxes names in the gui as keys with their control as value.
         /// </summary>
-        public Dictionary<string, Control> statusesDictionary;
+        public static Dictionary<string, Control> statusesDictionary;
 
         /// <summary>
         /// Dictionary that describes all statuses colors. Semantic name as key, C# names as value.
         /// </summary>
-        public Dictionary<string, string> statusesColorsDictionary;
+        public static Dictionary<string, Color> statusesColorsDictionary;
 
         /// <summary>
         /// todo
@@ -83,18 +88,23 @@ namespace MOCU
                 cp.ExStyle |= 0x02000000;
                 return cp;
             }
+
+        //DoubleBuffered = true;
         }*/
 
 
-        #endregion INITIALISATIONS
+        #endregion INITIALIZATIONS
 
         public GUI()
         {
-            //DoubleBuffered = true;
+            // Initialize common objects
 
             _defaultProtocolsDirPath = CustomConfig.defaultProtocolsDirPath;
             _excelHandler = new();
+            _controlLoop = new();
 
+
+            // Initialize gui stuff
 
             InitializeComponent();          // built in WinForms function
 
@@ -104,6 +114,17 @@ namespace MOCU
             DictionarilizeStatuses();       // fill statusesDictionary
             DictionarilizeStatusesColors(); // fill statusesColorsDictionary
             InitialiseCombobox();           // fill combobox with excel files from default protocol folder
+
+
+            // Connect to Moog and Cedrus
+
+            _controlLoop.MoogConnect();
+            _controlLoop.CedrusConnect();
+
+            //CheckConnectedDevices();        // update statuses according to Moog, Oculus, Cedrus connections
+
+
+
 
 
             //InfoPrinter.PrintInfo(textboxesDictionary, "Initialized some components (stam, for test)");
@@ -167,9 +188,9 @@ namespace MOCU
             }*/
         }
 
-        
 
-        
+
+
 
         #region DIFFERENT FUNCTIONS
         private void InitializeInputParameters()
@@ -227,6 +248,30 @@ namespace MOCU
         #endregion DIFFERENT FUNCTIONS
 
         #region DICTIONARISATION
+
+        public void CheckConnectedDevices()
+        {
+            statusesDictionary["MOOG"].BackColor = CheckMoog() ? statusesColorsDictionary["GOOD"] : statusesColorsDictionary["ERROR"];
+
+            statusesDictionary["OCULUS"].BackColor = CheckOculus() ? statusesColorsDictionary["GOOD"] : statusesColorsDictionary["ERROR"];
+
+            statusesDictionary["CEDRUS"].BackColor = CheckCedrus() ? statusesColorsDictionary["GOOD"] : statusesColorsDictionary["ERROR"];
+        }
+
+        private Boolean CheckMoog()
+        {
+            return false;
+        }
+
+        private Boolean CheckOculus()
+        {
+            return false;
+        }
+
+        private Boolean CheckCedrus()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Initializes the checkboxes dictionary with names as key with the control as value.
@@ -300,10 +345,10 @@ namespace MOCU
         {
             statusesColorsDictionary = new()
             {
-                { "UNINITIALIZED", "LightSlateGray" },
-                { "LOADING", "Gold" },
-                { "GOOD", "LimeGreen" },
-                { "ERROR", "Tomato" }
+                { "DISABLED", Color.LightSlateGray },
+                { "LOADING", Color.Gold },
+                { "GOOD", Color.LimeGreen },
+                { "ERROR", Color.Tomato }
             };
         }
 
@@ -363,6 +408,11 @@ namespace MOCU
             VariablesInstructions_section.Panel1Collapsed = false;
         }
 
+        private void Engage_btn_Click(object sender, EventArgs e)
+        {
+            _controlLoop.MoogEngage();
+        }
+
         #endregion EVENT LISTENERS
 
         #region FORM EVENTS
@@ -420,5 +470,7 @@ namespace MOCU
         }
 
         #endregion
+
+
     }
 }

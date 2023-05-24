@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Code\Moog\MoogCppFullCode\" />
     <Folder Include="Results\" />
     <Folder Include="Protocols\" />
   </ItemGroup>
