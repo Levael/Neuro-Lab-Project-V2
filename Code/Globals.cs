@@ -1,4 +1,4 @@
-﻿namespace MoogOcus
+﻿namespace MOCU
 {
     public static class Globals {
         public static SystemState systemState;

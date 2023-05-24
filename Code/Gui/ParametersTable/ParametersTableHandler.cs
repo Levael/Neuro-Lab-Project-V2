@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MoogOcus
+namespace MOCU
 {
     public class ParametersTableHandler
     {
@@ -59,7 +59,9 @@ namespace MoogOcus
             dataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
+            // Names and Values -- bold font
             dataGrid.Columns[0].DefaultCellStyle.Font = new Font(dataGrid.Font, FontStyle.Bold);
+            dataGrid.Columns[3].DefaultCellStyle.Font = new Font(dataGrid.Font, FontStyle.Bold);
 
             // prevent annoying sorting after click on column header
             foreach (DataGridViewColumn column in dataGrid.Columns)

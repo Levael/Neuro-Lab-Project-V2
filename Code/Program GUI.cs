@@ -13,7 +13,7 @@ using System.Windows.Forms;
 /*using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Font = System.Drawing.Font;*/
 
-namespace MoogOcus
+namespace MOCU
 {
     public partial class GUI : Form
     {
@@ -61,6 +61,11 @@ namespace MoogOcus
         public Dictionary<string, Control> buttonsDictionary;
 
         /// <summary>
+        /// Dictionary that describes all statuses textboxes names in the gui as keys with their control as value.
+        /// </summary>
+        public Dictionary<string, Control> statusesDictionary;
+
+        /// <summary>
         /// todo
         /// </summary>
         public ParametersTableHandler parametersTableHandler;
@@ -94,7 +99,7 @@ namespace MoogOcus
             InitialiseCombobox();           // fill combobox with excel files from default protocol folder
 
 
-            InfoPrinter.PrintInfo(textboxesDictionary, "Initialized some components (stam, for test)");
+            //InfoPrinter.PrintInfo(textboxesDictionary, "Initialized some components (stam, for test)");
 
 
             /*
@@ -156,6 +161,14 @@ namespace MoogOcus
         }
 
         /// <summary>
+        /// to prevent annoing blue focusing.remove focus to 'stub_label'(заглушка)
+        /// </summary>
+        private void RemoveFocus()
+        {
+            stub_label.Focus();
+        }
+
+        /// <summary>
         /// Gui changes after full page loading
         /// </summary>
         private void Form_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
@@ -163,8 +176,33 @@ namespace MoogOcus
             // at start hide parameters_section until user selects excel_protocol_file and shown only instruction section
             VariablesInstructions_section.Panel1Collapsed = true;
             VariablesInstructions_section.Panel2Collapsed = false;
-            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;     // resize of bottom section height. change later to function
 
+            Form_ResizeEnd(sender, e);
+
+            // combobox custom settings (from gui designer impossible to change)
+            Choose_Protocol_combobox.ItemHeight = 20;
+            //Choose_Protocol_combobox.DropDownHeight = 20;
+
+        }
+
+        /// <summary>
+        /// On resize event fix stuff
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form_ResizeEnd(object sender, EventArgs e)
+        {
+            // resize of bottom section height. change later to function
+            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;
+
+            // move splitter right up to status section (16 = status_label.paddings + status_wrapper.paddings)
+            ProtocolNames_Status_section.SplitterDistance = Header_Body_section.Width - Statuses_wrapper.Width - Status_label.Width - 16;
+
+            // devides both header and body in a center
+            Protocol_Names_section.SplitterDistance = Body_section.SplitterDistance;
+
+            // adjust header height to the largest to take as mush less place as possible (+2 = padding of wrapper)
+            Header_Body_section.SplitterDistance = Math.Max(Protocol_browse_save_wrapper.Height, Math.Max(Name_inputs_wrapper.Height + 2, Statuses_wrapper.Height));
         }
 
         /// <summary>
@@ -239,9 +277,10 @@ namespace MoogOcus
             checkboxesDictionary = new()
             {
                 { "EEG", EEG_checkbox },
-                { "OCULUS", Oculus_checkbox },
-                { "GRAPH", Graph_checkbox },
-                { "INSTRUCTIONS", Instructions_checkbox }
+                { "VISUAL_OUTPUTS", VisualOutputs_checkbox },
+                { "CONTROLLER", Controller_checkbox },
+                { "INSTRUCTIONS", Instructions_checkbox },
+                { "STATUS", Status_checkbox }
             };
         }
 
@@ -280,6 +319,21 @@ namespace MoogOcus
             };
         }
 
+        /// <summary>
+        /// Initializes the statuses dictionary with names as key with the control as value.
+        /// </summary>
+        private void DictionarilizeStatuses()
+        {
+            statusesDictionary = new()
+            {
+                { "MOOG", Moog_status_indicator },
+                { "OCULUS", Oculus_status_indicator },
+                { "CEDRUS", Cedrus_status_indicator },
+                { "UNITY", Unity_status_indicator },
+                { "TRIALS", Trials_status_indicator }
+            };
+        }
+
         /*/// <summary>
         /// Initializes the sections dictionary with names as key with the section as value.
         /// </summary>
@@ -302,6 +356,8 @@ namespace MoogOcus
         /// </summary>
         private void Browse_protocol_btn_Click(object sender, EventArgs e)
         {
+            RemoveFocus();
+
             if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 _protocolsDirPath = FolderBrowserDialog.SelectedPath;
@@ -316,6 +372,8 @@ namespace MoogOcus
         /// </summary>
         private void Choose_Protocol_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            RemoveFocus();
+
             if (Choose_Protocol_combobox.Items.Count == 0)
             {
                 InfoPrinter.PrintWarning(textboxesDictionary, "No excel files");
@@ -334,6 +392,6 @@ namespace MoogOcus
 
         #endregion EVENT LISTENERS
 
-
+        
     }
 }

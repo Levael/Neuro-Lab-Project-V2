@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoogOcus
+namespace MOCU
 {
     public static class Tools
     {
@@ -58,8 +58,8 @@ namespace MoogOcus
 
                 for (int j = 2; j <= array.GetLength(1); j++)
                 {
-                    var parameter_attribute_name = array[1, j].ToString();
-                    var parameter_attribute_value = array[i, j].ToString();
+                    var parameter_attribute_name = array[1, j] != null ? array[1,j].ToString() : "";
+                    var parameter_attribute_value = array[i, j] != null ? array[i,j].ToString() : "";
 
                     result[parameter_name].Add(parameter_attribute_name, parameter_attribute_value);
                 }

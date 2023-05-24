@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;       //microsoft Excel 15 object in references -> COM tab
 
-namespace MoogOcus
+namespace MOCU
 {
     /// <summary>
     /// This class is used to read the data from excel protocol file and load it into the GuiInterface

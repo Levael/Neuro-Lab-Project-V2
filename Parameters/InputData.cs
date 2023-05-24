@@ -4,20 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoogOcus
+namespace MOCU
 {
     public class InputData
     {
+
         public Dictionary<string, Dictionary<string, string>> parameters = new();
+
+
 
         public double? GetValueOf(string parameterName)
         {
             return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("value") ? double.Parse(parameters[parameterName]["value"]) : null);
         }
 
-        public ParameterType? GetTypeOf(string parameterName)
+        public string? GetTypeOf(string parameterName)
         {
-            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("type") ? (ParameterType)Int32.Parse(parameters[parameterName]["type"]) : null);
+            return (parameters.ContainsKey(parameterName) && parameters[parameterName].ContainsKey("type") ? parameters[parameterName]["type"] : null);
         }
 
         public double? GetLowBoundOf(string parameterName)
@@ -42,9 +45,9 @@ namespace MoogOcus
     }
 
 
-    public enum ParameterType
+    /*public enum ParameterType
     {
         varied,     // changes every trial in accordance with the choice of the subject
         constant    // permanent values as low_bound, high_bound, sigma etc.
-    }
+    }*/
 }

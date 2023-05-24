@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <StartupObject>MoogOcus.Program</StartupObject>
+    <StartupObject>MOCU.Program</StartupObject>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
