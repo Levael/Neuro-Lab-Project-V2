@@ -11,5 +11,7 @@ namespace MOCU
         public static HashSet<string> ignorePrintingExcelColumns = new() { "description", "nice_name" };
 
         public static HashSet<string> ignorePrintingExcelRows = new() {};
+
+        public static string defaultProtocolsDirPath = @"C:\Users\user\Documents\GitHub\V2_Levael\Protocols\";
     }
 }

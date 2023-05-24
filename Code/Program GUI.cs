@@ -66,6 +66,11 @@ namespace MOCU
         public Dictionary<string, Control> statusesDictionary;
 
         /// <summary>
+        /// Dictionary that describes all statuses colors. Semantic name as key, C# names as value.
+        /// </summary>
+        public Dictionary<string, string> statusesColorsDictionary;
+
+        /// <summary>
         /// todo
         /// </summary>
         public ParametersTableHandler parametersTableHandler;
@@ -87,7 +92,7 @@ namespace MOCU
         {
             //DoubleBuffered = true;
 
-            _defaultProtocolsDirPath = @"C:\Users\user\Documents\GitHub\V2_Levael\Protocols\";
+            _defaultProtocolsDirPath = CustomConfig.defaultProtocolsDirPath;
             _excelHandler = new();
 
 
@@ -96,6 +101,8 @@ namespace MOCU
             DictionarilizeCheckBoxes();     // fill checkboxesDictionary (put controls to dictionary)
             DictionarilizeTextBoxes();      // fill textboxesDictionary
             DictionarilizeButtons();        // fill buttonsDictionary
+            DictionarilizeStatuses();       // fill statusesDictionary
+            DictionarilizeStatusesColors(); // fill statusesColorsDictionary
             InitialiseCombobox();           // fill combobox with excel files from default protocol folder
 
 
@@ -160,65 +167,9 @@ namespace MOCU
             }*/
         }
 
-        /// <summary>
-        /// to prevent annoing blue focusing.remove focus to 'stub_label'(заглушка)
-        /// </summary>
-        private void RemoveFocus()
-        {
-            stub_label.Focus();
-        }
+        
 
-        /// <summary>
-        /// Gui changes after full page loading
-        /// </summary>
-        private void Form_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
-        {
-            // at start hide parameters_section until user selects excel_protocol_file and shown only instruction section
-            VariablesInstructions_section.Panel1Collapsed = true;
-            VariablesInstructions_section.Panel2Collapsed = false;
-
-            Form_ResizeEnd(sender, e);
-
-            // combobox custom settings (from gui designer impossible to change)
-            Choose_Protocol_combobox.ItemHeight = 20;
-            //Choose_Protocol_combobox.DropDownHeight = 20;
-
-        }
-
-        /// <summary>
-        /// On resize event fix stuff
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Form_ResizeEnd(object sender, EventArgs e)
-        {
-            // resize of bottom section height. change later to function
-            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;
-
-            // move splitter right up to status section (16 = status_label.paddings + status_wrapper.paddings)
-            ProtocolNames_Status_section.SplitterDistance = Header_Body_section.Width - Statuses_wrapper.Width - Status_label.Width - 16;
-
-            // devides both header and body in a center
-            Protocol_Names_section.SplitterDistance = Body_section.SplitterDistance;
-
-            // adjust header height to the largest to take as mush less place as possible (+2 = padding of wrapper)
-            Header_Body_section.SplitterDistance = Math.Max(Protocol_browse_save_wrapper.Height, Math.Max(Name_inputs_wrapper.Height + 2, Statuses_wrapper.Height));
-        }
-
-        /// <summary>
-        /// Important stuff to do when exiting
-        /// </summary>
-        private void Form_Closing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Exit?", "test window", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                _excelHandler.CloseExcelHandler();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
+        
 
         #region DIFFERENT FUNCTIONS
         private void InitializeInputParameters()
@@ -263,6 +214,14 @@ namespace MOCU
                 InfoPrinter.PrintWarning(textboxesDictionary, "No excel files");
                 return;
             }
+        }
+
+        /// <summary>
+        /// to prevent annoing blue focusing.remove focus to 'stub_label'(заглушка)
+        /// </summary>
+        private void RemoveFocus()
+        {
+            stub_label.Focus();
         }
 
         #endregion DIFFERENT FUNCTIONS
@@ -334,6 +293,20 @@ namespace MOCU
             };
         }
 
+        /// <summary>
+        /// Initializes the statuses colors dictionary with names as key with the control as value.
+        /// </summary>
+        private void DictionarilizeStatusesColors()
+        {
+            statusesColorsDictionary = new()
+            {
+                { "UNINITIALIZED", "LightSlateGray" },
+                { "LOADING", "Gold" },
+                { "GOOD", "LimeGreen" },
+                { "ERROR", "Tomato" }
+            };
+        }
+
         /*/// <summary>
         /// Initializes the sections dictionary with names as key with the section as value.
         /// </summary>
@@ -392,6 +365,60 @@ namespace MOCU
 
         #endregion EVENT LISTENERS
 
-        
+        #region FORM EVENTS
+
+        /// <summary>
+        /// Gui changes after full page loading
+        /// </summary>
+        private void Form_Load(object sender, EventArgs e)     //TODO: use overrided method OnLoad instead
+        {
+            // at start hide parameters_section until user selects excel_protocol_file and shown only instruction section
+            VariablesInstructions_section.Panel1Collapsed = true;
+            VariablesInstructions_section.Panel2Collapsed = false;
+
+            Form_ResizeEnd(sender, e);
+
+            // combobox custom settings (from gui designer impossible to change)
+            Choose_Protocol_combobox.ItemHeight = 20;
+            //Choose_Protocol_combobox.DropDownHeight = 20;
+
+        }
+
+        /// <summary>
+        /// On resize event fix stuff
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form_ResizeEnd(object sender, EventArgs e)
+        {
+            // resize of bottom section height. change later to function
+            Left_panel_section.SplitterDistance = Left_panel_section.Height - AllControlls_wrapper.Height - 10;
+
+            // move splitter right up to status section (16 = status_label.paddings + status_wrapper.paddings)
+            ProtocolNames_Status_section.SplitterDistance = Header_Body_section.Width - Statuses_wrapper.Width - Status_label.Width - 16;
+
+            // devides both header and body in a center
+            Protocol_Names_section.SplitterDistance = Body_section.SplitterDistance;
+
+            // adjust header height to the largest to take as mush less place as possible (+2 = padding of wrapper)
+            Header_Body_section.SplitterDistance = Math.Max(Protocol_browse_save_wrapper.Height, Math.Max(Name_inputs_wrapper.Height + 2, Statuses_wrapper.Height));
+        }
+
+        /// <summary>
+        /// Important stuff to do when exiting
+        /// </summary>
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Exit?", "test window", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                _excelHandler.CloseExcelHandler();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        #endregion
     }
 }
