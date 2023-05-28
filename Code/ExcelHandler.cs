@@ -29,6 +29,7 @@ namespace MOCU
 
         /// <summary>
         /// Closes the excel application and destroy it's running app. Must have to call Garbage Collector
+        /// There is still a leak when an error occures (not calling CloseExcelHandler function -> not proper closing)
         /// </summary>
         public void CloseExcelHandler()
         {

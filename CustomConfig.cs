@@ -8,7 +8,7 @@ namespace MOCU
 {
     public static class CustomConfig
     {
-        public static HashSet<string> ignorePrintingExcelColumns = new() { "description", "nice_name" };
+        public static HashSet<string> ignorePrintingExcelColumns = new() { "description", "nice_name", "editable", "color_groups" };
 
         public static HashSet<string> ignorePrintingExcelRows = new() {};
 

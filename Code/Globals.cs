@@ -1,10 +1,15 @@
-﻿namespace MOCU
+﻿using System.Collections.Generic;
+using System.Drawing;
+
+namespace MOCU
 {
     public static class Globals {
         public static SystemState systemState;
 
         public static bool isConnected = false;
         public static bool isEngaged = false;
+
+        
     }
 
 

@@ -16,7 +16,9 @@ namespace MOCU
             try
             {
                 MoogHandler.Connect();
-                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["ERROR"];
+
+                GUI.buttonsDictionary["CONNECT"].Enabled = false;
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["GOOD"];
             } catch (Exception error)
             {
                 GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["ERROR"];

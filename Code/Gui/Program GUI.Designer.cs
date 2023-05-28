@@ -81,11 +81,14 @@ namespace MOCU
             Controller_left_btn = new System.Windows.Forms.Button();
             Controller_up_btn = new System.Windows.Forms.Button();
             MainBTNS_wrapper = new System.Windows.Forms.TableLayoutPanel();
-            Park_btn = new System.Windows.Forms.Button();
-            Stop_btn = new System.Windows.Forms.Button();
             Engage_btn = new System.Windows.Forms.Button();
             Make_trials_btn = new System.Windows.Forms.Button();
             Start_btn = new System.Windows.Forms.Button();
+            Stop_btn = new System.Windows.Forms.Button();
+            Park_btn = new System.Windows.Forms.Button();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            Resume_btn = new System.Windows.Forms.Button();
+            Pause_btn = new System.Windows.Forms.Button();
             Right_panel_section = new System.Windows.Forms.SplitContainer();
             EEG_label = new System.Windows.Forms.Label();
             Unity_GraphInfoWarnings_section = new System.Windows.Forms.SplitContainer();
@@ -98,6 +101,7 @@ namespace MOCU
             Warning_textbox = new System.Windows.Forms.TextBox();
             Graph_label = new System.Windows.Forms.Label();
             FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            Connect_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)Header_Body_section).BeginInit();
             Header_Body_section.Panel1.SuspendLayout();
             Header_Body_section.Panel2.SuspendLayout();
@@ -130,6 +134,7 @@ namespace MOCU
             Checkboxes_wrapper.SuspendLayout();
             Controller_btns_wrapper.SuspendLayout();
             MainBTNS_wrapper.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Right_panel_section).BeginInit();
             Right_panel_section.Panel1.SuspendLayout();
             Right_panel_section.Panel2.SuspendLayout();
@@ -647,6 +652,8 @@ namespace MOCU
             Parameters_table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             Parameters_table.Size = new System.Drawing.Size(725, 223);
             Parameters_table.TabIndex = 1;
+            Parameters_table.DataError += DGV_DE;
+            Parameters_table.EditingControlShowing += DGV_ECS;
             // 
             // Parameters_label
             // 
@@ -888,14 +895,17 @@ namespace MOCU
             // MainBTNS_wrapper
             // 
             MainBTNS_wrapper.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            MainBTNS_wrapper.ColumnCount = 2;
+            MainBTNS_wrapper.ColumnCount = 3;
             MainBTNS_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            MainBTNS_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            MainBTNS_wrapper.Controls.Add(Park_btn, 1, 0);
-            MainBTNS_wrapper.Controls.Add(Stop_btn, 1, 2);
-            MainBTNS_wrapper.Controls.Add(Engage_btn, 0, 0);
+            MainBTNS_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            MainBTNS_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             MainBTNS_wrapper.Controls.Add(Make_trials_btn, 0, 1);
             MainBTNS_wrapper.Controls.Add(Start_btn, 0, 2);
+            MainBTNS_wrapper.Controls.Add(Stop_btn, 2, 2);
+            MainBTNS_wrapper.Controls.Add(Park_btn, 2, 0);
+            MainBTNS_wrapper.Controls.Add(tableLayoutPanel1, 1, 2);
+            MainBTNS_wrapper.Controls.Add(Engage_btn, 1, 0);
+            MainBTNS_wrapper.Controls.Add(Connect_btn, 0, 0);
             MainBTNS_wrapper.Location = new System.Drawing.Point(121, 20);
             MainBTNS_wrapper.Name = "MainBTNS_wrapper";
             MainBTNS_wrapper.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -903,36 +913,16 @@ namespace MOCU
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             MainBTNS_wrapper.Size = new System.Drawing.Size(329, 125);
             MainBTNS_wrapper.TabIndex = 1;
-            // 
-            // Park_btn
-            // 
-            Park_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Park_btn.Location = new System.Drawing.Point(167, 3);
-            Park_btn.Name = "Park_btn";
-            Park_btn.Size = new System.Drawing.Size(149, 31);
-            Park_btn.TabIndex = 1;
-            Park_btn.TabStop = false;
-            Park_btn.Text = "Park";
-            Park_btn.UseVisualStyleBackColor = true;
-            // 
-            // Stop_btn
-            // 
-            Stop_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Stop_btn.Location = new System.Drawing.Point(167, 77);
-            Stop_btn.Name = "Stop_btn";
-            Stop_btn.Size = new System.Drawing.Size(149, 45);
-            Stop_btn.TabIndex = 4;
-            Stop_btn.Text = "Stop";
-            Stop_btn.UseVisualStyleBackColor = true;
             // 
             // Engage_btn
             // 
             Engage_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Engage_btn.Location = new System.Drawing.Point(13, 3);
+            Engage_btn.Location = new System.Drawing.Point(167, 3);
             Engage_btn.Name = "Engage_btn";
-            Engage_btn.Size = new System.Drawing.Size(148, 31);
+            Engage_btn.Size = new System.Drawing.Size(71, 31);
             Engage_btn.TabIndex = 0;
             Engage_btn.TabStop = false;
             Engage_btn.Text = "Engage";
@@ -958,6 +948,65 @@ namespace MOCU
             Start_btn.TabIndex = 3;
             Start_btn.Text = "Start";
             Start_btn.UseVisualStyleBackColor = true;
+            // 
+            // Stop_btn
+            // 
+            Stop_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Stop_btn.Location = new System.Drawing.Point(244, 77);
+            Stop_btn.Name = "Stop_btn";
+            Stop_btn.Size = new System.Drawing.Size(72, 45);
+            Stop_btn.TabIndex = 4;
+            Stop_btn.Text = "Stop";
+            Stop_btn.UseVisualStyleBackColor = true;
+            // 
+            // Park_btn
+            // 
+            Park_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Park_btn.Location = new System.Drawing.Point(244, 3);
+            Park_btn.Name = "Park_btn";
+            Park_btn.Size = new System.Drawing.Size(72, 31);
+            Park_btn.TabIndex = 1;
+            Park_btn.TabStop = false;
+            Park_btn.Text = "Park";
+            Park_btn.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel1.Controls.Add(Resume_btn, 0, 0);
+            tableLayoutPanel1.Controls.Add(Pause_btn, 0, 1);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel1.Location = new System.Drawing.Point(167, 77);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(71, 45);
+            tableLayoutPanel1.TabIndex = 5;
+            // 
+            // Resume_btn
+            // 
+            Resume_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Resume_btn.Location = new System.Drawing.Point(0, 0);
+            Resume_btn.Margin = new System.Windows.Forms.Padding(0);
+            Resume_btn.Name = "Resume_btn";
+            Resume_btn.Size = new System.Drawing.Size(71, 22);
+            Resume_btn.TabIndex = 6;
+            Resume_btn.Text = "Resume";
+            Resume_btn.UseVisualStyleBackColor = true;
+            // 
+            // Pause_btn
+            // 
+            Pause_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Pause_btn.Location = new System.Drawing.Point(0, 22);
+            Pause_btn.Margin = new System.Windows.Forms.Padding(0);
+            Pause_btn.Name = "Pause_btn";
+            Pause_btn.Size = new System.Drawing.Size(71, 23);
+            Pause_btn.TabIndex = 5;
+            Pause_btn.Text = "Pause";
+            Pause_btn.UseVisualStyleBackColor = true;
             // 
             // Right_panel_section
             // 
@@ -1125,6 +1174,16 @@ namespace MOCU
             // 
             FolderBrowserDialog.SelectedPath = "C:\\Users\\user\\Documents\\GitHub\\Main\\Protocols";
             // 
+            // Connect_btn
+            // 
+            Connect_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Connect_btn.Location = new System.Drawing.Point(13, 3);
+            Connect_btn.Name = "Connect_btn";
+            Connect_btn.Size = new System.Drawing.Size(148, 31);
+            Connect_btn.TabIndex = 6;
+            Connect_btn.Text = "Connect";
+            Connect_btn.UseVisualStyleBackColor = true;
+            // 
             // GUI
             // 
             AccessibleName = "";
@@ -1183,6 +1242,7 @@ namespace MOCU
             Controller_btns_wrapper.ResumeLayout(false);
             Controller_btns_wrapper.PerformLayout();
             MainBTNS_wrapper.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
             Right_panel_section.Panel1.ResumeLayout(false);
             Right_panel_section.Panel1.PerformLayout();
             Right_panel_section.Panel2.ResumeLayout(false);
@@ -1280,6 +1340,10 @@ namespace MOCU
         private System.Windows.Forms.TextBox Oculus_status_indicator;
         private System.Windows.Forms.TableLayoutPanel Protocol_browse_save_wrapper;
         private System.Windows.Forms.Label stub_label;
+        private System.Windows.Forms.Button Pause_btn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button Resume_btn;
+        private System.Windows.Forms.Button Connect_btn;
     }
 }
 

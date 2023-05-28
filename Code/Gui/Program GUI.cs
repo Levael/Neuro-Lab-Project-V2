@@ -63,7 +63,7 @@ namespace MOCU
         /// <summary>
         /// Dictionary that describes all buttons names in the gui as keys with their control as value.
         /// </summary>
-        public Dictionary<string, Control> buttonsDictionary;
+        public static Dictionary<string, Control> buttonsDictionary;
 
         /// <summary>
         /// Dictionary that describes all statuses textboxes names in the gui as keys with their control as value.
@@ -74,6 +74,8 @@ namespace MOCU
         /// Dictionary that describes all statuses colors. Semantic name as key, C# names as value.
         /// </summary>
         public static Dictionary<string, Color> statusesColorsDictionary;
+
+        public static Dictionary<int, Color> colorGroups;
 
         /// <summary>
         /// todo
@@ -113,6 +115,7 @@ namespace MOCU
             DictionarilizeButtons();        // fill buttonsDictionary
             DictionarilizeStatuses();       // fill statusesDictionary
             DictionarilizeStatusesColors(); // fill statusesColorsDictionary
+            DictionarilizeColorGroups();    // fill colorGroups
             InitialiseCombobox();           // fill combobox with excel files from default protocol folder
 
 
@@ -122,7 +125,6 @@ namespace MOCU
             _controlLoop.CedrusConnect();
 
             //CheckConnectedDevices();        // update statuses according to Moog, Oculus, Cedrus connections
-
 
 
 
@@ -190,8 +192,6 @@ namespace MOCU
 
 
 
-
-
         #region DIFFERENT FUNCTIONS
         private void InitializeInputParameters()
         {
@@ -249,6 +249,7 @@ namespace MOCU
 
         #region DICTIONARISATION
 
+
         public void CheckConnectedDevices()
         {
             statusesDictionary["MOOG"].BackColor = CheckMoog() ? statusesColorsDictionary["GOOD"] : statusesColorsDictionary["ERROR"];
@@ -297,10 +298,13 @@ namespace MOCU
             {
                 { "BROWSE_PROTOCOL_FOLDER", Browse_protocol_btn },
                 { "SAVE_PROTOCOL", Save_protocol_btn },
+                { "CONNECT", Connect_btn },
                 { "ENGAGE", Engage_btn },
                 { "PARK", Park_btn },
                 { "MAKE_TRIALS", Make_trials_btn },
                 { "START_EXPERIMENT", Start_btn },
+                { "PAUSE_EXPERIMENT", Pause_btn },
+                { "RESUME_EXPERIMENT", Resume_btn },
                 { "STOP_EXPERIMENT", Stop_btn },
                 { "START_TRIAL_CONTROLLER", Controller_start_btn },
                 { "UP_CONTROLLER", Controller_up_btn },
@@ -351,6 +355,18 @@ namespace MOCU
                 { "ERROR", Color.Tomato }
             };
         }
+
+        private void DictionarilizeColorGroups()
+        {
+            colorGroups = new() {
+                { 0, Color.LightCoral },
+                { 1, Color.PaleTurquoise },
+                { 2, Color.PapayaWhip },
+                { 3, Color.PaleGreen },
+                { 4, Color.LavenderBlush }
+            };
+        }
+
 
         /*/// <summary>
         /// Initializes the sections dictionary with names as key with the section as value.
@@ -469,8 +485,34 @@ namespace MOCU
             }
         }
 
+        /// <summary>
+        /// dataGridView EditingControlShowing (for bug fix of black dropped list)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DGV_ECS(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            var cmbBx = e.Control as DataGridViewComboBoxEditingControl; // or your combobox control
+            if (cmbBx != null)
+            {
+                // Fix the black background on the drop down menu
+                e.CellStyle.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
+        /// dataGridView DataError (for bug fix of "value is not valid")
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DGV_DE(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception.Message == "DaraGridViewComboBoxCell value is not valid.")
+            {
+                e.ThrowException = false;
+            }
+        }
+
         #endregion
-
-
     }
 }
