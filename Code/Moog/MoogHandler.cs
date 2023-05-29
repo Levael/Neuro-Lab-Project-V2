@@ -9,23 +9,30 @@ namespace MOCU
 {
     public static class MoogHandler
     {
-        [DllImport(@"\MoogController.dll")]
+        // DLL is 32b...
+        // Connect successfully, but no cabel connected...
+        // wtf
+
+
+
+        //[DllImport(@"\MoogController.dll")]
+        [DllImport(@"C:\Users\user\Documents\GitHub\V2_Levael\Code\Moog\MoogController.dll")]
         public static extern void Connect();
 
 
-        [DllImport(@"\MoogController.dll")]
+        [DllImport(@"C:\Users\user\Documents\GitHub\V2_Levael\Code\Moog\MoogController.dll")]
         public static extern void Engage();
 
 
-        [DllImport(@"\MoogController.dll")]
+        [DllImport(@"C:\Users\user\Documents\GitHub\V2_Levael\Code\Moog\MoogController.dll")]
         public static extern void Disengage();
 
 
-        [DllImport(@"\MoogController.dll")]
+        [DllImport(@"C:\Users\user\Documents\GitHub\V2_Levael\Code\Moog\MoogController.dll")]
         public static extern void Disconnect();
 
 
-        [DllImport(@"\MoogController.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"C:\Users\user\Documents\GitHub\V2_Levael\Code\Moog\MoogController.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SendPosition(double surge, double heave, double lateral, double yaw, double roll, double pitch);
     }
 }

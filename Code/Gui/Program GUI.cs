@@ -58,7 +58,7 @@ namespace MOCU
         /// <summary>
         /// Dictionary that describes all Text boxes' names in the gui as keys with their control as value.
         /// </summary>
-        public Dictionary<string, Control> textboxesDictionary;
+        public static Dictionary<string, Control> textboxesDictionary;
 
         /// <summary>
         /// Dictionary that describes all buttons names in the gui as keys with their control as value.
@@ -118,11 +118,18 @@ namespace MOCU
             DictionarilizeColorGroups();    // fill colorGroups
             InitialiseCombobox();           // fill combobox with excel files from default protocol folder
 
+            // !!!!!!
+            System.Windows.Forms.TextBox.CheckForIllegalCrossThreadCalls = false;
+
+            
+
 
             // Connect to Moog and Cedrus
 
             _controlLoop.MoogConnect();
             _controlLoop.CedrusConnect();
+
+            
 
             //CheckConnectedDevices();        // update statuses according to Moog, Oculus, Cedrus connections
 
@@ -424,10 +431,49 @@ namespace MOCU
             VariablesInstructions_section.Panel1Collapsed = false;
         }
 
+        private void Connect_btn_Click(object sender, EventArgs e)
+        {
+            _controlLoop.MoogConnect();
+        }
+
         private void Engage_btn_Click(object sender, EventArgs e)
         {
             _controlLoop.MoogEngage();
         }
+
+        private void Park_btn_Click(object sender, EventArgs e)
+        {
+            _controlLoop.MoogDisengage();
+        }
+        #region FORM CONTROLLER
+
+        private void Controller_start_btn_Click(object sender, EventArgs e)
+        {
+            // for tests
+            CedrusHandler.GetAnswer();
+        }
+
+        private void Controller_left_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Controller_right_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Controller_up_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Controller_down_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion FORM CONTROLLER
 
         #endregion EVENT LISTENERS
 
@@ -478,6 +524,7 @@ namespace MOCU
             if (MessageBox.Show("Exit?", "test window", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 _excelHandler.CloseExcelHandler();
+                CedrusHandler.Disconnect();
             }
             else
             {
@@ -514,5 +561,7 @@ namespace MOCU
         }
 
         #endregion
+
+
     }
 }

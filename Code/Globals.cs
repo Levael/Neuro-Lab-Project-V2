@@ -9,7 +9,7 @@ namespace MOCU
         public static bool isConnected = false;
         public static bool isEngaged = false;
 
-        
+        public static CedrusResponse lastResponse = CedrusResponse.WAIT_FOR_START;
     }
 
 
@@ -39,5 +39,17 @@ namespace MOCU
         /// The current experiment (all trials) over, waiting for the next command.
         /// </summary>
         FINISHED = 5
+    }
+
+    public enum CedrusResponse
+    {
+        START   = 0,
+        LEFT    = 1,
+        RIGHT   = 2,
+        UP      = 3,
+        DOWN    = 4,
+
+        NOTHING = 5,
+        WAIT_FOR_START = 6
     }
 }

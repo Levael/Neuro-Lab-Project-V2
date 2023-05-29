@@ -29,8 +29,8 @@ namespace MOCU
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             Header_Body_section = new System.Windows.Forms.SplitContainer();
             ProtocolNames_Status_section = new System.Windows.Forms.SplitContainer();
             Protocol_Names_section = new System.Windows.Forms.SplitContainer();
@@ -81,7 +81,6 @@ namespace MOCU
             Controller_left_btn = new System.Windows.Forms.Button();
             Controller_up_btn = new System.Windows.Forms.Button();
             MainBTNS_wrapper = new System.Windows.Forms.TableLayoutPanel();
-            Engage_btn = new System.Windows.Forms.Button();
             Make_trials_btn = new System.Windows.Forms.Button();
             Start_btn = new System.Windows.Forms.Button();
             Stop_btn = new System.Windows.Forms.Button();
@@ -89,6 +88,8 @@ namespace MOCU
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             Resume_btn = new System.Windows.Forms.Button();
             Pause_btn = new System.Windows.Forms.Button();
+            Engage_btn = new System.Windows.Forms.Button();
+            Connect_btn = new System.Windows.Forms.Button();
             Right_panel_section = new System.Windows.Forms.SplitContainer();
             EEG_label = new System.Windows.Forms.Label();
             Unity_GraphInfoWarnings_section = new System.Windows.Forms.SplitContainer();
@@ -101,7 +102,6 @@ namespace MOCU
             Warning_textbox = new System.Windows.Forms.TextBox();
             Graph_label = new System.Windows.Forms.Label();
             FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            Connect_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)Header_Body_section).BeginInit();
             Header_Body_section.Panel1.SuspendLayout();
             Header_Body_section.Panel2.SuspendLayout();
@@ -625,8 +625,8 @@ namespace MOCU
             Parameters_table.AllowUserToDeleteRows = false;
             Parameters_table.AllowUserToResizeColumns = false;
             Parameters_table.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.NullValue = "null";
-            Parameters_table.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.NullValue = "null";
+            Parameters_table.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             Parameters_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             Parameters_table.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             Parameters_table.BackgroundColor = System.Drawing.SystemColors.Control;
@@ -637,14 +637,14 @@ namespace MOCU
             Parameters_table.Location = new System.Drawing.Point(0, 20);
             Parameters_table.MultiSelect = false;
             Parameters_table.Name = "Parameters_table";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            Parameters_table.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            Parameters_table.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             Parameters_table.RowHeadersVisible = false;
             Parameters_table.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             Parameters_table.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -847,6 +847,7 @@ namespace MOCU
             Controller_right_btn.TabIndex = 1;
             Controller_right_btn.Text = "RIGHT";
             Controller_right_btn.UseVisualStyleBackColor = true;
+            Controller_right_btn.Click += Controller_right_btn_Click;
             // 
             // Controller_start_btn
             // 
@@ -858,6 +859,7 @@ namespace MOCU
             Controller_start_btn.TabIndex = 0;
             Controller_start_btn.Text = "START";
             Controller_start_btn.UseVisualStyleBackColor = true;
+            Controller_start_btn.Click += Controller_start_btn_Click;
             // 
             // Controller_down_btn
             // 
@@ -869,6 +871,7 @@ namespace MOCU
             Controller_down_btn.TabIndex = 4;
             Controller_down_btn.Text = "DOWN";
             Controller_down_btn.UseVisualStyleBackColor = true;
+            Controller_down_btn.Click += Controller_down_btn_Click;
             // 
             // Controller_left_btn
             // 
@@ -880,6 +883,7 @@ namespace MOCU
             Controller_left_btn.TabIndex = 2;
             Controller_left_btn.Text = "LEFT";
             Controller_left_btn.UseVisualStyleBackColor = true;
+            Controller_left_btn.Click += Controller_left_btn_Click;
             // 
             // Controller_up_btn
             // 
@@ -891,6 +895,7 @@ namespace MOCU
             Controller_up_btn.TabIndex = 5;
             Controller_up_btn.Text = "UP";
             Controller_up_btn.UseVisualStyleBackColor = true;
+            Controller_up_btn.Click += Controller_up_btn_Click;
             // 
             // MainBTNS_wrapper
             // 
@@ -916,18 +921,6 @@ namespace MOCU
             MainBTNS_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             MainBTNS_wrapper.Size = new System.Drawing.Size(329, 125);
             MainBTNS_wrapper.TabIndex = 1;
-            // 
-            // Engage_btn
-            // 
-            Engage_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Engage_btn.Location = new System.Drawing.Point(167, 3);
-            Engage_btn.Name = "Engage_btn";
-            Engage_btn.Size = new System.Drawing.Size(71, 31);
-            Engage_btn.TabIndex = 0;
-            Engage_btn.TabStop = false;
-            Engage_btn.Text = "Engage";
-            Engage_btn.UseVisualStyleBackColor = true;
-            Engage_btn.Click += Engage_btn_Click;
             // 
             // Make_trials_btn
             // 
@@ -962,6 +955,7 @@ namespace MOCU
             // Park_btn
             // 
             Park_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Park_btn.Enabled = false;
             Park_btn.Location = new System.Drawing.Point(244, 3);
             Park_btn.Name = "Park_btn";
             Park_btn.Size = new System.Drawing.Size(72, 31);
@@ -969,6 +963,7 @@ namespace MOCU
             Park_btn.TabStop = false;
             Park_btn.Text = "Park";
             Park_btn.UseVisualStyleBackColor = true;
+            Park_btn.Click += Park_btn_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -1007,6 +1002,30 @@ namespace MOCU
             Pause_btn.TabIndex = 5;
             Pause_btn.Text = "Pause";
             Pause_btn.UseVisualStyleBackColor = true;
+            // 
+            // Engage_btn
+            // 
+            Engage_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Engage_btn.Enabled = false;
+            Engage_btn.Location = new System.Drawing.Point(167, 3);
+            Engage_btn.Name = "Engage_btn";
+            Engage_btn.Size = new System.Drawing.Size(71, 31);
+            Engage_btn.TabIndex = 0;
+            Engage_btn.TabStop = false;
+            Engage_btn.Text = "Engage";
+            Engage_btn.UseVisualStyleBackColor = true;
+            Engage_btn.Click += Engage_btn_Click;
+            // 
+            // Connect_btn
+            // 
+            Connect_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            Connect_btn.Location = new System.Drawing.Point(13, 3);
+            Connect_btn.Name = "Connect_btn";
+            Connect_btn.Size = new System.Drawing.Size(148, 31);
+            Connect_btn.TabIndex = 6;
+            Connect_btn.Text = "Connect";
+            Connect_btn.UseVisualStyleBackColor = true;
+            Connect_btn.Click += Connect_btn_Click;
             // 
             // Right_panel_section
             // 
@@ -1173,16 +1192,6 @@ namespace MOCU
             // FolderBrowserDialog
             // 
             FolderBrowserDialog.SelectedPath = "C:\\Users\\user\\Documents\\GitHub\\Main\\Protocols";
-            // 
-            // Connect_btn
-            // 
-            Connect_btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            Connect_btn.Location = new System.Drawing.Point(13, 3);
-            Connect_btn.Name = "Connect_btn";
-            Connect_btn.Size = new System.Drawing.Size(148, 31);
-            Connect_btn.TabIndex = 6;
-            Connect_btn.Text = "Connect";
-            Connect_btn.UseVisualStyleBackColor = true;
             // 
             // GUI
             // 

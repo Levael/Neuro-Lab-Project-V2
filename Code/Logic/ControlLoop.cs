@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,13 @@ namespace MOCU
                 MoogHandler.Connect();
 
                 GUI.buttonsDictionary["CONNECT"].Enabled = false;
-                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["GOOD"];
+                GUI.buttonsDictionary["ENGAGE"].Enabled = true;
+
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["LOADING"];
             } catch (Exception error)
             {
                 GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["ERROR"];
+                GUI.textboxesDictionary["WARNINGS"].Text = error.ToString();
                 //MessageBox.Show("Cannot connect to the robot - check if robot is conncted in listen mode and also not turned off", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             
@@ -29,17 +33,57 @@ namespace MOCU
 
         public void MoogEngage()
         {
-            MoogHandler.Engage();
+            try
+            {
+                MoogHandler.Engage();
+
+                GUI.buttonsDictionary["ENGAGE"].Enabled = false;
+                GUI.buttonsDictionary["PARK"].Enabled = true;
+
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["GOOD"];
+            }
+            catch (Exception error)
+            {
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["ERROR"];
+                GUI.textboxesDictionary["WARNINGS"].Text = error.ToString();
+            }
+            
         }
 
         public void MoogDisengage()
         {
-            MoogHandler.Disengage();
+            try
+            {
+                MoogHandler.Disengage();
+
+                GUI.buttonsDictionary["PARK"].Enabled = false;
+                GUI.buttonsDictionary["ENGAGE"].Enabled = true;
+
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["LOADING"];
+            }
+            catch (Exception error)
+            {
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["ERROR"];
+                GUI.textboxesDictionary["WARNINGS"].Text = error.ToString();
+            }
+
         }
 
         public void MoogDisconnect()
         {
-            MoogHandler.Disconnect();
+            try
+            {
+                MoogHandler.Disconnect();
+
+                GUI.buttonsDictionary["CONNECT"].Enabled = true;
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["DISABLED"];
+            }
+            catch (Exception error)
+            {
+                GUI.statusesDictionary["MOOG"].BackColor = GUI.statusesColorsDictionary["ERROR"];
+                GUI.textboxesDictionary["WARNINGS"].Text = error.ToString();
+            }
+
         }
 
         public void MoogSendPosition(double surge, double heave, double lateral, double yaw = 0.0, double roll = 0.0, double pitch = 0.0)
@@ -52,7 +96,16 @@ namespace MOCU
             // roll = planet and stars rotation
             // pitch = "Choji's Human Bullet Tank"
 
-            MoogHandler.SendPosition(surge, heave, lateral, yaw, roll, pitch);
+            try
+            {
+                MoogHandler.SendPosition(surge, heave, lateral, yaw, roll, pitch);
+            }
+            catch (Exception error)
+            {
+                GUI.textboxesDictionary["WARNINGS"].Text = error.ToString();
+            }
+
+            
         }
 
         public void CedrusConnect()
@@ -65,7 +118,7 @@ namespace MOCU
             catch (Exception error)
             {
                 GUI.statusesDictionary["CEDRUS"].BackColor = GUI.statusesColorsDictionary["ERROR"];
-                //MessageBox.Show("Cannot connect to the controller", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //GUI.textboxesDictionary["WARNINGS"].Text = error.ToString();
             }
 
         }
