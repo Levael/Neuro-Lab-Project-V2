@@ -121,7 +121,7 @@ namespace MOCU
             // !!!!!!
             System.Windows.Forms.TextBox.CheckForIllegalCrossThreadCalls = false;
 
-            
+
 
 
             // Connect to Moog and Cedrus
@@ -129,7 +129,7 @@ namespace MOCU
             _controlLoop.MoogConnect();
             _controlLoop.CedrusConnect();
 
-            
+
 
             //CheckConnectedDevices();        // update statuses according to Moog, Oculus, Cedrus connections
 
@@ -345,7 +345,8 @@ namespace MOCU
                 { "OCULUS", Oculus_status_indicator },
                 { "CEDRUS", Cedrus_status_indicator },
                 { "UNITY", Unity_status_indicator },
-                { "TRIALS", Trials_status_indicator }
+                { "TRIALS", Trials_status_indicator },
+                { "IS_RUNNING", IsRunning_status_indicator }
             };
         }
 
@@ -561,7 +562,6 @@ namespace MOCU
         }
 
         #endregion
-
 
     }
 }

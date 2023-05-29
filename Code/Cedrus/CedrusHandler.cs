@@ -26,13 +26,21 @@ namespace MOCU
 
         public static void GetAnswer()  // object sender, SerialDataReceivedEventArgs e
         {
-            // WTF is going on here?
-            //_serialPort.BaseStream.Flush();
+            // in case Cedrus disconnects right in time of pressing a button
+            try
+            {
+                // WTF is going on here?
+                //_serialPort.BaseStream.Flush();
 
-            byte[] value = new byte[1];
+                byte[] value = new byte[1];
 
-            GUI.textboxesDictionary["INFO"].Text += $"{_serialPort.Read(value, 0, 1)} - ";
-            GUI.textboxesDictionary["INFO"].Text += $"{value[0]} \r\n";
+                GUI.textboxesDictionary["INFO"].Text += $"{_serialPort.Read(value, 0, 1)} - ";
+                GUI.textboxesDictionary["INFO"].Text += $"{value[0]} \r\n";
+            } catch (Exception error)
+            {
+                //
+            }
+            
         }
 
         private static void ConnectionMonitoring ()

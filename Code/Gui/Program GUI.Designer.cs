@@ -29,8 +29,8 @@ namespace MOCU
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             Header_Body_section = new System.Windows.Forms.SplitContainer();
             ProtocolNames_Status_section = new System.Windows.Forms.SplitContainer();
             Protocol_Names_section = new System.Windows.Forms.SplitContainer();
@@ -47,6 +47,8 @@ namespace MOCU
             Names_wrapper = new System.Windows.Forms.Panel();
             stub_label = new System.Windows.Forms.Label();
             Statuses_wrapper = new System.Windows.Forms.TableLayoutPanel();
+            IsRunning_status_indicator = new System.Windows.Forms.TextBox();
+            IsRunning_status_label = new System.Windows.Forms.Label();
             Oculus_status_indicator = new System.Windows.Forms.TextBox();
             Trials_status_indicator = new System.Windows.Forms.TextBox();
             Unity_status_indicator = new System.Windows.Forms.TextBox();
@@ -201,7 +203,7 @@ namespace MOCU
             ProtocolNames_Status_section.Panel2.Controls.Add(Status_label);
             ProtocolNames_Status_section.Panel2.Padding = new System.Windows.Forms.Padding(5);
             ProtocolNames_Status_section.Size = new System.Drawing.Size(1553, 58);
-            ProtocolNames_Status_section.SplitterDistance = 1252;
+            ProtocolNames_Status_section.SplitterDistance = 1154;
             ProtocolNames_Status_section.TabIndex = 0;
             // 
             // Protocol_Names_section
@@ -226,7 +228,7 @@ namespace MOCU
             Protocol_Names_section.Panel2.BackColor = System.Drawing.Color.LightGray;
             Protocol_Names_section.Panel2.Controls.Add(Names_wrapper);
             Protocol_Names_section.Panel2.Controls.Add(stub_label);
-            Protocol_Names_section.Size = new System.Drawing.Size(1252, 58);
+            Protocol_Names_section.Size = new System.Drawing.Size(1154, 58);
             Protocol_Names_section.SplitterDistance = 725;
             Protocol_Names_section.TabIndex = 0;
             // 
@@ -383,12 +385,16 @@ namespace MOCU
             // 
             Statuses_wrapper.Anchor = System.Windows.Forms.AnchorStyles.Right;
             Statuses_wrapper.AutoSize = true;
-            Statuses_wrapper.ColumnCount = 5;
+            Statuses_wrapper.ColumnCount = 7;
+            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
             Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            Statuses_wrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            Statuses_wrapper.Controls.Add(IsRunning_status_indicator, 6, 0);
+            Statuses_wrapper.Controls.Add(IsRunning_status_label, 6, 1);
             Statuses_wrapper.Controls.Add(Oculus_status_indicator, 1, 0);
             Statuses_wrapper.Controls.Add(Trials_status_indicator, 4, 0);
             Statuses_wrapper.Controls.Add(Unity_status_indicator, 3, 0);
@@ -399,55 +405,80 @@ namespace MOCU
             Statuses_wrapper.Controls.Add(Oculus_status_label, 1, 1);
             Statuses_wrapper.Controls.Add(Moog_status_indicator, 0, 0);
             Statuses_wrapper.Controls.Add(Unity_status_label, 3, 1);
-            Statuses_wrapper.Location = new System.Drawing.Point(47, 13);
+            Statuses_wrapper.Location = new System.Drawing.Point(25, 13);
             Statuses_wrapper.Margin = new System.Windows.Forms.Padding(0);
             Statuses_wrapper.Name = "Statuses_wrapper";
             Statuses_wrapper.RowCount = 2;
             Statuses_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             Statuses_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            Statuses_wrapper.Size = new System.Drawing.Size(245, 40);
+            Statuses_wrapper.Size = new System.Drawing.Size(365, 40);
             Statuses_wrapper.TabIndex = 6;
+            // 
+            // IsRunning_status_indicator
+            // 
+            IsRunning_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            IsRunning_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
+            IsRunning_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            IsRunning_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
+            IsRunning_status_indicator.Enabled = false;
+            IsRunning_status_indicator.Location = new System.Drawing.Point(291, 3);
+            IsRunning_status_indicator.Multiline = true;
+            IsRunning_status_indicator.Name = "IsRunning_status_indicator";
+            IsRunning_status_indicator.ReadOnly = true;
+            IsRunning_status_indicator.Size = new System.Drawing.Size(71, 18);
+            IsRunning_status_indicator.TabIndex = 6;
+            // 
+            // IsRunning_status_label
+            // 
+            IsRunning_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
+            IsRunning_status_label.AutoSize = true;
+            IsRunning_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            IsRunning_status_label.Location = new System.Drawing.Point(300, 25);
+            IsRunning_status_label.Name = "IsRunning_status_label";
+            IsRunning_status_label.Size = new System.Drawing.Size(52, 13);
+            IsRunning_status_label.TabIndex = 1;
+            IsRunning_status_label.Text = "Running";
             // 
             // Oculus_status_indicator
             // 
-            Oculus_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Oculus_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Oculus_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Oculus_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Oculus_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Oculus_status_indicator.Enabled = false;
-            Oculus_status_indicator.Location = new System.Drawing.Point(58, 3);
+            Oculus_status_indicator.Location = new System.Drawing.Point(57, 3);
             Oculus_status_indicator.Multiline = true;
             Oculus_status_indicator.Name = "Oculus_status_indicator";
             Oculus_status_indicator.ReadOnly = true;
-            Oculus_status_indicator.Size = new System.Drawing.Size(30, 18);
+            Oculus_status_indicator.Size = new System.Drawing.Size(48, 18);
             Oculus_status_indicator.TabIndex = 2;
             // 
             // Trials_status_indicator
             // 
-            Trials_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Trials_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Trials_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Trials_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Trials_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Trials_status_indicator.Enabled = false;
-            Trials_status_indicator.Location = new System.Drawing.Point(205, 3);
+            Trials_status_indicator.Location = new System.Drawing.Point(219, 3);
             Trials_status_indicator.Multiline = true;
             Trials_status_indicator.Name = "Trials_status_indicator";
             Trials_status_indicator.ReadOnly = true;
-            Trials_status_indicator.Size = new System.Drawing.Size(30, 18);
+            Trials_status_indicator.Size = new System.Drawing.Size(48, 18);
             Trials_status_indicator.TabIndex = 5;
             // 
             // Unity_status_indicator
             // 
-            Unity_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Unity_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Unity_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Unity_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Unity_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Unity_status_indicator.Enabled = false;
-            Unity_status_indicator.Location = new System.Drawing.Point(156, 3);
+            Unity_status_indicator.Location = new System.Drawing.Point(165, 3);
             Unity_status_indicator.Multiline = true;
             Unity_status_indicator.Name = "Unity_status_indicator";
             Unity_status_indicator.ReadOnly = true;
-            Unity_status_indicator.Size = new System.Drawing.Size(30, 18);
+            Unity_status_indicator.Size = new System.Drawing.Size(48, 18);
             Unity_status_indicator.TabIndex = 4;
             // 
             // Trials_status_label
@@ -455,7 +486,7 @@ namespace MOCU
             Trials_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Trials_status_label.AutoSize = true;
             Trials_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Trials_status_label.Location = new System.Drawing.Point(204, 25);
+            Trials_status_label.Location = new System.Drawing.Point(226, 25);
             Trials_status_label.Name = "Trials_status_label";
             Trials_status_label.Size = new System.Drawing.Size(33, 13);
             Trials_status_label.TabIndex = 4;
@@ -467,7 +498,7 @@ namespace MOCU
             Cedrus_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Cedrus_status_label.AutoSize = true;
             Cedrus_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Cedrus_status_label.Location = new System.Drawing.Point(101, 25);
+            Cedrus_status_label.Location = new System.Drawing.Point(113, 25);
             Cedrus_status_label.Name = "Cedrus_status_label";
             Cedrus_status_label.Size = new System.Drawing.Size(43, 13);
             Cedrus_status_label.TabIndex = 4;
@@ -476,16 +507,16 @@ namespace MOCU
             // 
             // Cedrus_status_indicator
             // 
-            Cedrus_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Cedrus_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Cedrus_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Cedrus_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Cedrus_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Cedrus_status_indicator.Enabled = false;
-            Cedrus_status_indicator.Location = new System.Drawing.Point(107, 3);
+            Cedrus_status_indicator.Location = new System.Drawing.Point(111, 3);
             Cedrus_status_indicator.Multiline = true;
             Cedrus_status_indicator.Name = "Cedrus_status_indicator";
             Cedrus_status_indicator.ReadOnly = true;
-            Cedrus_status_indicator.Size = new System.Drawing.Size(30, 18);
+            Cedrus_status_indicator.Size = new System.Drawing.Size(48, 18);
             Cedrus_status_indicator.TabIndex = 3;
             // 
             // Moog_status_label
@@ -493,7 +524,7 @@ namespace MOCU
             Moog_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Moog_status_label.AutoSize = true;
             Moog_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Moog_status_label.Location = new System.Drawing.Point(5, 25);
+            Moog_status_label.Location = new System.Drawing.Point(8, 25);
             Moog_status_label.Name = "Moog_status_label";
             Moog_status_label.Size = new System.Drawing.Size(38, 13);
             Moog_status_label.TabIndex = 1;
@@ -505,7 +536,7 @@ namespace MOCU
             Oculus_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Oculus_status_label.AutoSize = true;
             Oculus_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Oculus_status_label.Location = new System.Drawing.Point(52, 25);
+            Oculus_status_label.Location = new System.Drawing.Point(59, 25);
             Oculus_status_label.Name = "Oculus_status_label";
             Oculus_status_label.Size = new System.Drawing.Size(43, 13);
             Oculus_status_label.TabIndex = 2;
@@ -514,16 +545,16 @@ namespace MOCU
             // 
             // Moog_status_indicator
             // 
-            Moog_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Moog_status_indicator.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             Moog_status_indicator.BackColor = System.Drawing.Color.LightSlateGray;
             Moog_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Moog_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Moog_status_indicator.Enabled = false;
-            Moog_status_indicator.Location = new System.Drawing.Point(9, 3);
+            Moog_status_indicator.Location = new System.Drawing.Point(3, 3);
             Moog_status_indicator.Multiline = true;
             Moog_status_indicator.Name = "Moog_status_indicator";
             Moog_status_indicator.ReadOnly = true;
-            Moog_status_indicator.Size = new System.Drawing.Size(30, 18);
+            Moog_status_indicator.Size = new System.Drawing.Size(48, 18);
             Moog_status_indicator.TabIndex = 1;
             // 
             // Unity_status_label
@@ -531,7 +562,7 @@ namespace MOCU
             Unity_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Unity_status_label.AutoSize = true;
             Unity_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Unity_status_label.Location = new System.Drawing.Point(154, 25);
+            Unity_status_label.Location = new System.Drawing.Point(172, 25);
             Unity_status_label.Name = "Unity_status_label";
             Unity_status_label.Size = new System.Drawing.Size(34, 13);
             Unity_status_label.TabIndex = 3;
@@ -625,8 +656,8 @@ namespace MOCU
             Parameters_table.AllowUserToDeleteRows = false;
             Parameters_table.AllowUserToResizeColumns = false;
             Parameters_table.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.NullValue = "null";
-            Parameters_table.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.NullValue = "null";
+            Parameters_table.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             Parameters_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             Parameters_table.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             Parameters_table.BackgroundColor = System.Drawing.SystemColors.Control;
@@ -637,14 +668,14 @@ namespace MOCU
             Parameters_table.Location = new System.Drawing.Point(0, 20);
             Parameters_table.MultiSelect = false;
             Parameters_table.Name = "Parameters_table";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            Parameters_table.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            Parameters_table.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             Parameters_table.RowHeadersVisible = false;
             Parameters_table.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             Parameters_table.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -1160,6 +1191,7 @@ namespace MOCU
             Info_textbox.ReadOnly = true;
             Info_textbox.Size = new System.Drawing.Size(422, 170);
             Info_textbox.TabIndex = 1;
+            Info_textbox.TabStop = false;
             // 
             // Warnings_label
             // 
@@ -1353,6 +1385,8 @@ namespace MOCU
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button Resume_btn;
         private System.Windows.Forms.Button Connect_btn;
+        private System.Windows.Forms.Label IsRunning_status_label;
+        private System.Windows.Forms.TextBox IsRunning_status_indicator;
     }
 }
 
