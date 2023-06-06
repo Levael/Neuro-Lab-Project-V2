@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MOCU
@@ -18,7 +15,9 @@ namespace MOCU
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            WinApi.TimeBeginPeriod(1);
             Application.Run(new GUI());
+            WinApi.TimeEndPeriod(1);
         }
 
         // Global ToDo:

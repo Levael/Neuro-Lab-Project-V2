@@ -405,13 +405,13 @@ namespace MOCU
             Statuses_wrapper.Controls.Add(Oculus_status_label, 1, 1);
             Statuses_wrapper.Controls.Add(Moog_status_indicator, 0, 0);
             Statuses_wrapper.Controls.Add(Unity_status_label, 3, 1);
-            Statuses_wrapper.Location = new System.Drawing.Point(25, 13);
+            Statuses_wrapper.Location = new System.Drawing.Point(-15, 13);
             Statuses_wrapper.Margin = new System.Windows.Forms.Padding(0);
             Statuses_wrapper.Name = "Statuses_wrapper";
             Statuses_wrapper.RowCount = 2;
             Statuses_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             Statuses_wrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            Statuses_wrapper.Size = new System.Drawing.Size(365, 40);
+            Statuses_wrapper.Size = new System.Drawing.Size(405, 40);
             Statuses_wrapper.TabIndex = 6;
             // 
             // IsRunning_status_indicator
@@ -421,11 +421,11 @@ namespace MOCU
             IsRunning_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             IsRunning_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             IsRunning_status_indicator.Enabled = false;
-            IsRunning_status_indicator.Location = new System.Drawing.Point(291, 3);
+            IsRunning_status_indicator.Location = new System.Drawing.Point(323, 3);
             IsRunning_status_indicator.Multiline = true;
             IsRunning_status_indicator.Name = "IsRunning_status_indicator";
             IsRunning_status_indicator.ReadOnly = true;
-            IsRunning_status_indicator.Size = new System.Drawing.Size(71, 18);
+            IsRunning_status_indicator.Size = new System.Drawing.Size(79, 18);
             IsRunning_status_indicator.TabIndex = 6;
             // 
             // IsRunning_status_label
@@ -433,7 +433,7 @@ namespace MOCU
             IsRunning_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             IsRunning_status_label.AutoSize = true;
             IsRunning_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            IsRunning_status_label.Location = new System.Drawing.Point(300, 25);
+            IsRunning_status_label.Location = new System.Drawing.Point(336, 25);
             IsRunning_status_label.Name = "IsRunning_status_label";
             IsRunning_status_label.Size = new System.Drawing.Size(52, 13);
             IsRunning_status_label.TabIndex = 1;
@@ -446,11 +446,11 @@ namespace MOCU
             Oculus_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Oculus_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Oculus_status_indicator.Enabled = false;
-            Oculus_status_indicator.Location = new System.Drawing.Point(57, 3);
+            Oculus_status_indicator.Location = new System.Drawing.Point(63, 3);
             Oculus_status_indicator.Multiline = true;
             Oculus_status_indicator.Name = "Oculus_status_indicator";
             Oculus_status_indicator.ReadOnly = true;
-            Oculus_status_indicator.Size = new System.Drawing.Size(48, 18);
+            Oculus_status_indicator.Size = new System.Drawing.Size(54, 18);
             Oculus_status_indicator.TabIndex = 2;
             // 
             // Trials_status_indicator
@@ -460,11 +460,11 @@ namespace MOCU
             Trials_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Trials_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Trials_status_indicator.Enabled = false;
-            Trials_status_indicator.Location = new System.Drawing.Point(219, 3);
+            Trials_status_indicator.Location = new System.Drawing.Point(243, 3);
             Trials_status_indicator.Multiline = true;
             Trials_status_indicator.Name = "Trials_status_indicator";
             Trials_status_indicator.ReadOnly = true;
-            Trials_status_indicator.Size = new System.Drawing.Size(48, 18);
+            Trials_status_indicator.Size = new System.Drawing.Size(54, 18);
             Trials_status_indicator.TabIndex = 5;
             // 
             // Unity_status_indicator
@@ -474,11 +474,11 @@ namespace MOCU
             Unity_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Unity_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Unity_status_indicator.Enabled = false;
-            Unity_status_indicator.Location = new System.Drawing.Point(165, 3);
+            Unity_status_indicator.Location = new System.Drawing.Point(183, 3);
             Unity_status_indicator.Multiline = true;
             Unity_status_indicator.Name = "Unity_status_indicator";
             Unity_status_indicator.ReadOnly = true;
-            Unity_status_indicator.Size = new System.Drawing.Size(48, 18);
+            Unity_status_indicator.Size = new System.Drawing.Size(54, 18);
             Unity_status_indicator.TabIndex = 4;
             // 
             // Trials_status_label
@@ -486,7 +486,7 @@ namespace MOCU
             Trials_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Trials_status_label.AutoSize = true;
             Trials_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Trials_status_label.Location = new System.Drawing.Point(226, 25);
+            Trials_status_label.Location = new System.Drawing.Point(253, 25);
             Trials_status_label.Name = "Trials_status_label";
             Trials_status_label.Size = new System.Drawing.Size(33, 13);
             Trials_status_label.TabIndex = 4;
@@ -498,7 +498,7 @@ namespace MOCU
             Cedrus_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Cedrus_status_label.AutoSize = true;
             Cedrus_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Cedrus_status_label.Location = new System.Drawing.Point(113, 25);
+            Cedrus_status_label.Location = new System.Drawing.Point(128, 25);
             Cedrus_status_label.Name = "Cedrus_status_label";
             Cedrus_status_label.Size = new System.Drawing.Size(43, 13);
             Cedrus_status_label.TabIndex = 4;
@@ -512,11 +512,11 @@ namespace MOCU
             Cedrus_status_indicator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Cedrus_status_indicator.Cursor = System.Windows.Forms.Cursors.No;
             Cedrus_status_indicator.Enabled = false;
-            Cedrus_status_indicator.Location = new System.Drawing.Point(111, 3);
+            Cedrus_status_indicator.Location = new System.Drawing.Point(123, 3);
             Cedrus_status_indicator.Multiline = true;
             Cedrus_status_indicator.Name = "Cedrus_status_indicator";
             Cedrus_status_indicator.ReadOnly = true;
-            Cedrus_status_indicator.Size = new System.Drawing.Size(48, 18);
+            Cedrus_status_indicator.Size = new System.Drawing.Size(54, 18);
             Cedrus_status_indicator.TabIndex = 3;
             // 
             // Moog_status_label
@@ -524,7 +524,7 @@ namespace MOCU
             Moog_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Moog_status_label.AutoSize = true;
             Moog_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Moog_status_label.Location = new System.Drawing.Point(8, 25);
+            Moog_status_label.Location = new System.Drawing.Point(11, 25);
             Moog_status_label.Name = "Moog_status_label";
             Moog_status_label.Size = new System.Drawing.Size(38, 13);
             Moog_status_label.TabIndex = 1;
@@ -536,7 +536,7 @@ namespace MOCU
             Oculus_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Oculus_status_label.AutoSize = true;
             Oculus_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Oculus_status_label.Location = new System.Drawing.Point(59, 25);
+            Oculus_status_label.Location = new System.Drawing.Point(68, 25);
             Oculus_status_label.Name = "Oculus_status_label";
             Oculus_status_label.Size = new System.Drawing.Size(43, 13);
             Oculus_status_label.TabIndex = 2;
@@ -554,7 +554,7 @@ namespace MOCU
             Moog_status_indicator.Multiline = true;
             Moog_status_indicator.Name = "Moog_status_indicator";
             Moog_status_indicator.ReadOnly = true;
-            Moog_status_indicator.Size = new System.Drawing.Size(48, 18);
+            Moog_status_indicator.Size = new System.Drawing.Size(54, 18);
             Moog_status_indicator.TabIndex = 1;
             // 
             // Unity_status_label
@@ -562,7 +562,7 @@ namespace MOCU
             Unity_status_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             Unity_status_label.AutoSize = true;
             Unity_status_label.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            Unity_status_label.Location = new System.Drawing.Point(172, 25);
+            Unity_status_label.Location = new System.Drawing.Point(193, 25);
             Unity_status_label.Name = "Unity_status_label";
             Unity_status_label.Size = new System.Drawing.Size(34, 13);
             Unity_status_label.TabIndex = 3;
@@ -962,6 +962,7 @@ namespace MOCU
             Make_trials_btn.TabIndex = 2;
             Make_trials_btn.Text = "Make trials";
             Make_trials_btn.UseVisualStyleBackColor = true;
+            Make_trials_btn.Click += Make_trials_btn_Click;
             // 
             // Start_btn
             // 
@@ -972,6 +973,7 @@ namespace MOCU
             Start_btn.TabIndex = 3;
             Start_btn.Text = "Start";
             Start_btn.UseVisualStyleBackColor = true;
+            Start_btn.Click += Start_btn_Click;
             // 
             // Stop_btn
             // 

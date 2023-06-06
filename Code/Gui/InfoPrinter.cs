@@ -10,20 +10,19 @@ namespace MOCU
     public static class InfoPrinter
     {
 
-        /*private static void PrintText (string text)
+        public static void PrintTextOfType(string type, string text)
         {
+            GUI.textboxesDictionary[type.ToUpper()].Text += $"{text}\r\n";
+        }
 
+        /*public static void PrintWarning (string text)
+        {
+            PrintText("WARNINGS", text);
+        }
+
+        public static void PrintInfo(string text)
+        {
+            PrintText("INFO", text);
         }*/
-        public static void PrintWarning (Dictionary<string, Control> dict, string text)
-        {
-            dict["WARNINGS"].Text += text;
-            dict["INFO"].Text += "\r\n";
-        }
-
-        public static void PrintInfo(Dictionary<string, Control> dict, string text)
-        {
-            dict["INFO"].Text += text;
-            dict["INFO"].Text += "\r\n";
-        }
     }
 }

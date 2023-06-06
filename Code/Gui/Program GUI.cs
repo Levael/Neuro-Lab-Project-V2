@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 /*using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Font = System.Drawing.Font;*/
@@ -239,7 +239,7 @@ namespace MOCU
 
             if (Choose_Protocol_combobox.Items.Count == 0)
             {
-                InfoPrinter.PrintWarning(textboxesDictionary, "No excel files");
+                InfoPrinter.PrintTextOfType("WARNING", "No excel files");
                 return;
             }
         }
@@ -329,7 +329,7 @@ namespace MOCU
             textboxesDictionary = new()
             {
                 { "INFO", Info_textbox },
-                { "WARNINGS", Warning_textbox },
+                { "WARNING", Warning_textbox },
                 { "INFORMATION", Instructions_textbox }
             };
         }
@@ -418,7 +418,7 @@ namespace MOCU
 
             if (Choose_Protocol_combobox.Items.Count == 0)
             {
-                InfoPrinter.PrintWarning(textboxesDictionary, "No excel files");
+                InfoPrinter.PrintTextOfType("WARNING", "No excel files");
                 return;
             }
 
@@ -563,5 +563,88 @@ namespace MOCU
 
         #endregion
 
+        /// <summary>
+        /// Starts experiment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Start_btn_Click(object sender, EventArgs e)
+        {
+            if (statusesDictionary["MOOG"].BackColor != statusesColorsDictionary["GOOD"])
+            {
+                InfoPrinter.PrintTextOfType("WARNING", "Moog is still not ready");
+                return;
+            }
+
+            if (statusesDictionary["CEDRUS"].BackColor != statusesColorsDictionary["GOOD"])
+            {
+                InfoPrinter.PrintTextOfType("WARNING", "Cedrus is still not ready");
+                return;
+            }
+
+            InfoPrinter.PrintTextOfType("INFO", "Ready to start");
+        }
+
+        /// <summary>
+        /// Prepare at least the first trial (is static params -> all trials)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Make_trials_btn_Click(object sender, EventArgs e)
+        {
+            // duration == time, sigma == const, magnitude == distance in cm, frequency == moog fps
+            if (statusesDictionary["MOOG"].BackColor == statusesColorsDictionary["GOOD"]) TestSendPosFunc();
+            //TrajectoryMaker.GetCDF(1, 3, 13, 1000);
+        }
+
+        private void TestSendPosFunc ()
+        {
+            var cdf_vector = TrajectoryMaker.CDF_VECTOR;
+            int length = cdf_vector.Count;
+            double distance = 0.15;
+            double alpha_sin = 0.5;
+            double alpha_cos = 0.866025404;
+
+            double surge; double sway; double heave;
+
+
+
+            // forward
+            for (int i = 0; i < length; i++)
+            {
+                //InfoPrinter.PrintTextOfType("INFO", $"{(int)Math.Round(i / length)}");
+
+                surge = cdf_vector[i] * distance * alpha_cos;
+                sway = cdf_vector[i] * distance * alpha_sin;
+                heave = -0.22077500;
+
+                //InfoPrinter.PrintTextOfType("INFO", $"{surge}, {sway}, {heave}");
+                //Thread.Sleep(10);
+
+
+                _controlLoop.MoogSendPosition(surge, heave, sway, 0, 0, 0);
+                //_controlLoop.MoogSendPosition(surge, heave, sway, 0, 0, 0);
+            }
+
+            Thread.Sleep(2000);
+
+            //backward
+            for (int i = length - 1; i > 0 ; i--)
+            {
+                //InfoPrinter.PrintTextOfType("INFO", $"{(int)Math.Round(i / length)}");
+
+                surge = cdf_vector[i] * distance * alpha_cos;
+                sway = cdf_vector[i] * distance * alpha_sin;
+                heave = -0.22077500;
+
+                //InfoPrinter.PrintTextOfType("WARNING", $"{surge}, {sway}, {heave}");
+                //Thread.Sleep(10);
+
+
+                _controlLoop.MoogSendPosition(surge, heave, sway, 0, 0, 0);
+                //_controlLoop.MoogSendPosition(surge, heave, sway, 0, 0, 0);
+            }
+
+        }
     }
 }
